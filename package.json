@@ -1,0 +1,43 @@
+{
+  "name": "tree-sitter-cypher",
+  "version": "0.0.1",
+  "description": "Cypher Tree-sitter grammar",
+  "main": "bindings/node",
+  "scripts": {
+    "build": "tree-sitter generate",
+    "build:wasm": "npm run build && tree-sitter build-wasm",
+    "start": "npm run build:wasm && tree-sitter web-ui",
+    "test": "tree-sitter test",
+    "test:dev": "nodemon --ext js,cql --watch grammar.js --watch test.cql --exec 'npm run build && tree-sitter parse test.cql'",
+    "test:watch": "nodemon --ext js,txt,scm,cql --watch grammar.js --watch test --watch queries --exec 'npm run build && npm run test'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taekwombo/tree-sitter-cypher.git"
+  },
+  "keywords": [
+    "tree-sitter",
+    "cypher",
+    "graph",
+    "parser"
+  ],
+  "bugs": {
+    "url": "https://github.com/taekwombo/tree-sitter-cypher/issues"
+  },
+  "homepage": "https://github.com/taekwombo/tree-sitter-cypher#readme",
+  "tree-sitter": [
+    {
+      "scope": "source.cql",
+      "file-types": [
+        "cql"
+      ]
+    }
+  ],
+  "dependencies": {
+    "nan": "^2.15.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14",
+    "tree-sitter-cli": "^0.20.0"
+  }
+}
