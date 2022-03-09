@@ -283,32 +283,12 @@ module.exports = grammar({
             $.relationship_pattern,
             $.node_pattern,
         ),
-        // TODO: Simplify
-        relationship_pattern: ($) => choice(
-            seq(
-                $.left_arrow_head,
-                $.dash,
-                optional($.relationship_detail),
-                $.dash,
-                $.right_arrow_head,
-            ),
-            seq(
-                $.left_arrow_head,
-                $.dash,
-                optional($.relationship_detail),
-                $.dash,
-            ),
-            seq(
-                $.dash,
-                optional($.relationship_detail),
-                $.dash,
-                $.right_arrow_head,
-            ),
-            seq(
-                $.dash,
-                optional($.relationship_detail),
-                $.dash,
-            ),
+        relationship_pattern: ($) => seq(
+            optional($.left_arrow_head),
+            $.dash,
+            optional($.relationship_detail),
+            $.dash,
+            optional($.right_arrow_head),
         ),
         relationship_detail: ($) => seq(
             '[',
@@ -318,7 +298,7 @@ module.exports = grammar({
             optional($.properties),
             ']',
         ),
-        // TODO: fix precedence
+        // TODO: ensure that the precedence here does not break grammar.
         properties: ($) => prec(1, choice(
             $.map_literal,
             $.parameter,

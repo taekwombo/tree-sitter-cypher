@@ -873,36 +873,13 @@
     }
   },
   {
-    "type": "oct_digit",
+    "type": "octal_integer",
     "named": true,
     "fields": {},
     "children": {
       "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "non_zero_oct_digit",
-          "named": true
-        },
-        {
-          "type": "zero_digit",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "octal_integer",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "oct_digit",
-          "named": true
-        },
         {
           "type": "zero_digit",
           "named": true

@@ -3511,121 +3511,49 @@
       ]
     },
     "relationship_pattern": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
         {
-          "type": "SEQ",
+          "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
               "name": "left_arrow_head"
             },
             {
-              "type": "SYMBOL",
-              "name": "dash"
-            },
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "relationship_detail"
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dash"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
             {
               "type": "SYMBOL",
-              "name": "dash"
+              "name": "relationship_detail"
             },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dash"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
             {
               "type": "SYMBOL",
               "name": "right_arrow_head"
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "left_arrow_head"
             },
             {
-              "type": "SYMBOL",
-              "name": "dash"
-            },
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "relationship_detail"
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
-              "type": "SYMBOL",
-              "name": "dash"
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "dash"
-            },
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "relationship_detail"
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
-              "type": "SYMBOL",
-              "name": "dash"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "right_arrow_head"
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "dash"
-            },
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "relationship_detail"
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
-              "type": "SYMBOL",
-              "name": "dash"
+              "type": "BLANK"
             }
           ]
         }
@@ -7334,11 +7262,8 @@
           "name": "zero_digit"
         },
         {
-          "type": "REPEAT1",
-          "content": {
-            "type": "SYMBOL",
-            "name": "oct_digit"
-          }
+          "type": "PATTERN",
+          "value": "[0-8]+"
         }
       ]
     },
@@ -7396,19 +7321,6 @@
     "non_zero_oct_digit": {
       "type": "PATTERN",
       "value": "1|2|3|4|5|6|7"
-    },
-    "oct_digit": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "zero_digit"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "non_zero_oct_digit"
-        }
-      ]
     },
     "zero_digit": {
       "type": "STRING",

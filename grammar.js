@@ -50,10 +50,9 @@ module.exports = grammar({
         pattern_element: function ($) { return choice(seq($.node_pattern, repeat($.pattern_element_chain)), seq('(', $.pattern_element, ')')); },
         node_pattern: function ($) { return seq('(', optional($.variable), optional($.node_labels), optional($.properties), ')'); },
         pattern_element_chain: function ($) { return seq($.relationship_pattern, $.node_pattern); },
-        // TODO: Simplify
-        relationship_pattern: function ($) { return choice(seq($.left_arrow_head, $.dash, optional($.relationship_detail), $.dash, $.right_arrow_head), seq($.left_arrow_head, $.dash, optional($.relationship_detail), $.dash), seq($.dash, optional($.relationship_detail), $.dash, $.right_arrow_head), seq($.dash, optional($.relationship_detail), $.dash)); },
+        relationship_pattern: function ($) { return seq(optional($.left_arrow_head), $.dash, optional($.relationship_detail), $.dash, optional($.right_arrow_head)); },
         relationship_detail: function ($) { return seq('[', optional($.variable), optional($.relationship_types), optional($.range_literal), optional($.properties), ']'); },
-        // TODO: fix precedence
+        // TODO: ensure that the precedence here does not break grammar.
         properties: function ($) { return prec(1, choice($.map_literal, $.parameter)); },
         relationship_types: function ($) { return seq(':', $.rel_type_name, repeat(seq('|', optional(':'), $.rel_type_name))); },
         node_labels: function ($) { return repeat1($.node_label); },
@@ -108,13 +107,12 @@ module.exports = grammar({
         integer_literal: function ($) { return choice($.hex_integer, $.octal_integer, $.decimal_integer); },
         hex_integer: function ($) { return seq('0x', $.hex_digit); },
         decimal_integer: function ($) { return choice($.zero_digit, seq($.non_zero_digit, repeat($.digit))); },
-        octal_integer: function ($) { return seq($.zero_digit, repeat1($.oct_digit)); },
+        octal_integer: function ($) { return seq($.zero_digit, /[0-8]+/); },
         hex_letter: function () { return /a|b|c|d|e|f/i; },
         hex_digit: function ($) { return choice($.digit, $.hex_letter); },
         digit: function ($) { return prec(1, choice($.zero_digit, $.non_zero_digit)); },
         non_zero_digit: function ($) { return choice($.non_zero_oct_digit, '8', '9'); },
         non_zero_oct_digit: function () { return /1|2|3|4|5|6|7/i; },
-        oct_digit: function ($) { return choice($.zero_digit, $.non_zero_oct_digit); },
         zero_digit: function () { return '0'; },
         double_literal: function ($) { return choice($.exponent_decimal_real, $.regular_decimal_real); },
         exponent_decimal_real: function ($) { return seq(choice(repeat1($.digit), seq(repeat1($.digit), '.', repeat1($.digit)), seq('.', repeat1($.digit))), word('e'), optional('-'), repeat1($.digit)); },
