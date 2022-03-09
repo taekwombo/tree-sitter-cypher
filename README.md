@@ -31,7 +31,9 @@ Test parser in debug mode against `test.cql` file:
 
 #### References
 * [opencypher]
+* [opencypher/tools] repo
 
 [tree-sitter]: https://github.com/tree-sitter/tree-sitter
 [opencypher]: https://opencypher.org/resources/
+[openCypher/tools]: https://github.com/opencypher/openCypher/blob/a43606b91d7405f068b068c3eeb984eac8963e28/tools/grammar/src/main/java/org/opencypher/grammar/CharacterSet.java
 
