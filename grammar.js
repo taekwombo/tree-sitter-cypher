@@ -50,6 +50,7 @@ module.exports = grammar({
         pattern_element: function ($) { return choice(seq($.node_pattern, repeat($.pattern_element_chain)), seq('(', $.pattern_element, ')')); },
         node_pattern: function ($) { return seq('(', optional($.variable), optional($.node_labels), optional($.properties), ')'); },
         pattern_element_chain: function ($) { return seq($.relationship_pattern, $.node_pattern); },
+        // TODO: Simplify
         relationship_pattern: function ($) { return choice(seq($.left_arrow_head, $.dash, optional($.relationship_detail), $.dash, $.right_arrow_head), seq($.left_arrow_head, $.dash, optional($.relationship_detail), $.dash), seq($.dash, optional($.relationship_detail), $.dash, $.right_arrow_head), seq($.dash, optional($.relationship_detail), $.dash)); },
         relationship_detail: function ($) { return seq('[', optional($.variable), optional($.relationship_types), optional($.range_literal), optional($.properties), ']'); },
         // TODO: fix precedence
@@ -120,19 +121,18 @@ module.exports = grammar({
         regular_decimal_real: function ($) { return seq(repeat($.digit), '.', repeat1($.digit)); },
         schema_name: function ($) { return choice($.symbolic_name, $.reserved_word); },
         reserved_word: function () { return choice(word('all'), word('asc'), word('ascending'), word('by'), word('create'), word('delete'), word('desc'), word('descending'), word('detach'), word('exists'), word('limit'), word('match'), word('merge'), word('on'), word('optional'), word('order'), word('remove'), word('return'), word('set'), word('skip'), word('where'), word('with'), word('union'), word('unwind'), word('and'), word('as'), word('contains'), word('distinct'), word('ends'), word('in'), word('is'), word('not'), word('or'), word('starts'), word('xor'), word('false'), word('true'), word('null'), word('constraint'), word('unique'), word('case'), word('when'), word('then'), word('else'), word('end'), word('mandatory'), word('scalar'), word('of'), word('add'), word('drop')); },
-        symbolic_name: function ($) { return choice($.unescaped_symbolic_name, 
-        // $.escaped_symbolic_name,
-        $.hex_letter, word('count'), word('filter'), word('extract'), word('any'), word('none'), word('single')); },
+        symbolic_name: function ($) { return choice($.unescaped_symbolic_name, $.escaped_symbolic_name, $.hex_letter, word('count'), word('filter'), word('extract'), word('any'), word('none'), word('single')); },
         unescaped_symbolic_name: function ($) { return seq($.identifier_start, repeat($.identifier_part)); },
         identifier_start: function () { return /\p{ID_Start}|\p{Pc}/u; },
         identifier_part: function () { return /\p{ID_Continue}|\p{Sc}/u; },
-        // escaped_symbolic_name: ($) => seq('`', /[^`]*/, '`'),
+        escaped_symbolic_name: function () { return seq('`', /[^`]*/, '`'); },
         comment: function () { return token(choice(seq('/*', /.*/, '*/'), seq('//', /.*/, '\n'))); },
         left_arrow_head: function () { return choice('<', '⟨', '〈', '﹤', '＜'); },
         right_arrow_head: function () { return choice('>', '⟩', '〉', '﹥', '＞'); },
         dash: function () { return choice('-', '­', '‐', '‑', '‒', '–', '—', '―', '−', '﹘', '﹣', '－'); }
     }
 });
+// TODO: Add tests and use this function.
 function comma_separated(rule) {
     return seq(rule, repeat(seq(',', rule)));
 }

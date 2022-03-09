@@ -11335,6 +11335,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "escaped_symbolic_name"
+        },
+        {
+          "type": "SYMBOL",
           "name": "hex_letter"
         },
         {
@@ -11843,6 +11847,23 @@
     "identifier_part": {
       "type": "PATTERN",
       "value": "\\p{ID_Continue}|\\p{Sc}"
+    },
+    "escaped_symbolic_name": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "`"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[^`]*"
+        },
+        {
+          "type": "STRING",
+          "value": "`"
+        }
+      ]
     },
     "comment": {
       "type": "TOKEN",

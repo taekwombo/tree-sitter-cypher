@@ -277,6 +277,11 @@
     }
   },
   {
+    "type": "escaped_symbolic_name",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "explicit_procedure_invocation",
     "named": true,
     "fields": {},
@@ -1748,6 +1753,10 @@
       "required": false,
       "types": [
         {
+          "type": "escaped_symbolic_name",
+          "named": true
+        },
+        {
           "type": "hex_letter",
           "named": true
         },
@@ -2069,6 +2078,10 @@
   },
   {
     "type": "^",
+    "named": false
+  },
+  {
+    "type": "`",
     "named": false
   },
   {

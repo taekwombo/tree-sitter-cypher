@@ -283,6 +283,7 @@ module.exports = grammar({
             $.relationship_pattern,
             $.node_pattern,
         ),
+        // TODO: Simplify
         relationship_pattern: ($) => choice(
             seq(
                 $.left_arrow_head,
@@ -747,7 +748,7 @@ module.exports = grammar({
         ),
         symbolic_name: ($) => choice(
             $.unescaped_symbolic_name,
-            // $.escaped_symbolic_name,
+            $.escaped_symbolic_name,
             $.hex_letter,
             word('count'),
             word('filter'),
@@ -759,7 +760,7 @@ module.exports = grammar({
         unescaped_symbolic_name: ($) => seq($.identifier_start, repeat($.identifier_part)),
         identifier_start: () => /\p{ID_Start}|\p{Pc}/u,
         identifier_part: () => /\p{ID_Continue}|\p{Sc}/u,
-        // escaped_symbolic_name: ($) => seq('`', /[^`]*/, '`'),
+        escaped_symbolic_name: () => seq('`', /[^`]*/, '`'),
         comment: () => token(choice(
             seq('/*', /.*/, '*/'),
             seq('//', /.*/, '\n'),
@@ -795,6 +796,7 @@ module.exports = grammar({
     },
 });
 
+// TODO: Add tests and use this function.
 function comma_separated(rule: Rule): SeqRule {
     return seq(rule, repeat(seq(',', rule)));
 }
