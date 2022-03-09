@@ -658,14 +658,13 @@ module.exports = grammar({
         ),
         octal_integer: ($) => seq(
             $.zero_digit,
-            repeat1($.oct_digit),
+            /[0-8]+/,
         ),
         hex_letter: () => /a|b|c|d|e|f/i,
         hex_digit: ($) => choice($.digit, $.hex_letter),
         digit: ($) => prec(1, choice($.zero_digit, $.non_zero_digit)),
         non_zero_digit: ($) => choice($.non_zero_oct_digit, '8', '9'),
         non_zero_oct_digit: () => /1|2|3|4|5|6|7/i,
-        oct_digit: ($) => choice($.zero_digit, $.non_zero_oct_digit),
         zero_digit: () => '0',
         double_literal: ($) => choice(
             $.exponent_decimal_real,
