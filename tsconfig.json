@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "strict": true
+    },
+    "files": [
+        "./grammar.ts",
+        "./node_modules/tree-sitter-cli/dsl.d.ts"
+    ]
+}
