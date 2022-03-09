@@ -1712,7 +1712,17 @@
   {
     "type": "string_literal",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escaped_char",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "string_operator_expression",
@@ -1950,11 +1960,19 @@
     }
   },
   {
+    "type": "\"",
+    "named": false
+  },
+  {
     "type": "$",
     "named": false
   },
   {
     "type": "%",
+    "named": false
+  },
+  {
+    "type": "'",
     "named": false
   },
   {
@@ -2152,6 +2170,10 @@
   {
     "type": "ends",
     "named": false
+  },
+  {
+    "type": "escaped_char",
+    "named": true
   },
   {
     "type": "exists",

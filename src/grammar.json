@@ -7052,11 +7052,107 @@
     },
     "string_literal": {
       "type": "CHOICE",
-      "members": []
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "'"
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "PATTERN",
+                    "value": "[^'\\\\]+"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "escaped_char"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "STRING",
+              "value": "'"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "\""
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "PATTERN",
+                    "value": "[^\"\\\\]+"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "escaped_char"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "STRING",
+              "value": "\""
+            }
+          ]
+        }
+      ]
     },
     "escaped_char": {
-      "type": "CHOICE",
-      "members": []
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "\\"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "\\"
+              },
+              {
+                "type": "STRING",
+                "value": "\""
+              },
+              {
+                "type": "STRING",
+                "value": "'"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[^uU]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[u][a-fA-F0-9]{4}"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[U][a-fA-F0-9]{8}"
+              }
+            ]
+          }
+        ]
+      }
     },
     "number_literal": {
       "type": "CHOICE",
@@ -11742,11 +11838,11 @@
     },
     "identifier_start": {
       "type": "PATTERN",
-      "value": "[a-zA-Z]"
+      "value": "\\p{ID_Start}|\\p{Pc}"
     },
     "identifier_part": {
       "type": "PATTERN",
-      "value": "[a-zA-Z0-9]"
+      "value": "\\p{ID_Continue}|\\p{Sc}"
     },
     "comment": {
       "type": "TOKEN",
