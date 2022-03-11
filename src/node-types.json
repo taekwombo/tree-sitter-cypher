@@ -1603,10 +1603,6 @@
           "named": true
         },
         {
-          "type": "hex_letter",
-          "named": true
-        },
-        {
           "type": "unescaped_symbolic_name",
           "named": true
         }
@@ -2044,10 +2040,6 @@
   },
   {
     "type": "hex_integer",
-    "named": true
-  },
-  {
-    "type": "hex_letter",
     "named": true
   },
   {

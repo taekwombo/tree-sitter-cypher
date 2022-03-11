@@ -325,7 +325,7 @@ module.exports = grammar({
             optional($.integer_literal),
             optional(seq(
                 '..',
-                $.integer_literal,
+                optional($.integer_literal),
             )),
         ),
         label_name: ($) => $.schema_name,
@@ -634,18 +634,17 @@ module.exports = grammar({
             $.octal_integer,
             $.decimal_integer,
         ),
-        hex_integer: ($) => /0x[0-9a-f]+/i,
-        decimal_integer: ($) => choice(
+        hex_integer: () => /0x[0-9a-f]+/i,
+        decimal_integer: () => choice(
             '0',
             /[1-9][0-9]*/,
         ),
-        octal_integer: ($) => /0[0-7]+/,
-        hex_letter: () => /a|b|c|d|e|f/i,
+        octal_integer: () => /0[0-7]+/,
         double_literal: ($) => choice(
             $.exponent_decimal_real,
             $.regular_decimal_real,
         ),
-        exponent_decimal_real: ($) => token(seq(
+        exponent_decimal_real: () => token(seq(
             choice(
                 /[0-9]+/,
                 seq(
@@ -662,7 +661,7 @@ module.exports = grammar({
             optional('-'),
             /[0-9]+/,
         )),
-        regular_decimal_real: ($) => /[0-9]+\.[0-9]+/,
+        regular_decimal_real: () => /[0-9]*\.[0-9]+/,
         schema_name: ($) => choice($.symbolic_name, $.reserved_word),
         reserved_word: () => choice(
             word('all'),
@@ -719,7 +718,6 @@ module.exports = grammar({
         symbolic_name: ($) => choice(
             $.unescaped_symbolic_name,
             $.escaped_symbolic_name,
-            $.hex_letter,
             word('count'),
             word('filter'),
             word('extract'),
