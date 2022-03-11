@@ -439,7 +439,8 @@ module.exports = grammar({
             $.literal,
             $.parameter,
             $.case_expression,
-            seq(word('count'), '(', '*', ')'),
+            // Take higher priority than function_invocation
+            prec(1, seq(word('count'), '(', '*', ')')),
             $.list_comprehension,
             $.pattern_comprehension,
             seq(word('all'), '(', $.filter_expression, ')'),
@@ -515,7 +516,7 @@ module.exports = grammar({
             ')',
         ),
         function_name: ($) => choice(
-            seq($.namespace, $.symbolic_name),
+            seq(optional($.namespace), $.symbolic_name),
             word('exists'),
         ),
         explicit_procedure_invocation: ($) => seq(
@@ -715,7 +716,7 @@ module.exports = grammar({
             word('add'),
             word('drop'),
         ),
-        symbolic_name: ($) => choice(
+        symbolic_name: ($) => prec.left(choice(
             $.unescaped_symbolic_name,
             $.escaped_symbolic_name,
             word('count'),
@@ -724,7 +725,7 @@ module.exports = grammar({
             word('any'),
             word('none'),
             word('single'),
-        ),
+        )),
         unescaped_symbolic_name: ($) => seq($.identifier_start, repeat($.identifier_part)),
         identifier_start: () => /\p{ID_Start}|\p{Pc}/u,
         identifier_part: () => /\p{ID_Continue}|\p{Sc}/u,
