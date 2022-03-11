@@ -1,0 +1,3 @@
+[submodule "openCypher"]
+	path = openCypher
+	url = https://github.com/opencypher/openCypher.git
