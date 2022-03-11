@@ -18,8 +18,14 @@ RETURN 1, 0x10, 05, 1, 5.2, .02e1, 2.3e-3,
 //  ^ constant
     [1, 2, 3, 4],
 //  ^ punctuation.bracket
+//    ^ punctuation.delimiter
+//       ^ punctuation.delimiter
+//          ^ punctuation.delimiter
 //             ^ punctuation.bracket
+//              ^ punctuation.delimiter
     { key: 'value' };
 //  ^ punctuation.bracket
+//       ^ punctuation.delimiter
 //                 ^ punctuation.bracket
+//                  ^ punctuation.delimiter
 

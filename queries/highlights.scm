@@ -13,6 +13,32 @@
 ] @punctuation.bracket
 
 [
+ ","
+ "."
+ ":"
+ ";"
+] @punctuation.delimiter
+
+[
+ "or"
+ "xor"
+ "and"
+ "not"
+ "="
+ "<>"
+ "<"
+ ">"
+ "<="
+ ">="
+ "-"
+ "+"
+ "*"
+ "/"
+ "%"
+ "^"
+] @operator
+
+[
  "all"
  "asc"
  "ascending"
@@ -30,24 +56,19 @@
  "optional"
  "order"
  "remove"
- "return"
  "set"
  "skip"
  "where"
  "with"
  "union"
  "unwind"
- "and"
  "as"
  "contains"
  "distinct"
  "ends"
  "in"
  "is"
- "not"
- "or"
  "starts"
- "xor"
  "constraint"
  "unique"
  "case"
@@ -61,6 +82,8 @@
  "add"
  "drop"
 ] @keyword
+
+"return" @keyword.return
 
 (node_pattern) @constant
 (relationship_pattern) @constant
