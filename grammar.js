@@ -1,4 +1,6 @@
 'use strict';
+// opencypher tests
+// https://github.com/opencypher/openCypher/blob/c816756d50df9cde73cae573ef871f2d7e76c70a/tools/grammar/src/test/resources/cypher.txt
 module.exports = grammar({
     name: 'cypher',
     extras: function ($) { return [
@@ -105,18 +107,13 @@ module.exports = grammar({
         property_expression: function ($) { return seq($.atom, repeat($.property_lookup)); },
         property_key_name: function ($) { return $.schema_name; },
         integer_literal: function ($) { return choice($.hex_integer, $.octal_integer, $.decimal_integer); },
-        hex_integer: function ($) { return seq('0x', $.hex_digit); },
-        decimal_integer: function ($) { return choice($.zero_digit, seq($.non_zero_digit, repeat($.digit))); },
-        octal_integer: function ($) { return seq($.zero_digit, /[0-8]+/); },
+        hex_integer: function ($) { return /0x[0-9a-f]+/i; },
+        decimal_integer: function ($) { return choice('0', /[1-9][0-9]*/); },
+        octal_integer: function ($) { return /0[0-7]+/; },
         hex_letter: function () { return /a|b|c|d|e|f/i; },
-        hex_digit: function ($) { return choice($.digit, $.hex_letter); },
-        digit: function ($) { return prec(1, choice($.zero_digit, $.non_zero_digit)); },
-        non_zero_digit: function ($) { return choice($.non_zero_oct_digit, '8', '9'); },
-        non_zero_oct_digit: function () { return /1|2|3|4|5|6|7/i; },
-        zero_digit: function () { return '0'; },
         double_literal: function ($) { return choice($.exponent_decimal_real, $.regular_decimal_real); },
-        exponent_decimal_real: function ($) { return seq(choice(repeat1($.digit), seq(repeat1($.digit), '.', repeat1($.digit)), seq('.', repeat1($.digit))), word('e'), optional('-'), repeat1($.digit)); },
-        regular_decimal_real: function ($) { return seq(repeat($.digit), '.', repeat1($.digit)); },
+        exponent_decimal_real: function ($) { return token(seq(choice(/[0-9]+/, seq(/[0-9]+/, '.', /[0-9]+/), seq('.', /[0-9]+/)), word('e'), optional('-'), /[0-9]+/)); },
+        regular_decimal_real: function ($) { return /[0-9]+\.[0-9]+/; },
         schema_name: function ($) { return choice($.symbolic_name, $.reserved_word); },
         reserved_word: function () { return choice(word('all'), word('asc'), word('ascending'), word('by'), word('create'), word('delete'), word('desc'), word('descending'), word('detach'), word('exists'), word('limit'), word('match'), word('merge'), word('on'), word('optional'), word('order'), word('remove'), word('return'), word('set'), word('skip'), word('where'), word('with'), word('union'), word('unwind'), word('and'), word('as'), word('contains'), word('distinct'), word('ends'), word('in'), word('is'), word('not'), word('or'), word('starts'), word('xor'), word('false'), word('true'), word('null'), word('constraint'), word('unique'), word('case'), word('when'), word('then'), word('else'), word('end'), word('mandatory'), word('scalar'), word('of'), word('add'), word('drop')); },
         symbolic_name: function ($) { return choice($.unescaped_symbolic_name, $.escaped_symbolic_name, $.hex_letter, word('count'), word('filter'), word('extract'), word('any'), word('none'), word('single')); },

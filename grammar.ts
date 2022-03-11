@@ -1,5 +1,8 @@
 'use strict';
 
+// opencypher tests
+// https://github.com/opencypher/openCypher/blob/c816756d50df9cde73cae573ef871f2d7e76c70a/tools/grammar/src/test/resources/cypher.txt
+
 module.exports = grammar({
     name: 'cypher',
     extras: ($) => [
@@ -631,47 +634,35 @@ module.exports = grammar({
             $.octal_integer,
             $.decimal_integer,
         ),
-        hex_integer: ($) => seq('0x', $.hex_digit),
+        hex_integer: ($) => /0x[0-9a-f]+/i,
         decimal_integer: ($) => choice(
-            $.zero_digit,
-            seq($.non_zero_digit, repeat($.digit)),
+            '0',
+            /[1-9][0-9]*/,
         ),
-        octal_integer: ($) => seq(
-            $.zero_digit,
-            /[0-8]+/,
-        ),
+        octal_integer: ($) => /0[0-7]+/,
         hex_letter: () => /a|b|c|d|e|f/i,
-        hex_digit: ($) => choice($.digit, $.hex_letter),
-        digit: ($) => prec(1, choice($.zero_digit, $.non_zero_digit)),
-        non_zero_digit: ($) => choice($.non_zero_oct_digit, '8', '9'),
-        non_zero_oct_digit: () => /1|2|3|4|5|6|7/i,
-        zero_digit: () => '0',
         double_literal: ($) => choice(
             $.exponent_decimal_real,
             $.regular_decimal_real,
         ),
-        exponent_decimal_real: ($) => seq(
+        exponent_decimal_real: ($) => token(seq(
             choice(
-                repeat1($.digit),
+                /[0-9]+/,
                 seq(
-                    repeat1($.digit),
+                    /[0-9]+/,
                     '.',
-                    repeat1($.digit),
+                    /[0-9]+/,
                 ),
                 seq(
                     '.',
-                    repeat1($.digit),
+                    /[0-9]+/,
                 ),
             ),
             word('e'),
             optional('-'),
-            repeat1($.digit),
-        ),
-        regular_decimal_real: ($) => seq(
-            repeat($.digit),
-            '.',
-            repeat1($.digit),
-        ),
+            /[0-9]+/,
+        )),
+        regular_decimal_real: ($) => /[0-9]+\.[0-9]+/,
         schema_name: ($) => choice($.symbolic_name, $.reserved_word),
         reserved_word: () => choice(
             word('all'),
