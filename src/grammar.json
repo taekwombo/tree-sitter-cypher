@@ -11641,21 +11641,8 @@
       "value": "(\\p{ID_Start}|\\p{Pc})(\\p{ID_Continue}|\\p{Sc})*"
     },
     "escaped_symbolic_name": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "`"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[^`]*"
-        },
-        {
-          "type": "STRING",
-          "value": "`"
-        }
-      ]
+      "type": "PATTERN",
+      "value": "`[^`]*`"
     },
     "comment": {
       "type": "CHOICE",
