@@ -151,6 +151,11 @@
     }
   },
   {
+    "type": "comment",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "comparison_expression",
     "named": true,
     "fields": {},
@@ -1811,6 +1816,10 @@
     }
   },
   {
+    "type": "\n",
+    "named": false
+  },
+  {
     "type": "\"",
     "named": false
   },
@@ -1839,6 +1848,10 @@
     "named": false
   },
   {
+    "type": "*/",
+    "named": false
+  },
+  {
     "type": "+",
     "named": false
   },
@@ -1864,6 +1877,14 @@
   },
   {
     "type": "/",
+    "named": false
+  },
+  {
+    "type": "/*",
+    "named": false
+  },
+  {
+    "type": "//",
     "named": false
   },
   {
@@ -1957,10 +1978,6 @@
   {
     "type": "case",
     "named": false
-  },
-  {
-    "type": "comment",
-    "named": true
   },
   {
     "type": "constraint",

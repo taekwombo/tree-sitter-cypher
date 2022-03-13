@@ -36,11 +36,17 @@ async function run () {
                 return null;
             }
 
+            if (chunk.startsWith('\n')) {
+                chunk = chunk.replace(/^\n+/, '');
+            }
+
             return [
                 heading,
                 'openCypher.txt: '.concat(index),
                 heading,
+                '',
                 chunk,
+                '',
                 body,
                 '()',
                 ''

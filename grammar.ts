@@ -730,10 +730,17 @@ module.exports = grammar({
         identifier_start: () => /\p{ID_Start}|\p{Pc}/u,
         identifier_part: () => /\p{ID_Continue}|\p{Sc}/u,
         escaped_symbolic_name: () => seq('`', /[^`]*/, '`'),
-        comment: () => token(choice(
-            seq('/*', /.*/, '*/'),
+        comment: ($) => choice(
+            seq(
+                '/*',
+                repeat(choice(
+                    /[^\*]/,
+                    /\*[^\/]/,
+                )),
+                '*/',
+            ),
             seq('//', /.*/, '\n'),
-        )),
+        ),
         left_arrow_head: () => choice(
             '<',
             '⟨',

@@ -122,7 +122,7 @@ module.exports = grammar({
         identifier_start: function () { return /\p{ID_Start}|\p{Pc}/u; },
         identifier_part: function () { return /\p{ID_Continue}|\p{Sc}/u; },
         escaped_symbolic_name: function () { return seq('`', /[^`]*/, '`'); },
-        comment: function () { return token(choice(seq('/*', /.*/, '*/'), seq('//', /.*/, '\n'))); },
+        comment: function ($) { return choice(seq('/*', repeat(choice(/[^\*]/, /\*[^\/]/)), '*/'), seq('//', /.*/, '\n')); },
         left_arrow_head: function () { return choice('<', '⟨', '〈', '﹤', '＜'); },
         right_arrow_head: function () { return choice('>', '⟩', '〉', '﹥', '＞'); },
         dash: function () { return choice('-', '­', '‐', '‑', '‒', '–', '—', '―', '−', '﹘', '﹣', '－'); }
