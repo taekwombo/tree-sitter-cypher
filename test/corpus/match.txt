@@ -21,8 +21,7 @@ MATCH (n) RETURN n;
                         (node_pattern
                           (variable
                             (symbolic_name
-                              (unescaped_symbolic_name
-                                (identifier_start)))))))))))
+                              (unescaped_symbolic_name))))))))))
             (return
               (projection_body
                 (projection_items
@@ -33,5 +32,4 @@ MATCH (n) RETURN n;
                           (atom
                             (variable
                               (symbolic_name
-                                (unescaped_symbolic_name
-                                  (identifier_start))))))))))))))))))
+                                (unescaped_symbolic_name)))))))))))))))))

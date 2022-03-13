@@ -11637,28 +11637,8 @@
       }
     },
     "unescaped_symbolic_name": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "identifier_start"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "identifier_part"
-          }
-        }
-      ]
-    },
-    "identifier_start": {
       "type": "PATTERN",
-      "value": "\\p{ID_Start}|\\p{Pc}"
-    },
-    "identifier_part": {
-      "type": "PATTERN",
-      "value": "\\p{ID_Continue}|\\p{Sc}"
+      "value": "(\\p{ID_Start}|\\p{Pc})(\\p{ID_Continue}|\\p{Sc})*"
     },
     "escaped_symbolic_name": {
       "type": "SEQ",

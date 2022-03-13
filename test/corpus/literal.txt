@@ -150,10 +150,7 @@ RETURN 1, 0x10, 05, 1, 5.2, .02e1, 2.3e-3,
                               (property_key_name
                                 (schema_name
                                   (symbolic_name
-                                    (unescaped_symbolic_name
-                                      (identifier_start)
-                                      (identifier_part)
-                                      (identifier_part)))))
+                                    (unescaped_symbolic_name))))
                               (expression
                                 (string_list_null_operator_expression
                                   (property_or_labels_expression

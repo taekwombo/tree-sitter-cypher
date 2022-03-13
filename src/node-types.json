@@ -1630,25 +1630,6 @@
     }
   },
   {
-    "type": "unescaped_symbolic_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier_part",
-          "named": true
-        },
-        {
-          "type": "identifier_start",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "union",
     "named": true,
     "fields": {},
@@ -2060,14 +2041,6 @@
     "named": true
   },
   {
-    "type": "identifier_part",
-    "named": true
-  },
-  {
-    "type": "identifier_start",
-    "named": true
-  },
-  {
     "type": "in",
     "named": false
   },
@@ -2166,6 +2139,10 @@
   {
     "type": "true",
     "named": false
+  },
+  {
+    "type": "unescaped_symbolic_name",
+    "named": true
   },
   {
     "type": "union",

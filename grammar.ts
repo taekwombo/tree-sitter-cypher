@@ -726,9 +726,9 @@ module.exports = grammar({
             word('none'),
             word('single'),
         )),
-        unescaped_symbolic_name: ($) => seq($.identifier_start, repeat($.identifier_part)),
-        identifier_start: () => /\p{ID_Start}|\p{Pc}/u,
-        identifier_part: () => /\p{ID_Continue}|\p{Sc}/u,
+        unescaped_symbolic_name: ($) => (
+            /(\p{ID_Start}|\p{Pc})(\p{ID_Continue}|\p{Sc})*/u
+        ),
         escaped_symbolic_name: () => seq('`', /[^`]*/, '`'),
         comment: ($) => choice(
             seq(
