@@ -10,6 +10,7 @@ module.exports = grammar({
     conflicts: function () { return []; },
     inline: function ($) { return [
         $.literal,
+        $.namespace,
     ]; },
     rules: {
         cypher: function ($) { return seq($.statement, optional(';')); },
@@ -77,9 +78,9 @@ module.exports = grammar({
         string_operator_expression: function ($) { return seq(choice(seq(word('starts'), word('with')), seq(word('ends'), word('with')), word('contains')), $.property_or_labels_expression); },
         null_operator_expression: function () { return choice(seq(word('is'), word('null')), seq(word('is'), word('not'), word('null'))); },
         property_or_labels_expression: function ($) { return seq($.atom, repeat($.property_lookup), optional($.node_labels)); },
-        atom: function ($) { return prec.left(choice($.literal, $.parameter, $.case_expression, 
+        atom: function ($) { return choice($.literal, $.parameter, $.case_expression, 
         // Take higher priority than function_invocation
-        prec(1, seq(word('count'), '(', '*', ')')), $.list_comprehension, $.pattern_comprehension, seq(word('all'), '(', $.filter_expression, ')'), seq(word('any'), '(', $.filter_expression, ')'), seq(word('none'), '(', $.filter_expression, ')'), seq(word('single'), '(', $.filter_expression, ')'), $.relationships_pattern, $.parenthesized_expression, $.function_invocation, $.variable)); },
+        prec(1, seq(word('count'), '(', '*', ')')), $.list_comprehension, $.pattern_comprehension, seq(word('all'), '(', $.filter_expression, ')'), seq(word('any'), '(', $.filter_expression, ')'), seq(word('none'), '(', $.filter_expression, ')'), seq(word('single'), '(', $.filter_expression, ')'), $.relationships_pattern, $.parenthesized_expression, $.function_invocation, prec.left($.variable)); },
         literal: function ($) { return choice($.number_literal, $.string_literal, $.boolean_literal, word('null'), $.map_literal, $.list_literal); },
         boolean_literal: function () { return choice(word('true'), word('false')); },
         list_literal: function ($) { return seq('[', $.expression, repeat(seq(',', $.expression)), ']'); },
@@ -94,7 +95,7 @@ module.exports = grammar({
         implicit_procedure_invocation: function ($) { return $.procedure_name; },
         procedure_result_field: function ($) { return $.symbolic_name; },
         procedure_name: function ($) { return seq($.namespace, $.symbolic_name); },
-        namespace: function ($) { return prec.right(repeat1(seq($.variable, '.'))); },
+        namespace: function ($) { return repeat1(seq($.variable, '.')); },
         list_comprehension: function ($) { return seq('[', $.filter_expression, optional(seq('|', $.expression)), ']'); },
         pattern_comprehension: function ($) { return seq('[', optional(seq($.variable, '=')), $.relationships_pattern, optional(seq(word('where'), $.expression)), '|', $.expression, ']'); },
         property_lookup: function ($) { return seq('.', $.property_key_name); },

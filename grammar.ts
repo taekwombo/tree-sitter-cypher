@@ -13,6 +13,7 @@ module.exports = grammar({
     ],
     inline: ($) => [
         $.literal,
+        $.namespace,
     ],
     rules: {
         cypher: ($) => seq(
@@ -435,7 +436,7 @@ module.exports = grammar({
             repeat($.property_lookup),
             optional($.node_labels),
         ),
-        atom: ($) => prec.left(choice(
+        atom: ($) => choice(
             $.literal,
             $.parameter,
             $.case_expression,
@@ -450,8 +451,8 @@ module.exports = grammar({
             $.relationships_pattern,
             $.parenthesized_expression,
             $.function_invocation,
-            $.variable,
-        )),
+            prec.left($.variable),
+        ),
         literal: ($) => choice(
             $.number_literal,
             $.string_literal,
@@ -534,7 +535,7 @@ module.exports = grammar({
         implicit_procedure_invocation: ($) => $.procedure_name,
         procedure_result_field: ($) => $.symbolic_name,
         procedure_name: ($) => seq($.namespace, $.symbolic_name),
-        namespace: ($) => prec.right(repeat1(seq($.variable, '.'))),
+        namespace: ($) => repeat1(seq($.variable, '.')),
         list_comprehension: ($) => seq(
             '[',
             $.filter_expression,

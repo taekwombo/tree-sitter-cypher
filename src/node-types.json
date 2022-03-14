@@ -376,11 +376,11 @@
       "required": false,
       "types": [
         {
-          "type": "namespace",
+          "type": "symbolic_name",
           "named": true
         },
         {
-          "type": "symbolic_name",
+          "type": "variable",
           "named": true
         }
       ]
@@ -665,21 +665,6 @@
     }
   },
   {
-    "type": "namespace",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "variable",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "node_label",
     "named": true,
     "fields": {},
@@ -943,11 +928,11 @@
       "required": true,
       "types": [
         {
-          "type": "namespace",
+          "type": "symbolic_name",
           "named": true
         },
         {
-          "type": "symbolic_name",
+          "type": "variable",
           "named": true
         }
       ]

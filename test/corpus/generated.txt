@@ -9042,22 +9042,41 @@ CALL test.proc(  a  ,  b  ,  c  ) RETURN *
 --------------------------------------------------------------------------------
 
 (cypher
-  (ERROR
-    (variable
-      (symbolic_name
-        (unescaped_symbolic_name)))
-    (variable
-      (symbolic_name
-        (unescaped_symbolic_name)))
-    (ERROR
-      (UNEXPECTED ')
-      (UNEXPECTED ')
-      (UNEXPECTED ')))
   (statement
     (query
       (regular_query
         (single_query
           (single_part_query
+            (reading_clause
+              (in_query_call
+                (explicit_procedure_invocation
+                  (procedure_name
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (expression
+                    (string_list_null_operator_expression
+                      (property_or_labels_expression
+                        (atom
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name)))))))
+                  (expression
+                    (string_list_null_operator_expression
+                      (property_or_labels_expression
+                        (atom
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name)))))))
+                  (expression
+                    (string_list_null_operator_expression
+                      (property_or_labels_expression
+                        (atom
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name))))))))))
             (return
               (projection_body
                 (projection_items)))))))))
@@ -9071,22 +9090,41 @@ CALL test.proc(a,b  ,  c  ) RETURN *
 --------------------------------------------------------------------------------
 
 (cypher
-  (ERROR
-    (variable
-      (symbolic_name
-        (unescaped_symbolic_name)))
-    (variable
-      (symbolic_name
-        (unescaped_symbolic_name)))
-    (ERROR
-      (UNEXPECTED ',')
-      (UNEXPECTED ')
-      (UNEXPECTED ')))
   (statement
     (query
       (regular_query
         (single_query
           (single_part_query
+            (reading_clause
+              (in_query_call
+                (explicit_procedure_invocation
+                  (procedure_name
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (expression
+                    (string_list_null_operator_expression
+                      (property_or_labels_expression
+                        (atom
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name)))))))
+                  (expression
+                    (string_list_null_operator_expression
+                      (property_or_labels_expression
+                        (atom
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name)))))))
+                  (expression
+                    (string_list_null_operator_expression
+                      (property_or_labels_expression
+                        (atom
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name))))))))))
             (return
               (projection_body
                 (projection_items)))))))))
@@ -9099,14 +9137,31 @@ CALL test.proc(  a  ) RETURN *
 
 --------------------------------------------------------------------------------
 
-(ERROR
-  (variable
-    (symbolic_name
-      (unescaped_symbolic_name)))
-  (variable
-    (symbolic_name
-      (unescaped_symbolic_name)))
-  (UNEXPECTED '))
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (in_query_call
+                (explicit_procedure_invocation
+                  (procedure_name
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (expression
+                    (string_list_null_operator_expression
+                      (property_or_labels_expression
+                        (atom
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name))))))))))
+            (return
+              (projection_body
+                (projection_items)))))))))
 
 ================================================================================
 openCypher.txt: 192
@@ -9116,13 +9171,29 @@ CALL test.proc() RETURN *
 
 --------------------------------------------------------------------------------
 
-(ERROR
-  (variable
-    (symbolic_name
-      (unescaped_symbolic_name)))
-  (variable
-    (symbolic_name
-      (unescaped_symbolic_name))))
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (in_query_call
+                (explicit_procedure_invocation
+                  (procedure_name
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (expression
+                    (string_list_null_operator_expression
+                      (property_or_labels_expression
+                        (atom
+                          (MISSING "null"))))))))
+            (return
+              (projection_body
+                (projection_items)))))))))
 
 ================================================================================
 openCypher.txt: 193
@@ -9133,21 +9204,33 @@ CALL test.proc() YIELD a AS v RETURN *
 --------------------------------------------------------------------------------
 
 (cypher
-  (ERROR
-    (variable
-      (symbolic_name
-        (unescaped_symbolic_name)))
-    (variable
-      (symbolic_name
-        (unescaped_symbolic_name))))
-  (ERROR
-    (UNEXPECTED ')
-    (UNEXPECTED 'v'))
   (statement
     (query
       (regular_query
         (single_query
           (single_part_query
+            (reading_clause
+              (in_query_call
+                (explicit_procedure_invocation
+                  (procedure_name
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (expression
+                    (string_list_null_operator_expression
+                      (property_or_labels_expression
+                        (atom
+                          (MISSING "null"))))))
+                (yield_items
+                  (yield_item
+                    (procedure_result_field
+                      (symbolic_name
+                        (unescaped_symbolic_name)))
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))))))
             (return
               (projection_body
                 (projection_items)))))))))
@@ -9160,13 +9243,29 @@ CALL test.proc(   ) RETURN *
 
 --------------------------------------------------------------------------------
 
-(ERROR
-  (variable
-    (symbolic_name
-      (unescaped_symbolic_name)))
-  (variable
-    (symbolic_name
-      (unescaped_symbolic_name))))
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (in_query_call
+                (explicit_procedure_invocation
+                  (procedure_name
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (expression
+                    (string_list_null_operator_expression
+                      (property_or_labels_expression
+                        (atom
+                          (MISSING "null"))))))))
+            (return
+              (projection_body
+                (projection_items)))))))))
 
 ================================================================================
 openCypher.txt: 195
@@ -9176,23 +9275,39 @@ MATCH (a) CALL test.proc(   ) RETURN *
 
 --------------------------------------------------------------------------------
 
-(ERROR
-  (reading_clause
-    (match
-      (pattern
-        (pattern_part
-          (anonymous_pattern_part
-            (pattern_element
-              (node_pattern
-                (variable
-                  (symbolic_name
-                    (unescaped_symbolic_name))))))))))
-  (variable
-    (symbolic_name
-      (unescaped_symbolic_name)))
-  (variable
-    (symbolic_name
-      (unescaped_symbolic_name))))
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (match
+                (pattern
+                  (pattern_part
+                    (anonymous_pattern_part
+                      (pattern_element
+                        (node_pattern
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name))))))))))
+            (reading_clause
+              (in_query_call
+                (explicit_procedure_invocation
+                  (procedure_name
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (expression
+                    (string_list_null_operator_expression
+                      (property_or_labels_expression
+                        (atom
+                          (MISSING "null"))))))))
+            (return
+              (projection_body
+                (projection_items)))))))))
 
 ================================================================================
 openCypher.txt: 196
@@ -9218,17 +9333,36 @@ MATCH (a) CALL test.proc( a, b   ,   c  ) RETURN *
                           (variable
                             (symbolic_name
                               (unescaped_symbolic_name))))))))))
-            (ERROR
-              (variable
-                (symbolic_name
-                  (unescaped_symbolic_name)))
-              (variable
-                (symbolic_name
-                  (unescaped_symbolic_name)))
-              (ERROR
-                (UNEXPECTED ',')
-                (UNEXPECTED ')
-                (UNEXPECTED ')))
+            (reading_clause
+              (in_query_call
+                (explicit_procedure_invocation
+                  (procedure_name
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (expression
+                    (string_list_null_operator_expression
+                      (property_or_labels_expression
+                        (atom
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name)))))))
+                  (expression
+                    (string_list_null_operator_expression
+                      (property_or_labels_expression
+                        (atom
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name)))))))
+                  (expression
+                    (string_list_null_operator_expression
+                      (property_or_labels_expression
+                        (atom
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name))))))))))
             (return
               (projection_body
                 (projection_items)))))))))
@@ -9257,20 +9391,49 @@ MATCH (a) CALL test.proc( a, b   ,   c  ) YIELD a, b , c RETURN *
                           (variable
                             (symbolic_name
                               (unescaped_symbolic_name))))))))))
-            (ERROR
-              (variable
-                (symbolic_name
-                  (unescaped_symbolic_name)))
-              (variable
-                (symbolic_name
-                  (unescaped_symbolic_name)))
-              (ERROR
-                (UNEXPECTED ',')
-                (UNEXPECTED ')
-                (UNEXPECTED '))
-              (UNEXPECTED ',')
-              (UNEXPECTED ')
-              (UNEXPECTED '))
+            (reading_clause
+              (in_query_call
+                (explicit_procedure_invocation
+                  (procedure_name
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (expression
+                    (string_list_null_operator_expression
+                      (property_or_labels_expression
+                        (atom
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name)))))))
+                  (expression
+                    (string_list_null_operator_expression
+                      (property_or_labels_expression
+                        (atom
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name)))))))
+                  (expression
+                    (string_list_null_operator_expression
+                      (property_or_labels_expression
+                        (atom
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name))))))))
+                (yield_items
+                  (yield_item
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name))))
+                  (yield_item
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name))))
+                  (yield_item
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))))))
             (return
               (projection_body
                 (projection_items)))))))))
@@ -9283,13 +9446,29 @@ CALL test.proc(   ) RETURN *
 
 --------------------------------------------------------------------------------
 
-(ERROR
-  (variable
-    (symbolic_name
-      (unescaped_symbolic_name)))
-  (variable
-    (symbolic_name
-      (unescaped_symbolic_name))))
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (in_query_call
+                (explicit_procedure_invocation
+                  (procedure_name
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (expression
+                    (string_list_null_operator_expression
+                      (property_or_labels_expression
+                        (atom
+                          (MISSING "null"))))))))
+            (return
+              (projection_body
+                (projection_items)))))))))
 
 ================================================================================
 openCypher.txt: 199
@@ -10165,19 +10344,58 @@ RETURN count(label) AS numLabels
 
 --------------------------------------------------------------------------------
 
-(ERROR
-  (variable
-    (symbolic_name
-      (unescaped_symbolic_name)))
-  (variable
-    (symbolic_name
-      (unescaped_symbolic_name)))
-  (ERROR
-    (UNEXPECTED 'a'))
-  (UNEXPECTED 'a')
-  (UNEXPECTED 's')
-  (UNEXPECTED 'a')
-  (UNEXPECTED 'm'))
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (in_query_call
+                (explicit_procedure_invocation
+                  (procedure_name
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (expression
+                    (string_list_null_operator_expression
+                      (property_or_labels_expression
+                        (atom
+                          (MISSING "null"))))))
+                (yield_items
+                  (yield_item
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name))))
+                  (where
+                    (expression
+                      (string_list_null_operator_expression
+                        (property_or_labels_expression
+                          (atom
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))))
+                        (string_operator_expression
+                          (property_or_labels_expression
+                            (atom
+                              (string_literal))))))))))
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (string_list_null_operator_expression
+                        (property_or_labels_expression
+                          (atom
+                            (variable
+                              (symbolic_name))))))
+                    (ERROR
+                      (UNEXPECTED 'a'))
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))))))))))))
 
 ================================================================================
 openCypher.txt: 221
@@ -10189,24 +10407,93 @@ RETURN count(label) AS numLabels
 
 --------------------------------------------------------------------------------
 
-(ERROR
-  (variable
-    (symbolic_name
-      (unescaped_symbolic_name)))
-  (variable
-    (symbolic_name
-      (unescaped_symbolic_name)))
-  (ERROR
-    (UNEXPECTED 'a')
-    (UNEXPECTED 'o'))
-  (UNEXPECTED 'a')
-  (UNEXPECTED 'a')
-  (UNEXPECTED 's')
-  (UNEXPECTED 'o')
-  (UNEXPECTED 'a')
-  (UNEXPECTED 'o')
-  (UNEXPECTED 'a')
-  (UNEXPECTED 'm'))
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (in_query_call
+                (explicit_procedure_invocation
+                  (procedure_name
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (expression
+                    (string_list_null_operator_expression
+                      (property_or_labels_expression
+                        (atom
+                          (MISSING "null"))))))
+                (yield_items
+                  (yield_item
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name))))
+                  (yield_item
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name))))
+                  (yield_item
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name))))
+                  (where
+                    (expression
+                      (and_expression
+                        (expression
+                          (string_list_null_operator_expression
+                            (property_or_labels_expression
+                              (atom
+                                (variable
+                                  (symbolic_name
+                                    (unescaped_symbolic_name)))))
+                            (string_operator_expression
+                              (property_or_labels_expression
+                                (atom
+                                  (string_literal))))))
+                        (expression
+                          (comparison_expression
+                            (expression
+                              (addition_expression
+                                (expression
+                                  (string_list_null_operator_expression
+                                    (property_or_labels_expression
+                                      (atom
+                                        (variable
+                                          (symbolic_name
+                                            (unescaped_symbolic_name)))))))
+                                (expression
+                                  (string_list_null_operator_expression
+                                    (property_or_labels_expression
+                                      (atom
+                                        (variable
+                                          (symbolic_name
+                                            (unescaped_symbolic_name)))))))))
+                            (expression
+                              (string_list_null_operator_expression
+                                (property_or_labels_expression
+                                  (atom
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))))))))))))
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (string_list_null_operator_expression
+                        (property_or_labels_expression
+                          (atom
+                            (variable
+                              (symbolic_name))))))
+                    (ERROR
+                      (UNEXPECTED 'a'))
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))))))))))))
 
 ================================================================================
 openCypher.txt: 222
@@ -10216,19 +10503,82 @@ CALL db.labels() YIELD x WHERE label CONTAINS 'User' AND foo + bar = foo RETURN 
 
 --------------------------------------------------------------------------------
 
-(ERROR
-  (variable
-    (symbolic_name
-      (unescaped_symbolic_name)))
-  (variable
-    (symbolic_name
-      (unescaped_symbolic_name)))
-  (ERROR
-    (UNEXPECTED ')
-    (UNEXPECTED 'a')
-    (UNEXPECTED 's')
-    (UNEXPECTED 'o')
-    (UNEXPECTED 'a'))
-  (UNEXPECTED 'o')
-  (UNEXPECTED 'a')
-  (UNEXPECTED 'm'))
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (in_query_call
+                (explicit_procedure_invocation
+                  (procedure_name
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (expression
+                    (string_list_null_operator_expression
+                      (property_or_labels_expression
+                        (atom
+                          (MISSING "null"))))))
+                (yield_items
+                  (yield_item
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name))))
+                  (where
+                    (expression
+                      (and_expression
+                        (expression
+                          (string_list_null_operator_expression
+                            (property_or_labels_expression
+                              (atom
+                                (variable
+                                  (symbolic_name
+                                    (unescaped_symbolic_name)))))
+                            (string_operator_expression
+                              (property_or_labels_expression
+                                (atom
+                                  (string_literal))))))
+                        (expression
+                          (comparison_expression
+                            (expression
+                              (addition_expression
+                                (expression
+                                  (string_list_null_operator_expression
+                                    (property_or_labels_expression
+                                      (atom
+                                        (variable
+                                          (symbolic_name
+                                            (unescaped_symbolic_name)))))))
+                                (expression
+                                  (string_list_null_operator_expression
+                                    (property_or_labels_expression
+                                      (atom
+                                        (variable
+                                          (symbolic_name
+                                            (unescaped_symbolic_name)))))))))
+                            (expression
+                              (string_list_null_operator_expression
+                                (property_or_labels_expression
+                                  (atom
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))))))))))))
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (string_list_null_operator_expression
+                        (property_or_labels_expression
+                          (atom
+                            (variable
+                              (symbolic_name))))))
+                    (ERROR
+                      (UNEXPECTED 'a'))
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))))))))))))
