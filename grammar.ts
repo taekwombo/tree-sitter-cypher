@@ -441,7 +441,8 @@ module.exports = grammar({
             $.parameter,
             $.case_expression,
             // Take higher priority than function_invocation
-            prec(1, seq(word('count'), '(', '*', ')')),
+            // Could be parsed as function_invocation.
+            prec(1, seq(word('count'), /\(\s*\*\s*\)/)),
             $.list_comprehension,
             $.pattern_comprehension,
             seq(word('all'), '(', $.filter_expression, ')'),

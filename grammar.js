@@ -80,7 +80,8 @@ module.exports = grammar({
         property_or_labels_expression: function ($) { return seq($.atom, repeat($.property_lookup), optional($.node_labels)); },
         atom: function ($) { return choice($.literal, $.parameter, $.case_expression, 
         // Take higher priority than function_invocation
-        prec(1, seq(word('count'), '(', '*', ')')), $.list_comprehension, $.pattern_comprehension, seq(word('all'), '(', $.filter_expression, ')'), seq(word('any'), '(', $.filter_expression, ')'), seq(word('none'), '(', $.filter_expression, ')'), seq(word('single'), '(', $.filter_expression, ')'), $.relationships_pattern, $.parenthesized_expression, $.function_invocation, prec.left($.variable)); },
+        // Could be parsed as function_invocation.
+        prec(1, seq(word('count'), /\(\s*\*\s*\)/)), $.list_comprehension, $.pattern_comprehension, seq(word('all'), '(', $.filter_expression, ')'), seq(word('any'), '(', $.filter_expression, ')'), seq(word('none'), '(', $.filter_expression, ')'), seq(word('single'), '(', $.filter_expression, ')'), $.relationships_pattern, $.parenthesized_expression, $.function_invocation, prec.left($.variable)); },
         literal: function ($) { return choice($.number_literal, $.string_literal, $.boolean_literal, word('null'), $.map_literal, $.list_literal); },
         boolean_literal: function () { return choice(word('true'), word('false')); },
         list_literal: function ($) { return seq('[', $.expression, repeat(seq(',', $.expression)), ']'); },

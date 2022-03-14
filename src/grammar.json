@@ -5191,16 +5191,8 @@
                 "value": "count"
               },
               {
-                "type": "STRING",
-                "value": "("
-              },
-              {
-                "type": "STRING",
-                "value": "*"
-              },
-              {
-                "type": "STRING",
-                "value": ")"
+                "type": "PATTERN",
+                "value": "\\(\\s*\\*\\s*\\)"
               }
             ]
           }

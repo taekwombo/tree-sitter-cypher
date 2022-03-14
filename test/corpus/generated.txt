@@ -4188,16 +4188,21 @@ WITH {a: 1} AS map RETURN count(map.a)
                         (string_list_null_operator_expression
                           (property_or_labels_expression
                             (atom
-                              (variable
-                                (symbolic_name)))
-                            (ERROR
-                              (UNEXPECTED 'p'))
-                            (property_lookup
-                              (property_key_name
-                                (schema_name
-                                  (symbolic_name
-                                    (unescaped_symbolic_name))))))))))))))))))
-  (ERROR))
+                              (function_invocation
+                                (function_name
+                                  (symbolic_name))
+                                (expression
+                                  (string_list_null_operator_expression
+                                    (property_or_labels_expression
+                                      (atom
+                                        (variable
+                                          (symbolic_name
+                                            (unescaped_symbolic_name))))
+                                      (property_lookup
+                                        (property_key_name
+                                          (schema_name
+                                            (symbolic_name
+                                              (unescaped_symbolic_name))))))))))))))))))))))))
 
 ================================================================================
 openCypher.txt: 83
@@ -10389,10 +10394,16 @@ RETURN count(label) AS numLabels
                       (string_list_null_operator_expression
                         (property_or_labels_expression
                           (atom
-                            (variable
-                              (symbolic_name))))))
-                    (ERROR
-                      (UNEXPECTED 'a'))
+                            (function_invocation
+                              (function_name
+                                (symbolic_name))
+                              (expression
+                                (string_list_null_operator_expression
+                                  (property_or_labels_expression
+                                    (atom
+                                      (variable
+                                        (symbolic_name
+                                          (unescaped_symbolic_name))))))))))))
                     (variable
                       (symbolic_name
                         (unescaped_symbolic_name)))))))))))))
@@ -10487,10 +10498,16 @@ RETURN count(label) AS numLabels
                       (string_list_null_operator_expression
                         (property_or_labels_expression
                           (atom
-                            (variable
-                              (symbolic_name))))))
-                    (ERROR
-                      (UNEXPECTED 'a'))
+                            (function_invocation
+                              (function_name
+                                (symbolic_name))
+                              (expression
+                                (string_list_null_operator_expression
+                                  (property_or_labels_expression
+                                    (atom
+                                      (variable
+                                        (symbolic_name
+                                          (unescaped_symbolic_name))))))))))))
                     (variable
                       (symbolic_name
                         (unescaped_symbolic_name)))))))))))))
@@ -10575,10 +10592,16 @@ CALL db.labels() YIELD x WHERE label CONTAINS 'User' AND foo + bar = foo RETURN 
                       (string_list_null_operator_expression
                         (property_or_labels_expression
                           (atom
-                            (variable
-                              (symbolic_name))))))
-                    (ERROR
-                      (UNEXPECTED 'a'))
+                            (function_invocation
+                              (function_name
+                                (symbolic_name))
+                              (expression
+                                (string_list_null_operator_expression
+                                  (property_or_labels_expression
+                                    (atom
+                                      (variable
+                                        (symbolic_name
+                                          (unescaped_symbolic_name))))))))))))
                     (variable
                       (symbolic_name
                         (unescaped_symbolic_name)))))))))))))
