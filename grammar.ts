@@ -316,7 +316,7 @@ module.exports = grammar({
                 $.rel_type_name,
             )),
         ),
-        node_labels: ($) => repeat1($.node_label),
+        node_labels: ($) => prec.right(repeat1($.node_label)),
         node_label: ($) => seq(
             ':',
             $.label_name,
@@ -342,6 +342,8 @@ module.exports = grammar({
             $.exponential_expression,
             $.unary_expression,
             $.string_list_null_operator_expression,
+            $.property_or_labels_expression,
+            $.atom,
         ),
         or_expression: ($) => expression(0, seq(
             $.expression,
@@ -394,17 +396,17 @@ module.exports = grammar({
             $.expression,
         )),
         string_list_null_operator_expression: ($) => expression(9, seq(
-            $.property_or_labels_expression,
-            repeat(choice(
+            $.expression,
+            repeat1(choice(
                 $.string_operator_expression,
                 $.list_operator_expression,
                 $.null_operator_expression,
             )),
         )),
-        list_operator_expression: ($) => choice(
+        list_operator_expression: ($) => prec.left(choice(
             seq(
                 word('in'),
-                $.property_or_labels_expression,
+                $.expression,
             ),
             seq(
                 '[',
@@ -418,25 +420,30 @@ module.exports = grammar({
                 optional($.expression),
                 ']',
             ),
-        ),
-        string_operator_expression: ($) => seq(
+        )),
+        string_operator_expression: ($) => prec.left(seq(
             choice(
                 seq(word('starts'), word('with')),
                 seq(word('ends'), word('with')),
                 word('contains'),
             ),
-            $.property_or_labels_expression,
-        ),
+            $.expression,
+        )),
         null_operator_expression: () => choice(
             seq(word('is'), word('null')),
             seq(word('is'), word('not'), word('null')),
         ),
-        property_or_labels_expression: ($) => seq(
-            $.atom,
-            repeat($.property_lookup),
-            optional($.node_labels),
-        ),
-        atom: ($) => choice(
+        property_or_labels_expression: ($) => expression(10, seq(
+            $.expression,
+            choice(seq(
+                repeat1($.property_lookup),
+                optional($.node_labels),
+            ), seq(
+                repeat($.property_lookup),
+                $.node_labels,
+            )),
+        )),
+        atom: ($) => expression(11, choice(
             $.literal,
             $.parameter,
             $.case_expression,
@@ -453,7 +460,7 @@ module.exports = grammar({
             $.parenthesized_expression,
             $.function_invocation,
             prec.left($.variable),
-        ),
+        )),
         literal: ($) => choice(
             $.number_literal,
             $.string_literal,
