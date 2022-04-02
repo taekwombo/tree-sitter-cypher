@@ -26,10 +26,7 @@ module.exports = grammar({
         ),
         union: ($) => seq(
             word('union'),
-            optional(seq(
-                $.sp,
-                word('all')
-            )),
+            optional(word('all')),
             $.single_query,
         ),
         single_query: ($) => choice(
@@ -68,10 +65,7 @@ module.exports = grammar({
             $.in_query_call,
         ),
         match: ($) => seq(
-            optional(seq(
-                word('optional'),
-                $.sp,
-            )),
+            optional(word('optional')),
             word('match'),
             $.pattern,
             optional($.where),
@@ -79,24 +73,17 @@ module.exports = grammar({
         unwind: ($) => seq(
             word('unwind'),
             $.expression,
-            $.sp,
             word('as'),
-            $.sp,
             $.variable,
         ),
         merge: ($) => seq(
             word('merge'),
             $.pattern_part,
-            repeat(seq(
-                $.sp,
-                $.merge_action,
-            )),
+            repeat($.merge_action),
         ),
         merge_action: ($) => seq(
             word('on'),
-            $.sp,
             choice(word('create'), word('match')),
-            $.sp,
             $.set,
         ),
         create: ($) => seq(
@@ -128,10 +115,7 @@ module.exports = grammar({
             ),
         ),
         delete: ($) => seq(
-            optional(seq(
-                word('detach'),
-                $.sp,
-            )),
+            optional(word('detach')),
             word('delete'),
             $.expression,
             repeat(seq(
@@ -141,7 +125,6 @@ module.exports = grammar({
         ),
         remove: ($) => seq(
             word('remove'),
-            $.sp,
             $.remove_item,
             repeat(seq(',', $.remove_item)),
         ),
@@ -187,9 +170,7 @@ module.exports = grammar({
         yield_item: ($) => seq(
             optional(seq(
                 $.procedure_result_field,
-                $.sp,
                 word('as'),
-                $.sp,
             )),
             $.variable,
         ),
@@ -204,20 +185,10 @@ module.exports = grammar({
         ),
         projection_body: ($) => seq(
             optional(word('distinct')),
-            $.sp,
             $.projection_items,
-            optional(seq(
-                $.sp,
-                $.order,
-            )),
-            optional(seq(
-                $.sp,
-                $.skip,
-            )),
-            optional(seq(
-                $.sp,
-                $.limit,
-            )),
+            optional($.order),
+            optional($.skip),
+            optional($.limit),
         ),
         projection_items: ($) => choice(
             seq(
@@ -236,20 +207,16 @@ module.exports = grammar({
             ),
         ),
         projection_item: ($) => choice(
+            $.expression,
             seq(
                 $.expression,
-                $.sp,
                 word('as'),
-                $.sp,
                 $.variable,
             ),
-            $.expression,
         ),
         order: ($) => seq(
             word('order'),
-            $.sp,
             word('by'),
-            $.sp,
             $.sort_item,
             repeat(seq(
                 ',',
@@ -258,12 +225,10 @@ module.exports = grammar({
         ),
         skip: ($) => seq(
             word('skip'),
-            $.sp,
             $.expression,
         ),
         limit: ($) => seq(
             word('limit'),
-            $.sp,
             $.expression,
         ),
         sort_item: ($) => seq(
@@ -277,7 +242,6 @@ module.exports = grammar({
         ),
         where: ($) => seq(
             word('where'),
-            $.sp,
             $.expression,
         ),
         pattern: ($) => seq(
@@ -378,28 +342,20 @@ module.exports = grammar({
         ),
         or_expression: ($) => expression(0, seq(
             $.expression,
-            $.sp,
             word('or'),
-            $.sp,
             $.expression,
         )),
-        // TODO: should have 1 precedence.
-        xor_expression: ($) => expression(0, seq(
+        xor_expression: ($) => expression(1, seq(
             $.expression,
-            $.sp,
             word('xor'),
-            $.sp,
             $.expression,
         )),
         and_expression: ($) => expression(2, seq(
             $.expression,
-            $.sp,
             word('and'),
-            $.sp,
             $.expression,
         )),
         not_expression: ($) => expression(3, seq(
-            $.sp,
             word('not'),
             $.expression,
         )),
@@ -434,8 +390,7 @@ module.exports = grammar({
             choice('+', '-'),
             $.expression,
         )),
-        // TODO: Should have 9 prececence.
-        string_list_null_operator_expression: ($) => expression(0, seq(
+        string_list_null_operator_expression: ($) => expression(9, seq(
             $.expression,
             repeat1(choice(
                 $.string_operator_expression,
@@ -463,20 +418,15 @@ module.exports = grammar({
         )),
         string_operator_expression: ($) => prec.left(seq(
             choice(
-                seq($.sp, word('starts'), $.sp, word('with')),
-                seq($.sp, word('ends'), $.sp, word('with')),
-                seq($.sp, word('contains')),
+                seq(word('starts'), word('with')),
+                seq(word('ends'), word('with')),
+                seq(word('contains')),
             ),
             $.expression,
         )),
         null_operator_expression: ($) => seq(
-            $.sp,
             word('is'),
-            optional(seq(
-                $.sp,
-                word('not'),
-            )),
-            $.sp,
+            optional(word('not')),
             word('null'),
         ),
         property_or_labels_expression: ($) => expression(10, seq(
