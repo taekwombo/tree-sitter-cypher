@@ -530,18 +530,18 @@ module.exports = grammar({
         explicit_procedure_invocation: ($) => seq(
             $.procedure_name,
             '(',
-            seq(
+            optional(seq(
                 $.expression,
                 repeat(seq(
                     ',',
                     $.expression,
                 )),
-            ),
+            )),
             ')',
         ),
         implicit_procedure_invocation: ($) => $.procedure_name,
         procedure_result_field: ($) => $.symbolic_name,
-        procedure_name: ($) => seq($.namespace, $.symbolic_name),
+        procedure_name: ($) => seq(optional($.namespace), $.symbolic_name),
         namespace: ($) => repeat1(seq($.variable, '.')),
         list_comprehension: ($) => seq(
             '[',
