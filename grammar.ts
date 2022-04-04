@@ -443,7 +443,7 @@ module.exports = grammar({
             $.literal,
             $.parameter,
             $.case_expression,
-            seq(word('count'), seq('(', '*', ')')),
+            seq(word('count'), /\(\s*\*\s*\)/),
             $.list_comprehension,
             $.pattern_comprehension,
             seq(word('all'), '(', $.filter_expression, ')'),

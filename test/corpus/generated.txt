@@ -3979,19 +3979,22 @@ WITH {a: 1} AS map RETURN count(map.a)
                   (projection_items
                     (projection_item
                       (expression
-                        (property_or_labels_expression
-                          (expression
-                            (atom
-                              (variable
-                                (symbolic_name))))
-                          (ERROR
-                            (unescaped_symbolic_name))
-                          (property_lookup
-                            (property_key_name
-                              (schema_name
-                                (symbolic_name
-                                  (unescaped_symbolic_name)))))))))))))))))
-  (ERROR))
+                        (atom
+                          (function_invocation
+                            (function_name
+                              (symbolic_name))
+                            (expression
+                              (property_or_labels_expression
+                                (expression
+                                  (atom
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))
+                                (property_lookup
+                                  (property_key_name
+                                    (schema_name
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))))))))))))))))))
 
 ================================================================================
 openCypher.txt: 83
@@ -9957,10 +9960,14 @@ RETURN count(label) AS numLabels
                   (projection_item
                     (expression
                       (atom
-                        (variable
-                          (symbolic_name))))
-                    (ERROR
-                      (unescaped_symbolic_name))
+                        (function_invocation
+                          (function_name
+                            (symbolic_name))
+                          (expression
+                            (atom
+                              (variable
+                                (symbolic_name
+                                  (unescaped_symbolic_name))))))))
                     (variable
                       (symbolic_name
                         (unescaped_symbolic_name)))))))))))))
@@ -10043,10 +10050,14 @@ RETURN count(label) AS numLabels
                   (projection_item
                     (expression
                       (atom
-                        (variable
-                          (symbolic_name))))
-                    (ERROR
-                      (unescaped_symbolic_name))
+                        (function_invocation
+                          (function_name
+                            (symbolic_name))
+                          (expression
+                            (atom
+                              (variable
+                                (symbolic_name
+                                  (unescaped_symbolic_name))))))))
                     (variable
                       (symbolic_name
                         (unescaped_symbolic_name)))))))))))))
@@ -10119,10 +10130,14 @@ CALL db.labels() YIELD x WHERE label CONTAINS 'User' AND foo + bar = foo RETURN 
                   (projection_item
                     (expression
                       (atom
-                        (variable
-                          (symbolic_name))))
-                    (ERROR
-                      (unescaped_symbolic_name))
+                        (function_invocation
+                          (function_name
+                            (symbolic_name))
+                          (expression
+                            (atom
+                              (variable
+                                (symbolic_name
+                                  (unescaped_symbolic_name))))))))
                     (variable
                       (symbolic_name
                         (unescaped_symbolic_name)))))))))))))
