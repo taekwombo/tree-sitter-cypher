@@ -550,7 +550,7 @@ module.exports = grammar({
             ']',
         ),
         // FIX: this rule is not generated because parenthesized_expression is
-        // reduced rather than relationships_pattern for cases like:
+        // reduced rather than node_pattern (relationships_pattern) for cases like:
         // RETURN [()-->()WHERE a:Label|55 + a.prop]
         // FIX: should have increased precedence due to conflict with list_literal.
         pattern_comprehension: ($) => seq(
