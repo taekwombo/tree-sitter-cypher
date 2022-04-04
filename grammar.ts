@@ -443,9 +443,7 @@ module.exports = grammar({
             $.literal,
             $.parameter,
             $.case_expression,
-            // Take higher priority than function_invocation
-            // Could be parsed as function_invocation.
-            prec(1, seq(word('count'), /\(\s*\*\s*\)/)),
+            seq(word('count'), seq('(', '*', ')')),
             $.list_comprehension,
             $.pattern_comprehension,
             seq(word('all'), '(', $.filter_expression, ')'),
@@ -503,11 +501,11 @@ module.exports = grammar({
             $.id_in_coll,
             optional($.where),
         ),
-        id_in_coll: ($) => seq(
+        id_in_coll: ($) => prec(1, seq(
             $.variable,
             word('in'),
             $.expression,
-        ),
+        )),
         function_invocation: ($) => seq(
             $.function_name,
             '(',

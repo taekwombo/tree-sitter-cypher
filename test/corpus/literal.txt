@@ -22,137 +22,119 @@ RETURN 1, 0x10, 05, 1, 5.2, .02e1, 2.3e-3,
                 (projection_items
                   (projection_item
                     (expression
-                      (string_list_null_operator_expression
-                        (property_or_labels_expression
-                          (atom
-                            (number_literal
-                              (integer_literal
-                                (decimal_integer))))))))
+                      (atom
+                        (literal
+                          (number_literal
+                            (integer_literal
+                              (decimal_integer)))))))
                   (projection_item
                     (expression
-                      (string_list_null_operator_expression
-                        (property_or_labels_expression
-                          (atom
-                            (number_literal
-                              (integer_literal
-                                (hex_integer))))))))
+                      (atom
+                        (literal
+                          (number_literal
+                            (integer_literal
+                              (hex_integer)))))))
                   (projection_item
                     (expression
-                      (string_list_null_operator_expression
-                        (property_or_labels_expression
-                          (atom
-                            (number_literal
-                              (integer_literal
-                                (octal_integer))))))))
+                      (atom
+                        (literal
+                          (number_literal
+                            (integer_literal
+                              (octal_integer)))))))
                   (projection_item
                     (expression
-                      (string_list_null_operator_expression
-                        (property_or_labels_expression
-                          (atom
-                            (number_literal
-                              (integer_literal
-                                (decimal_integer))))))))
+                      (atom
+                        (literal
+                          (number_literal
+                            (integer_literal
+                              (decimal_integer)))))))
                   (projection_item
                     (expression
-                      (string_list_null_operator_expression
-                        (property_or_labels_expression
-                          (atom
-                            (number_literal
-                              (double_literal
-                                (regular_decimal_real))))))))
+                      (atom
+                        (literal
+                          (number_literal
+                            (double_literal
+                              (regular_decimal_real)))))))
                   (projection_item
                     (expression
-                      (string_list_null_operator_expression
-                        (property_or_labels_expression
-                          (atom
-                            (number_literal
-                              (double_literal
-                                (exponent_decimal_real))))))))
+                      (atom
+                        (literal
+                          (number_literal
+                            (double_literal
+                              (exponent_decimal_real)))))))
                   (projection_item
                     (expression
-                      (string_list_null_operator_expression
-                        (property_or_labels_expression
-                          (atom
-                            (number_literal
-                              (double_literal
-                                (exponent_decimal_real))))))))
+                      (atom
+                        (literal
+                          (number_literal
+                            (double_literal
+                              (exponent_decimal_real)))))))
                   (projection_item
                     (expression
-                      (string_list_null_operator_expression
-                        (property_or_labels_expression
-                          (atom
-                            (string_literal))))))
+                      (atom
+                        (literal
+                          (string_literal)))))
                   (projection_item
                     (expression
-                      (string_list_null_operator_expression
-                        (property_or_labels_expression
-                          (atom
-                            (string_literal
-                              (escaped_char)
-                              (escaped_char)))))))
+                      (atom
+                        (literal
+                          (string_literal
+                            (escaped_char)
+                            (escaped_char))))))
                   (projection_item
                     (expression
-                      (string_list_null_operator_expression
-                        (property_or_labels_expression
-                          (atom
-                            (boolean_literal))))))
+                      (atom
+                        (literal
+                          (boolean_literal)))))
                   (projection_item
                     (expression
-                      (string_list_null_operator_expression
-                        (property_or_labels_expression
-                          (atom
-                            (boolean_literal))))))
+                      (atom
+                        (literal
+                          (boolean_literal)))))
                   (projection_item
                     (expression
-                      (string_list_null_operator_expression
-                        (property_or_labels_expression
-                          (atom)))))
+                      (atom
+                        (literal
+                          (null_literal)))))
                   (projection_item
                     (expression
-                      (string_list_null_operator_expression
-                        (property_or_labels_expression
-                          (atom
-                            (list_literal
-                              (expression
-                                (string_list_null_operator_expression
-                                  (property_or_labels_expression
-                                    (atom
-                                      (number_literal
-                                        (integer_literal
-                                          (decimal_integer)))))))
-                              (expression
-                                (string_list_null_operator_expression
-                                  (property_or_labels_expression
-                                    (atom
-                                      (number_literal
-                                        (integer_literal
-                                          (decimal_integer)))))))
-                              (expression
-                                (string_list_null_operator_expression
-                                  (property_or_labels_expression
-                                    (atom
-                                      (number_literal
-                                        (integer_literal
-                                          (decimal_integer)))))))
-                              (expression
-                                (string_list_null_operator_expression
-                                  (property_or_labels_expression
-                                    (atom
-                                      (number_literal
-                                        (integer_literal
-                                          (decimal_integer)))))))))))))
+                      (atom
+                        (literal
+                          (list_literal
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer)))))))))))
                   (projection_item
                     (expression
-                      (string_list_null_operator_expression
-                        (property_or_labels_expression
-                          (atom
-                            (map_literal
-                              (property_key_name
-                                (schema_name
-                                  (symbolic_name
-                                    (unescaped_symbolic_name))))
-                              (expression
-                                (string_list_null_operator_expression
-                                  (property_or_labels_expression
-                                    (atom
-                                      (string_literal))))))))))))))))))))
+                      (atom
+                        (literal
+                          (map_literal
+                            (property_key_name
+                              (schema_name
+                                (symbolic_name
+                                  (unescaped_symbolic_name))))
+                            (expression
+                              (atom
+                                (literal
+                                  (string_literal))))))))))))))))))

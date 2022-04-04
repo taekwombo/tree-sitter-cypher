@@ -27,9 +27,7 @@ MATCH (n) RETURN n;
                 (projection_items
                   (projection_item
                     (expression
-                      (string_list_null_operator_expression
-                        (property_or_labels_expression
-                          (atom
-                            (variable
-                              (symbolic_name
-                                (unescaped_symbolic_name)))))))))))))))))
+                      (atom
+                        (variable
+                          (symbolic_name
+                            (unescaped_symbolic_name)))))))))))))))
