@@ -505,9 +505,7 @@ module.exports = grammar({
         ),
         id_in_coll: ($) => seq(
             $.variable,
-            $.sp,
             word('in'),
-            $.sp,
             $.expression,
         ),
         function_invocation: ($) => seq(
@@ -777,11 +775,6 @@ module.exports = grammar({
             '\u{fe63}',
             '\u{ff0d}',
         ),
-
-        sp: ($) => prec.right(repeat1(choice(
-            $.comment,
-            $._whitespace_char,
-        ))),
 
         _whitespace_char: ($) => token(choice(
             '\u{0009}',
