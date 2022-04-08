@@ -4928,12 +4928,7 @@ RETURN []
                     (expression
                       (atom
                         (literal
-                          (list_literal
-                            (expression
-                              (atom
-                                (literal
-                                  (null_literal
-                                    (MISSING "null")))))))))))))))))))
+                          (list_literal))))))))))))))
 
 ================================================================================
 openCypher.txt: 101
@@ -4956,12 +4951,7 @@ RETURN [ ]
                     (expression
                       (atom
                         (literal
-                          (list_literal
-                            (expression
-                              (atom
-                                (literal
-                                  (null_literal
-                                    (MISSING "null")))))))))))))))))))
+                          (list_literal))))))))))))))
 
 ================================================================================
 openCypher.txt: 102
@@ -4984,12 +4974,7 @@ RETURN [   ]
                     (expression
                       (atom
                         (literal
-                          (list_literal
-                            (expression
-                              (atom
-                                (literal
-                                  (null_literal
-                                    (MISSING "null")))))))))))))))))))
+                          (list_literal))))))))))))))
 
 ================================================================================
 openCypher.txt: 103
@@ -8116,12 +8101,7 @@ RETURN 1
                           (expression
                             (atom
                               (literal
-                                (list_literal
-                                  (expression
-                                    (atom
-                                      (literal
-                                        (null_literal
-                                          (MISSING "null"))))))))))
+                                (list_literal)))))
                         (where
                           (expression
                             (property_or_labels_expression
@@ -8183,12 +8163,7 @@ RETURN 1
                           (expression
                             (atom
                               (literal
-                                (list_literal
-                                  (expression
-                                    (atom
-                                      (literal
-                                        (null_literal
-                                          (MISSING "null"))))))))))
+                                (list_literal)))))
                         (where
                           (expression
                             (property_or_labels_expression
@@ -8250,12 +8225,7 @@ RETURN 1
                           (expression
                             (atom
                               (literal
-                                (list_literal
-                                  (expression
-                                    (atom
-                                      (literal
-                                        (null_literal
-                                          (MISSING "null"))))))))))
+                                (list_literal)))))
                         (where
                           (expression
                             (property_or_labels_expression
@@ -8317,12 +8287,7 @@ RETURN 1
                           (expression
                             (atom
                               (literal
-                                (list_literal
-                                  (expression
-                                    (atom
-                                      (literal
-                                        (null_literal
-                                          (MISSING "null"))))))))))
+                                (list_literal)))))
                         (where
                           (expression
                             (property_or_labels_expression
@@ -8384,12 +8349,7 @@ RETURN 1
                           (expression
                             (atom
                               (literal
-                                (list_literal
-                                  (expression
-                                    (atom
-                                      (literal
-                                        (null_literal
-                                          (MISSING "null"))))))))))
+                                (list_literal)))))
                         (where
                           (expression
                             (property_or_labels_expression
@@ -8451,12 +8411,7 @@ RETURN 1
                           (expression
                             (atom
                               (literal
-                                (list_literal
-                                  (expression
-                                    (atom
-                                      (literal
-                                        (null_literal
-                                          (MISSING "null"))))))))))
+                                (list_literal)))))
                         (where
                           (expression
                             (property_or_labels_expression
@@ -8518,12 +8473,7 @@ RETURN 1
                           (expression
                             (atom
                               (literal
-                                (list_literal
-                                  (expression
-                                    (atom
-                                      (literal
-                                        (null_literal
-                                          (MISSING "null"))))))))))
+                                (list_literal)))))
                         (where
                           (expression
                             (property_or_labels_expression
@@ -8585,12 +8535,7 @@ RETURN 1
                           (expression
                             (atom
                               (literal
-                                (list_literal
-                                  (expression
-                                    (atom
-                                      (literal
-                                        (null_literal
-                                          (MISSING "null"))))))))))
+                                (list_literal)))))
                         (where
                           (expression
                             (property_or_labels_expression

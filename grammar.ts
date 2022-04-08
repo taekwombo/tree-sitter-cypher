@@ -431,13 +431,16 @@ module.exports = grammar({
         ),
         property_or_labels_expression: ($) => expression(10, seq(
             $.expression,
-            choice(seq(
-                repeat1($.property_lookup),
-                optional($.node_labels),
-            ), seq(
-                repeat($.property_lookup),
-                $.node_labels,
-            )),
+            choice(
+                seq(
+                    repeat1($.property_lookup),
+                    optional($.node_labels),
+                ),
+                seq(
+                    repeat($.property_lookup),
+                    $.node_labels,
+                ),
+            ),
         )),
         atom: ($) => expression(11, choice(
             $.literal,
@@ -471,23 +474,14 @@ module.exports = grammar({
         ),
         list_literal: ($) => seq(
             '[',
-            $.expression,
-            repeat(seq(
-                ',',
+            optional(seq(
                 $.expression,
+                repeat(seq(
+                    ',',
+                    $.expression,
+                )),
             )),
             ']',
-        ),
-        partial_comparison_expression: ($) => seq(
-            choice(
-                '=',
-                '<>',
-                '<',
-                '>',
-                '<=',
-                '>=',
-            ),
-            $.addition_expression,
         ),
         parenthesized_expression: ($) => seq(
             '(',
