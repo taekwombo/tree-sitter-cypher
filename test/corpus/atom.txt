@@ -1,0 +1,798 @@
+================================================================================
+Atom - parameter
+================================================================================
+
+RETURN $1, $0, $named_parameter;
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (parameter
+                          (decimal_integer)))))
+                  (projection_item
+                    (expression
+                      (atom
+                        (parameter
+                          (decimal_integer)))))
+                  (projection_item
+                    (expression
+                      (atom
+                        (parameter
+                          (symbolic_name
+                            (unescaped_symbolic_name)))))))))))))))
+
+================================================================================
+Atom - case expression - simple
+================================================================================
+
+RETURN CASE n.age
+    WHEN 18 THEN 'adult'
+    ELSE 'child'
+END;
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (case_expression
+                          (expression
+                            (property_or_labels_expression
+                              (expression
+                                (atom
+                                  (variable
+                                    (symbolic_name
+                                      (unescaped_symbolic_name)))))
+                              (property_lookup
+                                (property_key_name
+                                  (schema_name
+                                    (symbolic_name
+                                      (unescaped_symbolic_name)))))))
+                          (case_alternatives
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))
+                            (expression
+                              (atom
+                                (literal
+                                  (string_literal)))))
+                          (expression
+                            (atom
+                              (literal
+                                (string_literal)))))))))))))))))
+
+================================================================================
+Atom - case expression - generic
+================================================================================
+
+RETURN CASE
+    WHEN predicate THEN result
+END;
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (case_expression
+                          (case_alternatives
+                            (expression
+                              (atom
+                                (variable
+                                  (symbolic_name
+                                    (unescaped_symbolic_name)))))
+                            (expression
+                              (atom
+                                (variable
+                                  (symbolic_name
+                                    (unescaped_symbolic_name)))))))))))))))))))
+
+================================================================================
+Atom - COUNT(*)
+================================================================================
+
+RETURN COUNT(*);
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom))))))))))))
+
+================================================================================
+Atom - list comprehension - 1
+================================================================================
+
+RETURN [ x IN [1, 2, 3, 4] | x + 2 ];
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (list_comprehension
+                          (filter_expression
+                            (id_in_coll
+                              (variable
+                                (symbolic_name
+                                  (unescaped_symbolic_name)))
+                              (expression
+                                (atom
+                                  (literal
+                                    (list_literal
+                                      (expression
+                                        (atom
+                                          (literal
+                                            (number_literal
+                                              (integer_literal
+                                                (decimal_integer))))))
+                                      (expression
+                                        (atom
+                                          (literal
+                                            (number_literal
+                                              (integer_literal
+                                                (decimal_integer))))))
+                                      (expression
+                                        (atom
+                                          (literal
+                                            (number_literal
+                                              (integer_literal
+                                                (decimal_integer))))))
+                                      (expression
+                                        (atom
+                                          (literal
+                                            (number_literal
+                                              (integer_literal
+                                                (decimal_integer))))))))))))
+                          (expression
+                            (addition_expression
+                              (expression
+                                (atom
+                                  (variable
+                                    (symbolic_name
+                                      (unescaped_symbolic_name)))))
+                              (expression
+                                (atom
+                                  (literal
+                                    (number_literal
+                                      (integer_literal
+                                        (decimal_integer)))))))))))))))))))))
+
+================================================================================
+Atom - list comprehension - 2
+================================================================================
+
+RETURN [ x IN [1, 2, 3, 4] WHERE x / 2 | x + 2 ];
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (list_comprehension
+                          (filter_expression
+                            (id_in_coll
+                              (variable
+                                (symbolic_name
+                                  (unescaped_symbolic_name)))
+                              (expression
+                                (atom
+                                  (literal
+                                    (list_literal
+                                      (expression
+                                        (atom
+                                          (literal
+                                            (number_literal
+                                              (integer_literal
+                                                (decimal_integer))))))
+                                      (expression
+                                        (atom
+                                          (literal
+                                            (number_literal
+                                              (integer_literal
+                                                (decimal_integer))))))
+                                      (expression
+                                        (atom
+                                          (literal
+                                            (number_literal
+                                              (integer_literal
+                                                (decimal_integer))))))
+                                      (expression
+                                        (atom
+                                          (literal
+                                            (number_literal
+                                              (integer_literal
+                                                (decimal_integer)))))))))))
+                            (where
+                              (expression
+                                (multiplicative_expression
+                                  (expression
+                                    (atom
+                                      (variable
+                                        (symbolic_name
+                                          (unescaped_symbolic_name)))))
+                                  (expression
+                                    (atom
+                                      (literal
+                                        (number_literal
+                                          (integer_literal
+                                            (decimal_integer))))))))))
+                          (expression
+                            (addition_expression
+                              (expression
+                                (atom
+                                  (variable
+                                    (symbolic_name
+                                      (unescaped_symbolic_name)))))
+                              (expression
+                                (atom
+                                  (literal
+                                    (number_literal
+                                      (integer_literal
+                                        (decimal_integer)))))))))))))))))))))
+
+================================================================================
+Atom - pattern comprehension - 1
+================================================================================
+
+RETURN [()-[r:ACTED_IN]->() WHERE r.year = 2022 | r.year - 2];
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (pattern_comprehension
+                          (relationships_pattern
+                            (node_pattern)
+                            (pattern_element_chain
+                              (relationship_pattern
+                                (dash)
+                                (relationship_detail
+                                  (variable
+                                    (symbolic_name
+                                      (unescaped_symbolic_name)))
+                                  (relationship_types
+                                    (rel_type_name
+                                      (schema_name
+                                        (symbolic_name
+                                          (unescaped_symbolic_name))))))
+                                (dash)
+                                (right_arrow_head))
+                              (node_pattern)))
+                          (expression
+                            (comparison_expression
+                              (expression
+                                (property_or_labels_expression
+                                  (expression
+                                    (atom
+                                      (variable
+                                        (symbolic_name
+                                          (unescaped_symbolic_name)))))
+                                  (property_lookup
+                                    (property_key_name
+                                      (schema_name
+                                        (symbolic_name
+                                          (unescaped_symbolic_name)))))))
+                              (expression
+                                (atom
+                                  (literal
+                                    (number_literal
+                                      (integer_literal
+                                        (decimal_integer))))))))
+                          (expression
+                            (addition_expression
+                              (expression
+                                (property_or_labels_expression
+                                  (expression
+                                    (atom
+                                      (variable
+                                        (symbolic_name
+                                          (unescaped_symbolic_name)))))
+                                  (property_lookup
+                                    (property_key_name
+                                      (schema_name
+                                        (symbolic_name
+                                          (unescaped_symbolic_name)))))))
+                              (expression
+                                (atom
+                                  (literal
+                                    (number_literal
+                                      (integer_literal
+                                        (decimal_integer)))))))))))))))))))))
+
+================================================================================
+Atom - pattern comprehension - 2 - TODO
+================================================================================
+
+RETURN [r = ()-[r:ACTED_IN]->() WHERE r.year = 2022 | r.year - 2];
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (literal
+                          (list_literal
+                            (expression
+                              (addition_expression
+                                (expression
+                                  (property_or_labels_expression
+                                    (expression
+                                      (comparison_expression
+                                        (expression
+                                          (property_or_labels_expression
+                                            (expression
+                                              (comparison_expression
+                                                (expression
+                                                  (atom
+                                                    (variable
+                                                      (symbolic_name
+                                                        (unescaped_symbolic_name)))))
+                                                (expression
+                                                  (atom
+                                                    (relationships_pattern
+                                                      (node_pattern)
+                                                      (pattern_element_chain
+                                                        (relationship_pattern
+                                                          (dash)
+                                                          (relationship_detail
+                                                            (variable
+                                                              (symbolic_name
+                                                                (unescaped_symbolic_name)))
+                                                            (relationship_types
+                                                              (rel_type_name
+                                                                (schema_name
+                                                                  (symbolic_name
+                                                                    (unescaped_symbolic_name))))))
+                                                          (dash)
+                                                          (right_arrow_head))
+                                                        (node_pattern)))))))
+                                            (ERROR
+                                              (unescaped_symbolic_name))
+                                            (property_lookup
+                                              (property_key_name
+                                                (schema_name
+                                                  (symbolic_name
+                                                    (unescaped_symbolic_name)))))))
+                                        (expression
+                                          (atom
+                                            (literal
+                                              (number_literal
+                                                (integer_literal
+                                                  (decimal_integer))))))))
+                                    (ERROR
+                                      (unescaped_symbolic_name))
+                                    (property_lookup
+                                      (property_key_name
+                                        (schema_name
+                                          (symbolic_name
+                                            (unescaped_symbolic_name)))))))
+                                (expression
+                                  (atom
+                                    (literal
+                                      (number_literal
+                                        (integer_literal
+                                          (decimal_integer))))))))))))))))))))))
+
+================================================================================
+Atom - ALL(filter_expression)
+================================================================================
+
+RETURN ALL ( n IN node.names );
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (filter_expression
+                          (id_in_coll
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))
+                            (expression
+                              (property_or_labels_expression
+                                (expression
+                                  (atom
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))
+                                (property_lookup
+                                  (property_key_name
+                                    (schema_name
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))))))))))))))))))
+
+================================================================================
+Atom - ANY(filter_expression)
+================================================================================
+
+RETURN ANY ( n IN node.names );
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (filter_expression
+                          (id_in_coll
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))
+                            (expression
+                              (property_or_labels_expression
+                                (expression
+                                  (atom
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))
+                                (property_lookup
+                                  (property_key_name
+                                    (schema_name
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))))))))))))))))))
+
+================================================================================
+Atom - NONE(filter_expression)
+================================================================================
+
+RETURN NONE ( n IN node.names );
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (filter_expression
+                          (id_in_coll
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))
+                            (expression
+                              (property_or_labels_expression
+                                (expression
+                                  (atom
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))
+                                (property_lookup
+                                  (property_key_name
+                                    (schema_name
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))))))))))))))))))
+
+================================================================================
+Atom - SINGLE(filter_expression)
+================================================================================
+
+RETURN SINGLE ( n IN node.names );
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (filter_expression
+                          (id_in_coll
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))
+                            (expression
+                              (property_or_labels_expression
+                                (expression
+                                  (atom
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))
+                                (property_lookup
+                                  (property_key_name
+                                    (schema_name
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))))))))))))))))))
+
+================================================================================
+Atom - relationships pattern
+================================================================================
+
+RETURN (n:ACTOR)-[r:ACTED_IN]->(:MOVIE)->[d:DIRECTED_BY]->(x:DIRECTOR);
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (comparison_expression
+                        (expression
+                          (addition_expression
+                            (expression
+                              (atom
+                                (parenthesized_expression
+                                  (expression
+                                    (property_or_labels_expression
+                                      (expression
+                                        (atom
+                                          (variable
+                                            (symbolic_name
+                                              (unescaped_symbolic_name)))))
+                                      (node_labels
+                                        (node_label
+                                          (label_name
+                                            (schema_name
+                                              (symbolic_name
+                                                (unescaped_symbolic_name)))))))))))
+                            (expression
+                              (atom
+                                (literal
+                                  (list_literal
+                                    (expression
+                                      (property_or_labels_expression
+                                        (expression
+                                          (atom
+                                            (variable
+                                              (symbolic_name
+                                                (unescaped_symbolic_name)))))
+                                        (node_labels
+                                          (node_label
+                                            (label_name
+                                              (schema_name
+                                                (symbolic_name
+                                                  (unescaped_symbolic_name))))))))))))))
+                        (ERROR
+                          (node_pattern
+                            (node_labels
+                              (node_label
+                                (label_name
+                                  (schema_name
+                                    (symbolic_name
+                                      (unescaped_symbolic_name)))))))
+                          (dash))
+                        (expression
+                          (addition_expression
+                            (expression
+                              (atom
+                                (literal
+                                  (list_literal
+                                    (expression
+                                      (property_or_labels_expression
+                                        (expression
+                                          (atom
+                                            (variable
+                                              (symbolic_name
+                                                (unescaped_symbolic_name)))))
+                                        (node_labels
+                                          (node_label
+                                            (label_name
+                                              (schema_name
+                                                (symbolic_name
+                                                  (unescaped_symbolic_name))))))))))))
+                            (ERROR)
+                            (expression
+                              (atom
+                                (parenthesized_expression
+                                  (expression
+                                    (property_or_labels_expression
+                                      (expression
+                                        (atom
+                                          (variable
+                                            (symbolic_name
+                                              (unescaped_symbolic_name)))))
+                                      (node_labels
+                                        (node_label
+                                          (label_name
+                                            (schema_name
+                                              (symbolic_name
+                                                (unescaped_symbolic_name)))))))))))))))))))))))))
+
+================================================================================
+Atom - parenthesized expression
+================================================================================
+
+RETURN (1);
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (parenthesized_expression
+                          (expression
+                            (atom
+                              (literal
+                                (number_literal
+                                  (integer_literal
+                                    (decimal_integer)))))))))))))))))))
+
+================================================================================
+Atom - function invocation
+================================================================================
+
+RETURN hocus_pocus(DISTINCT x, y, z);
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (function_invocation
+                          (function_name
+                            (symbolic_name
+                              (unescaped_symbolic_name)))
+                          (expression
+                            (atom
+                              (variable
+                                (symbolic_name
+                                  (unescaped_symbolic_name)))))
+                          (expression
+                            (atom
+                              (variable
+                                (symbolic_name
+                                  (unescaped_symbolic_name)))))
+                          (expression
+                            (atom
+                              (variable
+                                (symbolic_name
+                                  (unescaped_symbolic_name))))))))))))))))))
+
+================================================================================
+Atom - variable
+================================================================================
+
+RETURN hocus_pocus;
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name
+                            (unescaped_symbolic_name)))))))))))))))
