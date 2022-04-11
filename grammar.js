@@ -7,6 +7,7 @@ module.exports = grammar({
     conflicts: function () { return []; },
     inline: function ($) { return [
         $.namespace,
+        $.variable_in_parens,
     ]; },
     rules: {
         cypher: function ($) { return seq($.statement, optional(';')); },
@@ -47,7 +48,15 @@ module.exports = grammar({
         pattern_part: function ($) { return choice(seq($.variable, '=', $.anonymous_pattern_part), $.anonymous_pattern_part); },
         anonymous_pattern_part: function ($) { return $.pattern_element; },
         pattern_element: function ($) { return choice(seq($.node_pattern, repeat($.pattern_element_chain)), seq('(', $.pattern_element, ')')); },
-        node_pattern: function ($) { return seq('(', optional($.variable), optional($.node_labels), optional($.properties), ')'); },
+        /*
+         * Rule that was extracted from common pattern on `note_pattern` and `parenthesized_expression`.
+         * Both of them could be expressed as `(variable)` what caused the tree to be generated in
+         * favour of one of those rules.
+         * In short: I couldn't find a way to fix the problem without this "artificial" rule.
+         */
+        variable_in_parens: function ($) { return seq('(', $.variable, ')'); },
+        // TODO: verify whether the precedence higher than `parenthesized_expression` is correct.
+        node_pattern: function ($) { return prec(1, choice($.variable_in_parens, seq('(', optional($.variable), optional($.node_labels), optional($.properties), ')'))); },
         pattern_element_chain: function ($) { return seq($.relationship_pattern, $.node_pattern); },
         relationship_pattern: function ($) { return seq(optional($.left_arrow_head), $.dash, optional($.relationship_detail), $.dash, optional($.right_arrow_head)); },
         relationship_detail: function ($) { return seq('[', optional($.variable), optional($.relationship_types), optional($.range_literal), optional($.properties), ']'); },
@@ -81,7 +90,7 @@ module.exports = grammar({
         null_literal: function () { return word('null'); },
         boolean_literal: function () { return choice(word('true'), word('false')); },
         list_literal: function ($) { return seq('[', optional(seq($.expression, repeat(seq(',', $.expression)))), ']'); },
-        parenthesized_expression: function ($) { return seq('(', $.expression, ')'); },
+        parenthesized_expression: function ($) { return choice($.variable_in_parens, seq('(', $.expression, ')')); },
         relationships_pattern: function ($) { return seq($.node_pattern, prec.right(repeat1($.pattern_element_chain))); },
         filter_expression: function ($) { return seq($.id_in_coll, optional($.where)); },
         id_in_coll: function ($) { return prec(1, seq($.variable, word('in'), $.expression)); },
@@ -93,11 +102,7 @@ module.exports = grammar({
         procedure_name: function ($) { return seq(optional($.namespace), $.symbolic_name); },
         namespace: function ($) { return repeat1(seq($.variable, '.')); },
         list_comprehension: function ($) { return seq('[', $.filter_expression, optional(seq('|', $.expression)), ']'); },
-        // FIX: this rule is not generated because parenthesized_expression is
-        // reduced rather than node_pattern (relationships_pattern) for cases like:
-        // RETURN [()-->()WHERE a:Label|55 + a.prop]
-        // FIX: should have increased precedence due to conflict with list_literal.
-        pattern_comprehension: function ($) { return seq('[', optional(seq($.variable, '=')), $.relationships_pattern, optional(seq(word('where'), $.expression)), '|', $.expression, ']'); },
+        pattern_comprehension: function ($) { return prec(11, seq('[', optional(seq($.variable, '=')), $.relationships_pattern, optional(seq(word('where'), $.expression)), '|', $.expression, ']')); },
         property_lookup: function ($) { return seq('.', $.property_key_name); },
         case_expression: function ($) { return seq(choice(seq(word('case'), repeat($.case_alternatives)), seq(word('case'), $.expression, repeat($.case_alternatives))), optional(seq(word('else'), $.expression)), word('end')); },
         case_alternatives: function ($) { return seq(word('when'), $.expression, word('then'), $.expression); },
