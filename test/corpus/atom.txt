@@ -608,7 +608,7 @@ RETURN SINGLE ( n IN node.names );
 Atom - relationships pattern
 ================================================================================
 
-RETURN (n:ACTOR)-[r:ACTED_IN]->(:MOVIE)->[d:DIRECTED_BY]->(x:DIRECTOR);
+RETURN (n:ACTOR)-[r:ACTED_IN]->(:MOVIE)-[d:DIRECTED_BY]->(x:DIRECTOR);
 
 --------------------------------------------------------------------------------
 
