@@ -229,6 +229,11 @@
     }
   },
   {
+    "type": "escaped_symbolic_name",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "explicit_procedure_invocation",
     "named": true,
     "fields": {},
@@ -2022,10 +2027,6 @@
   },
   {
     "type": "escaped_char",
-    "named": true
-  },
-  {
-    "type": "escaped_symbolic_name",
     "named": true
   },
   {

@@ -11620,8 +11620,11 @@
       "value": "(\\p{ID_Start}|\\p{Pc})(\\p{ID_Continue}|\\p{Sc})*"
     },
     "escaped_symbolic_name": {
-      "type": "PATTERN",
-      "value": "`[^`]*`"
+      "type": "REPEAT1",
+      "content": {
+        "type": "PATTERN",
+        "value": "`[^`]*`"
+      }
     },
     "comment": {
       "type": "CHOICE",

@@ -125,7 +125,7 @@ module.exports = grammar({
         reserved_word: function () { return choice(word('all'), word('asc'), word('ascending'), word('by'), word('create'), word('delete'), word('desc'), word('descending'), word('detach'), word('exists'), word('limit'), word('match'), word('merge'), word('on'), word('optional'), word('order'), word('remove'), word('return'), word('set'), word('skip'), word('where'), word('with'), word('union'), word('unwind'), word('and'), word('as'), word('contains'), word('distinct'), word('ends'), word('in'), word('is'), word('not'), word('or'), word('starts'), word('xor'), word('false'), word('true'), word('null'), word('constraint'), word('unique'), word('case'), word('when'), word('then'), word('else'), word('end'), word('mandatory'), word('scalar'), word('of'), word('add'), word('drop')); },
         symbolic_name: function ($) { return prec.left(choice($.unescaped_symbolic_name, $.escaped_symbolic_name, word('count'), word('filter'), word('extract'), word('any'), word('none'), word('single'))); },
         unescaped_symbolic_name: function ($) { return (/(\p{ID_Start}|\p{Pc})(\p{ID_Continue}|\p{Sc})*/u); },
-        escaped_symbolic_name: function () { return /`[^`]*`/; },
+        escaped_symbolic_name: function () { return repeat1(/`[^`]*`/); },
         comment: function ($) { return choice(seq('/*', repeat(choice(/[^\*]/, /\*[^\/]/)), '*/'), seq('//', /.*/, '\n')); },
         left_arrow_head: function () { return choice('<', "\u27E8", "\u3008", "\uFE64", "\uFF1C"); },
         right_arrow_head: function () { return choice('>', "\u27E9", "\u3009", "\uFE65", "\uFF1E"); },

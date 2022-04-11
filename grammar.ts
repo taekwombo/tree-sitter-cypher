@@ -743,7 +743,7 @@ module.exports = grammar({
         unescaped_symbolic_name: ($) => (
             /(\p{ID_Start}|\p{Pc})(\p{ID_Continue}|\p{Sc})*/u
         ),
-        escaped_symbolic_name: () => /`[^`]*`/,
+        escaped_symbolic_name: () => repeat1(/`[^`]*`/),
         comment: ($) => choice(
             seq(
                 '/*',

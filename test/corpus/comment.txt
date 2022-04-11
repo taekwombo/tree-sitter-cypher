@@ -1,0 +1,32 @@
+================================================================================
+Comment
+================================================================================
+
+// single line comment
+/*
+    multi
+    line
+    comment
+*/
+RETURN 1;
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (comment)
+  (comment)
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (literal
+                          (number_literal
+                            (integer_literal
+                              (decimal_integer))))))))))))))))

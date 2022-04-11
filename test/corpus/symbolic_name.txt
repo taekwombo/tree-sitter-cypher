@@ -1,0 +1,59 @@
+================================================================================
+Symbolic name
+================================================================================
+
+RETURN count, filter, extract, any, none, single, `escaped`, `doubly``escaped`;
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name)))))
+                  (projection_item
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name)))))
+                  (projection_item
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name)))))
+                  (projection_item
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name)))))
+                  (projection_item
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name)))))
+                  (projection_item
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name)))))
+                  (projection_item
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name
+                            (escaped_symbolic_name))))))
+                  (projection_item
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name
+                            (escaped_symbolic_name)))))))))))))))
