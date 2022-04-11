@@ -9,6 +9,7 @@ module.exports = grammar({
     conflicts: () => [],
     inline: ($) => [
         $.namespace,
+        $.variable_in_parens,
     ],
     rules: {
         cypher: ($) => seq(
@@ -271,13 +272,24 @@ module.exports = grammar({
                 ')',
             ),
         ),
-        node_pattern: ($) => seq(
-            '(',
-            optional($.variable),
-            optional($.node_labels),
-            optional($.properties),
-            ')',
-        ),
+        /*
+         * Rule that was extracted from common pattern on `note_pattern` and `parenthesized_expression`.
+         * Both of them could be expressed as `(variable)` what caused the tree to be generated in
+         * favour of one of those rules.
+         * In short: I couldn't find a way to fix the problem without this "artificial" rule.
+         */
+        variable_in_parens: ($) => seq('(', $.variable, ')'),
+        // TODO: verify whether the precedence higher than `parenthesized_expression` is correct.
+        node_pattern: ($) => prec(1, choice(
+            $.variable_in_parens,
+            seq(
+                '(',
+                optional($.variable),
+                optional($.node_labels),
+                optional($.properties),
+                ')',
+            ),
+        )),
         pattern_element_chain: ($) => seq(
             $.relationship_pattern,
             $.node_pattern,
@@ -483,10 +495,13 @@ module.exports = grammar({
             )),
             ']',
         ),
-        parenthesized_expression: ($) => seq(
-            '(',
-            $.expression,
-            ')',
+        parenthesized_expression: ($) => choice(
+            $.variable_in_parens,
+            seq(
+                '(',
+                $.expression,
+                ')',
+            ),
         ),
         relationships_pattern: ($) => seq(
             $.node_pattern,
@@ -543,11 +558,7 @@ module.exports = grammar({
             )),
             ']',
         ),
-        // FIX: this rule is not generated because parenthesized_expression is
-        // reduced rather than node_pattern (relationships_pattern) for cases like:
-        // RETURN [()-->()WHERE a:Label|55 + a.prop]
-        // FIX: should have increased precedence due to conflict with list_literal.
-        pattern_comprehension: ($) => seq(
+        pattern_comprehension: ($) => prec(11, seq(
             '[',
             optional(seq(
                 $.variable,
@@ -561,7 +572,7 @@ module.exports = grammar({
             '|',
             $.expression,
             ']',
-        ),
+        )),
         property_lookup: ($) => seq('.', $.property_key_name),
         case_expression: ($) => seq(
             choice(
