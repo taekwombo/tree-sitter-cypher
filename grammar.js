@@ -117,7 +117,7 @@ module.exports = grammar({
         integer_literal: function ($) { return choice($.hex_integer, $.octal_integer, $.decimal_integer); },
         hex_integer: function () { return /0x[0-9a-f]+/i; },
         decimal_integer: function () { return choice('0', /[1-9][0-9]*/); },
-        octal_integer: function () { return /0[0-7]+/; },
+        octal_integer: function () { return /0o[0-7]+/; },
         double_literal: function ($) { return choice($.exponent_decimal_real, $.regular_decimal_real); },
         exponent_decimal_real: function () { return token(seq(choice(/[0-9]+/, seq(/[0-9]+/, '.', /[0-9]+/), seq('.', /[0-9]+/)), word('e'), optional('-'), /[0-9]+/)); },
         regular_decimal_real: function () { return /[0-9]*\.[0-9]+/; },

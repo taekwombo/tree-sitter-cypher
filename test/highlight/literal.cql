@@ -1,12 +1,12 @@
-RETURN 1, 0x10, 05, 1, 5.2, .02e1, 2.3e-3, .1,
+RETURN 1, 0x10, 0o5, 1, 5.2, .02e1, 2.3e-3, .1,
 //     ^ number
 //        ^ number
 //              ^ number
-//                  ^ number
-//                     ^ number
-//                          ^ number
-//                                 ^ number
-//                                         ^ number
+//                   ^ number
+//                      ^ number
+//                           ^ number
+//                                  ^ number
+//                                          ^ number
     'String value', "String value \n \u1000",
 //  ^ string
 //                  ^ string
