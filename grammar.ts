@@ -1,5 +1,3 @@
-'use strict';
-
 // opencypher tests
 // https://github.com/opencypher/openCypher/blob/c816756d50df9cde73cae573ef871f2d7e76c70a/tools/grammar/src/test/resources/cypher.txt
 
