@@ -7234,7 +7234,7 @@
     },
     "octal_integer": {
       "type": "PATTERN",
-      "value": "0[0-7]+"
+      "value": "0o[0-7]+"
     },
     "double_literal": {
       "type": "CHOICE",

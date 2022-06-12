@@ -652,7 +652,7 @@ module.exports = grammar({
             '0',
             /[1-9][0-9]*/,
         ),
-        octal_integer: () => /0[0-7]+/,
+        octal_integer: () => /0o[0-7]+/,
         double_literal: ($) => choice(
             $.exponent_decimal_real,
             $.regular_decimal_real,

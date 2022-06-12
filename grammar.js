@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 // opencypher tests
 // https://github.com/opencypher/openCypher/blob/c816756d50df9cde73cae573ef871f2d7e76c70a/tools/grammar/src/test/resources/cypher.txt
 module.exports = grammar({
@@ -117,7 +117,7 @@ module.exports = grammar({
         integer_literal: ($) => choice($.hex_integer, $.octal_integer, $.decimal_integer),
         hex_integer: () => /0x[0-9a-f]+/i,
         decimal_integer: () => choice('0', /[1-9][0-9]*/),
-        octal_integer: () => /0[0-7]+/,
+        octal_integer: () => /0o[0-7]+/,
         double_literal: ($) => choice($.exponent_decimal_real, $.regular_decimal_real),
         exponent_decimal_real: () => token(seq(choice(/[0-9]+/, seq(/[0-9]+/, '.', /[0-9]+/), seq('.', /[0-9]+/)), word('e'), optional('-'), /[0-9]+/)),
         regular_decimal_real: () => /[0-9]*\.[0-9]+/,
