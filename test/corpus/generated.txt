@@ -1047,7 +1047,7 @@ RETURN 0xd34db33f
 openCypher.txt: 23
 ================================================================================
 
-RETURN 0777
+RETURN 0o777
 
 --------------------------------------------------------------------------------
 
@@ -1058,15 +1058,15 @@ RETURN 0777
         (single_query
           (single_part_query
             (return
+              (ERROR)
               (projection_body
                 (projection_items
                   (projection_item
                     (expression
                       (atom
-                        (literal
-                          (number_literal
-                            (integer_literal
-                              (octal_integer))))))))))))))))
+                        (variable
+                          (symbolic_name
+                            (unescaped_symbolic_name)))))))))))))))
 
 ================================================================================
 openCypher.txt: 24
@@ -5244,7 +5244,7 @@ RETURN 0
 openCypher.txt: 111
 ================================================================================
 
-RETURN 0000
+RETURN 0o000
 
 --------------------------------------------------------------------------------
 
@@ -5255,21 +5255,21 @@ RETURN 0000
         (single_query
           (single_part_query
             (return
+              (ERROR)
               (projection_body
                 (projection_items
                   (projection_item
                     (expression
                       (atom
-                        (literal
-                          (number_literal
-                            (integer_literal
-                              (octal_integer))))))))))))))))
+                        (variable
+                          (symbolic_name
+                            (unescaped_symbolic_name)))))))))))))))
 
 ================================================================================
 openCypher.txt: 112
 ================================================================================
 
-RETURN 012345670
+RETURN 0o12345670
 
 --------------------------------------------------------------------------------
 
@@ -5280,21 +5280,21 @@ RETURN 012345670
         (single_query
           (single_part_query
             (return
+              (ERROR)
               (projection_body
                 (projection_items
                   (projection_item
                     (expression
                       (atom
-                        (literal
-                          (number_literal
-                            (integer_literal
-                              (octal_integer))))))))))))))))
+                        (variable
+                          (symbolic_name
+                            (unescaped_symbolic_name)))))))))))))))
 
 ================================================================================
 openCypher.txt: 113
 ================================================================================
 
-RETURN 000012345670
+RETURN 0o00012345670
 
 --------------------------------------------------------------------------------
 
@@ -5305,15 +5305,15 @@ RETURN 000012345670
         (single_query
           (single_part_query
             (return
+              (ERROR)
               (projection_body
                 (projection_items
                   (projection_item
                     (expression
                       (atom
-                        (literal
-                          (number_literal
-                            (integer_literal
-                              (octal_integer))))))))))))))))
+                        (variable
+                          (symbolic_name
+                            (unescaped_symbolic_name)))))))))))))))
 
 ================================================================================
 openCypher.txt: 114
