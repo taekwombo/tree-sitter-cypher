@@ -346,7 +346,7 @@ module.exports = grammar({
             $.multiplicative_expression,
             $.exponential_expression,
             $.unary_expression,
-            $.string_list_null_operator_expression,
+            $.string_list_null_predicate_expression,
             $.property_or_labels_expression,
             $.atom,
         ),
@@ -400,12 +400,12 @@ module.exports = grammar({
             choice('+', '-'),
             $.expression,
         )),
-        string_list_null_operator_expression: ($) => expression(9, seq(
+        string_list_null_predicate_expression: ($) => expression(9, seq(
             $.expression,
             repeat1(choice(
                 $.string_operator_expression,
                 $.list_operator_expression,
-                $.null_operator_expression,
+                $.null_predicate_expression,
             )),
         )),
         list_operator_expression: ($) => prec.left(choice(
@@ -434,7 +434,7 @@ module.exports = grammar({
             ),
             $.expression,
         )),
-        null_operator_expression: ($) => seq(
+        null_predicate_expression: ($) => seq(
             word('is'),
             optional(word('not')),
             word('null'),
@@ -456,17 +456,14 @@ module.exports = grammar({
             $.literal,
             $.parameter,
             $.case_expression,
-            // TODO: Consider merging with function_invocation
             seq(word('count'), /\(\s*\*\s*\)/),
             $.list_comprehension,
             $.pattern_comprehension,
-            seq(word('all'), '(', $.filter_expression, ')'),
-            seq(word('any'), '(', $.filter_expression, ')'),
-            seq(word('none'), '(', $.filter_expression, ')'),
-            seq(word('single'), '(', $.filter_expression, ')'),
-            $.relationships_pattern,
+            $.quantifier,
+            $.pattern_predicate,
             $.parenthesized_expression,
             $.function_invocation,
+            $.existential_subquery,
             prec.left($.variable),
         )),
         literal: ($) => choice(
@@ -505,6 +502,7 @@ module.exports = grammar({
             $.node_pattern,
             prec.right(repeat1($.pattern_element_chain)),
         ),
+        pattern_predicate: ($) => $.relationships_pattern,
         filter_expression: ($) => seq(
             $.id_in_coll,
             optional($.where),
@@ -527,9 +525,18 @@ module.exports = grammar({
             )),
             ')',
         ),
-        function_name: ($) => choice(
-            seq(optional($.namespace), $.symbolic_name),
+        function_name: ($) => seq(optional($.namespace), $.symbolic_name),
+        existential_subquery: ($) => seq(
             word('exists'),
+            '{',
+            choice(
+                $.regular_query,
+                seq(
+                    $.pattern,
+                    optional($.where),
+                ),
+            ),
+            '}',
         ),
         explicit_procedure_invocation: ($) => seq(
             $.procedure_name,
@@ -571,6 +578,14 @@ module.exports = grammar({
             $.expression,
             ']',
         )),
+        // FIXME: ANY(...) counts as a function_invocation.
+        // Is prec(1,...) enough?
+        quantifier: ($) => choice(
+            seq(word('all'), '(', $.filter_expression, ')'),
+            seq(word('any'), '(', $.filter_expression, ')'),
+            seq(word('none'), '(', $.filter_expression, ')'),
+            seq(word('single'), '(', $.filter_expression, ')'),
+        ),
         property_lookup: ($) => seq('.', $.property_key_name),
         case_expression: ($) => seq(
             choice(
