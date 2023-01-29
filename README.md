@@ -18,6 +18,7 @@ Install the dependencies:
     npm install
 
 Build parser
+
     npm run build
 
 Run the tests:
