@@ -1,0 +1,443 @@
+================================================================================
+CIP2021-08-10 - Proposal
+================================================================================
+
+// https://github.com/opencypher/openCypher/blob/7f6cfeb1c724750a96afdc95c1903ed492b0335b/cip/1.accepted/CIP2021-08-10-Operator-precedence.adoc
+
+--------------------------------------------------------------------------------
+
+(ERROR
+  (comment))
+
+================================================================================
+CIP2021-08-10 - Precedence OR
+================================================================================
+
+RETURN 0 or 0 or 1;
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (or_expression
+                        (expression
+                          (or_expression
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))))
+                        (expression
+                          (atom
+                            (literal
+                              (number_literal
+                                (integer_literal
+                                  (decimal_integer))))))))))))))))))
+
+================================================================================
+CIP2021-08-10 - Precedence XOR
+================================================================================
+
+RETURN 0 xor 0 xor 1;
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (xor_expression
+                        (expression
+                          (xor_expression
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))))
+                        (expression
+                          (atom
+                            (literal
+                              (number_literal
+                                (integer_literal
+                                  (decimal_integer))))))))))))))))))
+
+================================================================================
+CIP2021-08-10 - Precedence AND
+================================================================================
+
+RETURN 1 and 1 and 0;
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (and_expression
+                        (expression
+                          (and_expression
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))))
+                        (expression
+                          (atom
+                            (literal
+                              (number_literal
+                                (integer_literal
+                                  (decimal_integer))))))))))))))))))
+
+================================================================================
+CIP2021-08-10 - Precedence NOT
+================================================================================
+
+RETURN NOT NOT NOT false;
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (not_expression
+                        (expression
+                          (not_expression
+                            (expression
+                              (not_expression
+                                (expression
+                                  (atom
+                                    (literal
+                                      (boolean_literal))))))))))))))))))))
+
+================================================================================
+CIP2021-08-10 - Precedence Comparison
+================================================================================
+
+RETURN 5 > 3 <> 1 = 1;
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (comparison_expression
+                        (expression
+                          (atom
+                            (literal
+                              (number_literal
+                                (integer_literal
+                                  (decimal_integer))))))
+                        (expression
+                          (atom
+                            (literal
+                              (number_literal
+                                (integer_literal
+                                  (decimal_integer))))))
+                        (expression
+                          (atom
+                            (literal
+                              (number_literal
+                                (integer_literal
+                                  (decimal_integer))))))
+                        (expression
+                          (atom
+                            (literal
+                              (number_literal
+                                (integer_literal
+                                  (decimal_integer))))))))))))))))))
+
+================================================================================
+CIP2021-08-10 - String/List/Null Predicates
+================================================================================
+
+RETURN foo CONTAINS 'bar' IN list;
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (string_list_null_predicate_expression
+                        (expression
+                          (atom
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))))
+                        (string_predicate_expression
+                          (expression
+                            (atom
+                              (literal
+                                (string_literal)))))
+                        (list_predicate_expression
+                          (expression
+                            (atom
+                              (variable
+                                (symbolic_name
+                                  (unescaped_symbolic_name))))))))))))))))))
+
+================================================================================
+CIP2021-08-10 - Addition
+================================================================================
+
+RETURN 1 + 1 - 1;
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (additive_expression
+                        (expression
+                          (additive_expression
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))))
+                        (expression
+                          (atom
+                            (literal
+                              (number_literal
+                                (integer_literal
+                                  (decimal_integer))))))))))))))))))
+
+================================================================================
+CIP2021-08-10 - Multiplication
+================================================================================
+
+RETURN 1 * 1 / 1 % 1;
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (multiplicative_expression
+                        (expression
+                          (multiplicative_expression
+                            (expression
+                              (multiplicative_expression
+                                (expression
+                                  (atom
+                                    (literal
+                                      (number_literal
+                                        (integer_literal
+                                          (decimal_integer))))))
+                                (expression
+                                  (atom
+                                    (literal
+                                      (number_literal
+                                        (integer_literal
+                                          (decimal_integer))))))))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))))
+                        (expression
+                          (atom
+                            (literal
+                              (number_literal
+                                (integer_literal
+                                  (decimal_integer))))))))))))))))))
+
+================================================================================
+CIP2021-08-10 - Exponential Expression
+================================================================================
+
+RETURN 1 ^ 1 ^ 1;
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (exponential_expression
+                        (expression
+                          (exponential_expression
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))))
+                        (expression
+                          (atom
+                            (literal
+                              (number_literal
+                                (integer_literal
+                                  (decimal_integer))))))))))))))))))
+
+================================================================================
+CIP2021-08-10 - Unary
+================================================================================
+
+RETURN -+1;
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (unary_expression
+                        (expression
+                          (unary_expression
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))))))))))))))))
+
+================================================================================
+CIP2021-08-10 - List Operator
+================================================================================
+
+RETURN arr[x][y];
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (list_operator_expression
+                        (expression
+                          (list_operator_expression
+                            (expression
+                              (atom
+                                (variable
+                                  (symbolic_name
+                                    (unescaped_symbolic_name)))))
+                            (expression
+                              (atom
+                                (variable
+                                  (symbolic_name
+                                    (unescaped_symbolic_name)))))))
+                        (expression
+                          (atom
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))))))))))))))))
+

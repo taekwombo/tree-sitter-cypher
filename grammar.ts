@@ -342,91 +342,61 @@ module.exports = grammar({
             $.and_expression,
             $.not_expression,
             $.comparison_expression,
-            $.addition_expression,
+            $.string_list_null_predicate_expression,
+            $.additive_expression,
             $.multiplicative_expression,
             $.exponential_expression,
             $.unary_expression,
-            $.string_list_null_predicate_expression,
+            $.list_operator_expression,
             $.property_or_labels_expression,
             $.atom,
         ),
-        or_expression: ($) => expression(0, seq(
+        or_expression: ($) => prec.left(1, seq(
             $.expression,
             word('or'),
             $.expression,
         )),
-        xor_expression: ($) => expression(1, seq(
+        xor_expression: ($) => prec.left(2, seq(
             $.expression,
             word('xor'),
             $.expression,
         )),
-        and_expression: ($) => expression(2, seq(
+        and_expression: ($) => prec.left(3, seq(
             $.expression,
             word('and'),
             $.expression,
         )),
-        not_expression: ($) => expression(3, seq(
+        not_expression: ($) => prec(4, seq(
             word('not'),
             $.expression,
         )),
-        comparison_expression: ($) => expression(4, seq(
+        comparison_expression: ($) => prec.right(seq(
             $.expression,
-            choice(
-                '=',
-                '<>',
-                '<',
-                '>',
-                '<=',
-                '>=',
-            ),
-            $.expression,
+            repeat1(prec(5, seq(
+                choice(
+                    '=',
+                    '<>',
+                    '<',
+                    '>',
+                    '<=',
+                    '>=',
+                ),
+                $.expression,
+            ))),
         )),
-        addition_expression: ($) => expression(5, seq(
-            $.expression,
-            choice('-', '+'),
-            $.expression,
-        )),
-        multiplicative_expression: ($) => expression(6, seq(
-            $.expression,
-            choice('*', '/', '%'),
-            $.expression,
-        )),
-        exponential_expression: ($) => expression(7, seq(
-            $.expression,
-            '^',
-            $.expression,
-        )),
-        unary_expression: ($) => expression(8, seq(
-            choice('+', '-'),
-            $.expression,
-        )),
-        string_list_null_predicate_expression: ($) => expression(9, seq(
+        string_list_null_predicate_expression: ($) => prec.right(seq(
             $.expression,
             repeat1(choice(
-                $.string_operator_expression,
-                $.list_operator_expression,
+                $.list_predicate_expression,
+                $.string_predicate_expression,
                 $.null_predicate_expression,
             )),
         )),
-        list_operator_expression: ($) => prec.left(choice(
-            seq(
-                word('in'),
-                $.expression,
-            ),
-            seq(
-                '[',
-                $.expression,
-                ']',
-            ),
-            seq(
-                '[',
-                optional($.expression),
-                '..',
-                optional($.expression),
-                ']',
-            ),
+        list_predicate_expression: ($) => prec(6, seq(
+            word('in'),
+            $.expression,
         )),
-        string_operator_expression: ($) => prec.left(seq(
+        string_predicate_expression: ($) => prec(6, seq(
             choice(
                 seq(word('starts'), word('with')),
                 seq(word('ends'), word('with')),
@@ -434,12 +404,48 @@ module.exports = grammar({
             ),
             $.expression,
         )),
-        null_predicate_expression: ($) => seq(
+        null_predicate_expression: ($) => prec(6, seq(
             word('is'),
             optional(word('not')),
             word('null'),
-        ),
-        property_or_labels_expression: ($) => expression(10, seq(
+        )),
+        additive_expression: ($) => prec.left(7, seq(
+            $.expression,
+            choice('-', '+'),
+            $.expression,
+        )),
+        multiplicative_expression: ($) => prec.left(8, seq(
+            $.expression,
+            choice('*', '/', '%'),
+            $.expression,
+        )),
+        exponential_expression: ($) => prec.left(9, seq(
+            $.expression,
+            '^',
+            $.expression,
+        )),
+        unary_expression: ($) => prec(10, seq(
+            choice('+', '-'),
+            $.expression,
+        )),
+        list_operator_expression: ($) => prec(11, seq(
+            $.expression,
+            choice(
+                seq(
+                    '[',
+                    $.expression,
+                    ']',
+                ),
+                seq(
+                    '[',
+                    optional($.expression),
+                    '..',
+                    optional($.expression),
+                    ']',
+                ),
+            )
+        )),
+        property_or_labels_expression: ($) => prec.left(11, seq(
             $.expression,
             choice(
                 seq(
@@ -452,7 +458,7 @@ module.exports = grammar({
                 ),
             ),
         )),
-        atom: ($) => expression(11, choice(
+        atom: ($) => choice(
             $.literal,
             $.parameter,
             $.case_expression,
@@ -465,7 +471,7 @@ module.exports = grammar({
             $.function_invocation,
             $.existential_subquery,
             prec.left($.variable),
-        )),
+        ),
         literal: ($) => choice(
             $.number_literal,
             $.string_literal,
@@ -578,14 +584,12 @@ module.exports = grammar({
             $.expression,
             ']',
         )),
-        // FIXME: ANY(...) counts as a function_invocation.
-        // Is prec(1,...) enough?
-        quantifier: ($) => choice(
+        quantifier: ($) => prec(12, choice(
             seq(word('all'), '(', $.filter_expression, ')'),
             seq(word('any'), '(', $.filter_expression, ')'),
             seq(word('none'), '(', $.filter_expression, ')'),
             seq(word('single'), '(', $.filter_expression, ')'),
-        ),
+        )),
         property_lookup: ($) => seq('.', $.property_key_name),
         case_expression: ($) => seq(
             choice(
@@ -847,9 +851,5 @@ function word(keyword: string): AliasRule {
         ),
         keyword,
     );
-}
-
-function expression(precedence: number, rule: RuleOrLiteral, assoc: 'left' | 'right' = 'right') {
-    return prec[assoc](precedence, rule);
 }
 

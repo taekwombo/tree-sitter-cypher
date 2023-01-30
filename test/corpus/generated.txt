@@ -889,7 +889,7 @@ RETURN 1 - 1 + +2
                 (projection_items
                   (projection_item
                     (expression
-                      (addition_expression
+                      (additive_expression
                         (expression
                           (atom
                             (literal
@@ -897,7 +897,7 @@ RETURN 1 - 1 + +2
                                 (integer_literal
                                   (decimal_integer))))))
                         (expression
-                          (addition_expression
+                          (additive_expression
                             (expression
                               (atom
                                 (literal
@@ -932,7 +932,7 @@ RETURN 1-+2
                 (projection_items
                   (projection_item
                     (expression
-                      (addition_expression
+                      (additive_expression
                         (expression
                           (atom
                             (literal
@@ -994,7 +994,7 @@ RETURN 3 + 1 - +2.0
                 (projection_items
                   (projection_item
                     (expression
-                      (addition_expression
+                      (additive_expression
                         (expression
                           (atom
                             (literal
@@ -1002,7 +1002,7 @@ RETURN 3 + 1 - +2.0
                                 (integer_literal
                                   (decimal_integer))))))
                         (expression
-                          (addition_expression
+                          (additive_expression
                             (expression
                               (atom
                                 (literal
@@ -4887,7 +4887,7 @@ RETURN [  x   IN   [  1  ,   ''  ,   n  ]    |    toString(x)   +   '-string'  ]
                                             (symbolic_name
                                               (unescaped_symbolic_name)))))))))))
                           (expression
-                            (addition_expression
+                            (additive_expression
                               (expression
                                 (atom
                                   (function_invocation
@@ -7030,7 +7030,7 @@ RETURN [(a)-->()WHERE a:Label|55 + a.prop]
                                       (symbolic_name
                                         (unescaped_symbolic_name))))))))
                           (expression
-                            (addition_expression
+                            (additive_expression
                               (expression
                                 (atom
                                   (literal
@@ -7096,7 +7096,7 @@ RETURN [   (a)-->()WHERE a:Label|55 + a.prop]
                                       (symbolic_name
                                         (unescaped_symbolic_name))))))))
                           (expression
-                            (addition_expression
+                            (additive_expression
                               (expression
                                 (atom
                                   (literal
@@ -7162,7 +7162,7 @@ RETURN [   (a)-->()   WHERE a:Label|55 + a.prop]
                                       (symbolic_name
                                         (unescaped_symbolic_name))))))))
                           (expression
-                            (addition_expression
+                            (additive_expression
                               (expression
                                 (atom
                                   (literal
@@ -7228,7 +7228,7 @@ RETURN [   (a)-->()   WHERE   a:Label|55 + a.prop]
                                       (symbolic_name
                                         (unescaped_symbolic_name))))))))
                           (expression
-                            (addition_expression
+                            (additive_expression
                               (expression
                                 (atom
                                   (literal
@@ -7294,7 +7294,7 @@ RETURN [   (a)-->()   WHERE   a   :Label|55 + a.prop]
                                       (symbolic_name
                                         (unescaped_symbolic_name))))))))
                           (expression
-                            (addition_expression
+                            (additive_expression
                               (expression
                                 (atom
                                   (literal
@@ -7360,7 +7360,7 @@ RETURN [   (a)-->()   WHERE   a   :   Label|55 + a.prop]
                                       (symbolic_name
                                         (unescaped_symbolic_name))))))))
                           (expression
-                            (addition_expression
+                            (additive_expression
                               (expression
                                 (atom
                                   (literal
@@ -7426,7 +7426,7 @@ RETURN [   (a)-->()   WHERE   a   :   Label   |55 + a.prop]
                                       (symbolic_name
                                         (unescaped_symbolic_name))))))))
                           (expression
-                            (addition_expression
+                            (additive_expression
                               (expression
                                 (atom
                                   (literal
@@ -7492,7 +7492,7 @@ RETURN [   (a)-->()   WHERE   a   :   Label   |   55 + a.prop]
                                       (symbolic_name
                                         (unescaped_symbolic_name))))))))
                           (expression
-                            (addition_expression
+                            (additive_expression
                               (expression
                                 (atom
                                   (literal
@@ -7558,7 +7558,7 @@ RETURN [   (a)-->()   WHERE   a   :   Label   |   55 + a.prop   ]
                                       (symbolic_name
                                         (unescaped_symbolic_name))))))))
                           (expression
-                            (addition_expression
+                            (additive_expression
                               (expression
                                 (atom
                                   (literal
@@ -7627,7 +7627,7 @@ RETURN [p=(a)-->()WHERE a:Label|55 + a.prop]
                                       (symbolic_name
                                         (unescaped_symbolic_name))))))))
                           (expression
-                            (addition_expression
+                            (additive_expression
                               (expression
                                 (atom
                                   (literal
@@ -7696,7 +7696,7 @@ RETURN [   p=(a)-->()WHERE a:Label|55 + a.prop]
                                       (symbolic_name
                                         (unescaped_symbolic_name))))))))
                           (expression
-                            (addition_expression
+                            (additive_expression
                               (expression
                                 (atom
                                   (literal
@@ -7765,7 +7765,7 @@ RETURN [   p   =(a)-->()WHERE a:Label|55 + a.prop]
                                       (symbolic_name
                                         (unescaped_symbolic_name))))))))
                           (expression
-                            (addition_expression
+                            (additive_expression
                               (expression
                                 (atom
                                   (literal
@@ -7834,7 +7834,7 @@ RETURN [   p   =   (a)-->()WHERE a:Label|55 + a.prop]
                                       (symbolic_name
                                         (unescaped_symbolic_name))))))))
                           (expression
-                            (addition_expression
+                            (additive_expression
                               (expression
                                 (atom
                                   (literal
@@ -9970,7 +9970,7 @@ RETURN count(label) AS numLabels
                               (expression
                                 (comparison_expression
                                   (expression
-                                    (addition_expression
+                                    (additive_expression
                                       (expression
                                         (atom
                                           (variable
@@ -10050,7 +10050,7 @@ CALL db.labels() YIELD x WHERE label CONTAINS 'User' AND foo + bar = foo RETURN 
                               (expression
                                 (comparison_expression
                                   (expression
-                                    (addition_expression
+                                    (additive_expression
                                       (expression
                                         (atom
                                           (variable
