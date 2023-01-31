@@ -627,52 +627,8 @@ RETURN (n:ACTOR)-[r:ACTED_IN]->(:MOVIE)-[d:DIRECTED_BY]->(x:DIRECTOR);
                   (projection_item
                     (expression
                       (atom
-                        (relationships_pattern
-                          (node_pattern
-                            (variable
-                              (symbolic_name
-                                (unescaped_symbolic_name)))
-                            (node_labels
-                              (node_label
-                                (label_name
-                                  (schema_name
-                                    (symbolic_name
-                                      (unescaped_symbolic_name)))))))
-                          (pattern_element_chain
-                            (relationship_pattern
-                              (dash)
-                              (relationship_detail
-                                (variable
-                                  (symbolic_name
-                                    (unescaped_symbolic_name)))
-                                (relationship_types
-                                  (rel_type_name
-                                    (schema_name
-                                      (symbolic_name
-                                        (unescaped_symbolic_name))))))
-                              (dash)
-                              (right_arrow_head))
-                            (node_pattern
-                              (node_labels
-                                (node_label
-                                  (label_name
-                                    (schema_name
-                                      (symbolic_name
-                                        (unescaped_symbolic_name))))))))
-                          (pattern_element_chain
-                            (relationship_pattern
-                              (dash)
-                              (relationship_detail
-                                (variable
-                                  (symbolic_name
-                                    (unescaped_symbolic_name)))
-                                (relationship_types
-                                  (rel_type_name
-                                    (schema_name
-                                      (symbolic_name
-                                        (unescaped_symbolic_name))))))
-                              (dash)
-                              (right_arrow_head))
+                        (pattern_predicate
+                          (relationships_pattern
                             (node_pattern
                               (variable
                                 (symbolic_name
@@ -682,7 +638,52 @@ RETURN (n:ACTOR)-[r:ACTED_IN]->(:MOVIE)-[d:DIRECTED_BY]->(x:DIRECTOR);
                                   (label_name
                                     (schema_name
                                       (symbolic_name
-                                        (unescaped_symbolic_name)))))))))))))))))))))
+                                        (unescaped_symbolic_name)))))))
+                            (pattern_element_chain
+                              (relationship_pattern
+                                (dash)
+                                (relationship_detail
+                                  (variable
+                                    (symbolic_name
+                                      (unescaped_symbolic_name)))
+                                  (relationship_types
+                                    (rel_type_name
+                                      (schema_name
+                                        (symbolic_name
+                                          (unescaped_symbolic_name))))))
+                                (dash)
+                                (right_arrow_head))
+                              (node_pattern
+                                (node_labels
+                                  (node_label
+                                    (label_name
+                                      (schema_name
+                                        (symbolic_name
+                                          (unescaped_symbolic_name))))))))
+                            (pattern_element_chain
+                              (relationship_pattern
+                                (dash)
+                                (relationship_detail
+                                  (variable
+                                    (symbolic_name
+                                      (unescaped_symbolic_name)))
+                                  (relationship_types
+                                    (rel_type_name
+                                      (schema_name
+                                        (symbolic_name
+                                          (unescaped_symbolic_name))))))
+                                (dash)
+                                (right_arrow_head))
+                              (node_pattern
+                                (variable
+                                  (symbolic_name
+                                    (unescaped_symbolic_name)))
+                                (node_labels
+                                  (node_label
+                                    (label_name
+                                      (schema_name
+                                        (symbolic_name
+                                          (unescaped_symbolic_name))))))))))))))))))))))
 
 ================================================================================
 Atom - parenthesized expression
