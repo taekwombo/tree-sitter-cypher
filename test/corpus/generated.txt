@@ -8090,28 +8090,29 @@ RETURN 1
                 (where
                   (expression
                     (atom
-                      (filter_expression
-                        (id_in_coll
-                          (variable
-                            (symbolic_name
-                              (unescaped_symbolic_name)))
-                          (expression
-                            (atom
-                              (literal
-                                (list_literal)))))
-                        (where
-                          (expression
-                            (property_or_labels_expression
-                              (expression
-                                (atom
-                                  (variable
-                                    (symbolic_name
-                                      (unescaped_symbolic_name)))))
-                              (property_lookup
-                                (property_key_name
-                                  (schema_name
-                                    (symbolic_name
-                                      (unescaped_symbolic_name))))))))))))))
+                      (quantifier
+                        (filter_expression
+                          (id_in_coll
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))
+                            (expression
+                              (atom
+                                (literal
+                                  (list_literal)))))
+                          (where
+                            (expression
+                              (property_or_labels_expression
+                                (expression
+                                  (atom
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))
+                                (property_lookup
+                                  (property_key_name
+                                    (schema_name
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))))))))))))
             (return
               (projection_body
                 (projection_items
@@ -8152,28 +8153,29 @@ RETURN 1
                 (where
                   (expression
                     (atom
-                      (filter_expression
-                        (id_in_coll
-                          (variable
-                            (symbolic_name
-                              (unescaped_symbolic_name)))
-                          (expression
-                            (atom
-                              (literal
-                                (list_literal)))))
-                        (where
-                          (expression
-                            (property_or_labels_expression
-                              (expression
-                                (atom
-                                  (variable
-                                    (symbolic_name
-                                      (unescaped_symbolic_name)))))
-                              (property_lookup
-                                (property_key_name
-                                  (schema_name
-                                    (symbolic_name
-                                      (unescaped_symbolic_name))))))))))))))
+                      (quantifier
+                        (filter_expression
+                          (id_in_coll
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))
+                            (expression
+                              (atom
+                                (literal
+                                  (list_literal)))))
+                          (where
+                            (expression
+                              (property_or_labels_expression
+                                (expression
+                                  (atom
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))
+                                (property_lookup
+                                  (property_key_name
+                                    (schema_name
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))))))))))))
             (return
               (projection_body
                 (projection_items
@@ -8214,28 +8216,29 @@ RETURN 1
                 (where
                   (expression
                     (atom
-                      (filter_expression
-                        (id_in_coll
-                          (variable
-                            (symbolic_name
-                              (unescaped_symbolic_name)))
-                          (expression
-                            (atom
-                              (literal
-                                (list_literal)))))
-                        (where
-                          (expression
-                            (property_or_labels_expression
-                              (expression
-                                (atom
-                                  (variable
-                                    (symbolic_name
-                                      (unescaped_symbolic_name)))))
-                              (property_lookup
-                                (property_key_name
-                                  (schema_name
-                                    (symbolic_name
-                                      (unescaped_symbolic_name))))))))))))))
+                      (quantifier
+                        (filter_expression
+                          (id_in_coll
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))
+                            (expression
+                              (atom
+                                (literal
+                                  (list_literal)))))
+                          (where
+                            (expression
+                              (property_or_labels_expression
+                                (expression
+                                  (atom
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))
+                                (property_lookup
+                                  (property_key_name
+                                    (schema_name
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))))))))))))
             (return
               (projection_body
                 (projection_items
@@ -8276,28 +8279,29 @@ RETURN 1
                 (where
                   (expression
                     (atom
-                      (filter_expression
-                        (id_in_coll
-                          (variable
-                            (symbolic_name
-                              (unescaped_symbolic_name)))
-                          (expression
-                            (atom
-                              (literal
-                                (list_literal)))))
-                        (where
-                          (expression
-                            (property_or_labels_expression
-                              (expression
-                                (atom
-                                  (variable
-                                    (symbolic_name
-                                      (unescaped_symbolic_name)))))
-                              (property_lookup
-                                (property_key_name
-                                  (schema_name
-                                    (symbolic_name
-                                      (unescaped_symbolic_name))))))))))))))
+                      (quantifier
+                        (filter_expression
+                          (id_in_coll
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))
+                            (expression
+                              (atom
+                                (literal
+                                  (list_literal)))))
+                          (where
+                            (expression
+                              (property_or_labels_expression
+                                (expression
+                                  (atom
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))
+                                (property_lookup
+                                  (property_key_name
+                                    (schema_name
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))))))))))))
             (return
               (projection_body
                 (projection_items
@@ -8338,28 +8342,29 @@ RETURN 1
                 (where
                   (expression
                     (atom
-                      (filter_expression
-                        (id_in_coll
-                          (variable
-                            (symbolic_name
-                              (unescaped_symbolic_name)))
-                          (expression
-                            (atom
-                              (literal
-                                (list_literal)))))
-                        (where
-                          (expression
-                            (property_or_labels_expression
-                              (expression
-                                (atom
-                                  (variable
-                                    (symbolic_name
-                                      (unescaped_symbolic_name)))))
-                              (property_lookup
-                                (property_key_name
-                                  (schema_name
-                                    (symbolic_name
-                                      (unescaped_symbolic_name))))))))))))))
+                      (quantifier
+                        (filter_expression
+                          (id_in_coll
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))
+                            (expression
+                              (atom
+                                (literal
+                                  (list_literal)))))
+                          (where
+                            (expression
+                              (property_or_labels_expression
+                                (expression
+                                  (atom
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))
+                                (property_lookup
+                                  (property_key_name
+                                    (schema_name
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))))))))))))
             (return
               (projection_body
                 (projection_items
@@ -8400,28 +8405,29 @@ RETURN 1
                 (where
                   (expression
                     (atom
-                      (filter_expression
-                        (id_in_coll
-                          (variable
-                            (symbolic_name
-                              (unescaped_symbolic_name)))
-                          (expression
-                            (atom
-                              (literal
-                                (list_literal)))))
-                        (where
-                          (expression
-                            (property_or_labels_expression
-                              (expression
-                                (atom
-                                  (variable
-                                    (symbolic_name
-                                      (unescaped_symbolic_name)))))
-                              (property_lookup
-                                (property_key_name
-                                  (schema_name
-                                    (symbolic_name
-                                      (unescaped_symbolic_name))))))))))))))
+                      (quantifier
+                        (filter_expression
+                          (id_in_coll
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))
+                            (expression
+                              (atom
+                                (literal
+                                  (list_literal)))))
+                          (where
+                            (expression
+                              (property_or_labels_expression
+                                (expression
+                                  (atom
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))
+                                (property_lookup
+                                  (property_key_name
+                                    (schema_name
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))))))))))))
             (return
               (projection_body
                 (projection_items
@@ -8462,28 +8468,29 @@ RETURN 1
                 (where
                   (expression
                     (atom
-                      (filter_expression
-                        (id_in_coll
-                          (variable
-                            (symbolic_name
-                              (unescaped_symbolic_name)))
-                          (expression
-                            (atom
-                              (literal
-                                (list_literal)))))
-                        (where
-                          (expression
-                            (property_or_labels_expression
-                              (expression
-                                (atom
-                                  (variable
-                                    (symbolic_name
-                                      (unescaped_symbolic_name)))))
-                              (property_lookup
-                                (property_key_name
-                                  (schema_name
-                                    (symbolic_name
-                                      (unescaped_symbolic_name))))))))))))))
+                      (quantifier
+                        (filter_expression
+                          (id_in_coll
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))
+                            (expression
+                              (atom
+                                (literal
+                                  (list_literal)))))
+                          (where
+                            (expression
+                              (property_or_labels_expression
+                                (expression
+                                  (atom
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))
+                                (property_lookup
+                                  (property_key_name
+                                    (schema_name
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))))))))))))
             (return
               (projection_body
                 (projection_items
@@ -8524,28 +8531,29 @@ RETURN 1
                 (where
                   (expression
                     (atom
-                      (filter_expression
-                        (id_in_coll
-                          (variable
-                            (symbolic_name
-                              (unescaped_symbolic_name)))
-                          (expression
-                            (atom
-                              (literal
-                                (list_literal)))))
-                        (where
-                          (expression
-                            (property_or_labels_expression
-                              (expression
-                                (atom
-                                  (variable
-                                    (symbolic_name
-                                      (unescaped_symbolic_name)))))
-                              (property_lookup
-                                (property_key_name
-                                  (schema_name
-                                    (symbolic_name
-                                      (unescaped_symbolic_name))))))))))))))
+                      (quantifier
+                        (filter_expression
+                          (id_in_coll
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))
+                            (expression
+                              (atom
+                                (literal
+                                  (list_literal)))))
+                          (where
+                            (expression
+                              (property_or_labels_expression
+                                (expression
+                                  (atom
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))
+                                (property_lookup
+                                  (property_key_name
+                                    (schema_name
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))))))))))))
             (return
               (projection_body
                 (projection_items
