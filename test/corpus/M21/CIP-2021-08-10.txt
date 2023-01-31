@@ -182,23 +182,27 @@ RETURN 5 > 3 <> 1 = 1;
                     (expression
                       (comparison_expression
                         (expression
-                          (atom
-                            (literal
-                              (number_literal
-                                (integer_literal
-                                  (decimal_integer))))))
-                        (expression
-                          (atom
-                            (literal
-                              (number_literal
-                                (integer_literal
-                                  (decimal_integer))))))
-                        (expression
-                          (atom
-                            (literal
-                              (number_literal
-                                (integer_literal
-                                  (decimal_integer))))))
+                          (comparison_expression
+                            (expression
+                              (comparison_expression
+                                (expression
+                                  (atom
+                                    (literal
+                                      (number_literal
+                                        (integer_literal
+                                          (decimal_integer))))))
+                                (expression
+                                  (atom
+                                    (literal
+                                      (number_literal
+                                        (integer_literal
+                                          (decimal_integer))))))))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))))
                         (expression
                           (atom
                             (literal
