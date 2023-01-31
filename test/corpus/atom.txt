@@ -195,7 +195,7 @@ RETURN [ x IN [1, 2, 3, 4] | x + 2 ];
                                               (integer_literal
                                                 (decimal_integer))))))))))))
                           (expression
-                            (addition_expression
+                            (additive_expression
                               (expression
                                 (atom
                                   (variable
@@ -277,7 +277,7 @@ RETURN [ x IN [1, 2, 3, 4] WHERE x / 2 | x + 2 ];
                                           (integer_literal
                                             (decimal_integer))))))))))
                           (expression
-                            (addition_expression
+                            (additive_expression
                               (expression
                                 (atom
                                   (variable
@@ -349,7 +349,7 @@ RETURN [()-[r:ACTED_IN]->() WHERE r.year = 2022 | r.year - 2];
                                       (integer_literal
                                         (decimal_integer))))))))
                           (expression
-                            (addition_expression
+                            (additive_expression
                               (expression
                                 (property_or_labels_expression
                                   (expression
@@ -431,7 +431,7 @@ RETURN [r = ()-[r:ACTED_IN]->() WHERE r.year = 2022 | r.year - 2];
                                       (integer_literal
                                         (decimal_integer))))))))
                           (expression
-                            (addition_expression
+                            (additive_expression
                               (expression
                                 (property_or_labels_expression
                                   (expression

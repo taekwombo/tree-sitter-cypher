@@ -891,12 +891,6 @@ RETURN 1 - 1 + +2
                     (expression
                       (additive_expression
                         (expression
-                          (atom
-                            (literal
-                              (number_literal
-                                (integer_literal
-                                  (decimal_integer))))))
-                        (expression
                           (additive_expression
                             (expression
                               (atom
@@ -905,13 +899,19 @@ RETURN 1 - 1 + +2
                                     (integer_literal
                                       (decimal_integer))))))
                             (expression
-                              (unary_expression
-                                (expression
-                                  (atom
-                                    (literal
-                                      (number_literal
-                                        (integer_literal
-                                          (decimal_integer))))))))))))))))))))))
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))))
+                        (expression
+                          (unary_expression
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))))))))))))))))
 
 ================================================================================
 openCypher.txt: 19
@@ -996,12 +996,6 @@ RETURN 3 + 1 - +2.0
                     (expression
                       (additive_expression
                         (expression
-                          (atom
-                            (literal
-                              (number_literal
-                                (integer_literal
-                                  (decimal_integer))))))
-                        (expression
                           (additive_expression
                             (expression
                               (atom
@@ -1010,13 +1004,19 @@ RETURN 3 + 1 - +2.0
                                     (integer_literal
                                       (decimal_integer))))))
                             (expression
-                              (unary_expression
-                                (expression
-                                  (atom
-                                    (literal
-                                      (number_literal
-                                        (double_literal
-                                          (regular_decimal_real))))))))))))))))))))))
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))))
+                        (expression
+                          (unary_expression
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (double_literal
+                                      (regular_decimal_real))))))))))))))))))))
 
 ================================================================================
 openCypher.txt: 22
