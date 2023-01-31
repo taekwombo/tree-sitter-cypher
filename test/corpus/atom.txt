@@ -370,7 +370,7 @@ RETURN [()-[r:ACTED_IN]->() WHERE r.year = 2022 | r.year - 2];
                                         (decimal_integer)))))))))))))))))))))
 
 ================================================================================
-Atom - pattern comprehension - 2 - TODO
+Atom - pattern comprehension - 2
 ================================================================================
 
 RETURN [r = ()-[r:ACTED_IN]->() WHERE r.year = 2022 | r.year - 2];
@@ -471,23 +471,24 @@ RETURN ALL ( n IN node.names );
                   (projection_item
                     (expression
                       (atom
-                        (filter_expression
-                          (id_in_coll
-                            (variable
-                              (symbolic_name
-                                (unescaped_symbolic_name)))
-                            (expression
-                              (property_or_labels_expression
-                                (expression
-                                  (atom
-                                    (variable
-                                      (symbolic_name
-                                        (unescaped_symbolic_name)))))
-                                (property_lookup
-                                  (property_key_name
-                                    (schema_name
-                                      (symbolic_name
-                                        (unescaped_symbolic_name)))))))))))))))))))))
+                        (quantifier
+                          (filter_expression
+                            (id_in_coll
+                              (variable
+                                (symbolic_name
+                                  (unescaped_symbolic_name)))
+                              (expression
+                                (property_or_labels_expression
+                                  (expression
+                                    (atom
+                                      (variable
+                                        (symbolic_name
+                                          (unescaped_symbolic_name)))))
+                                  (property_lookup
+                                    (property_key_name
+                                      (schema_name
+                                        (symbolic_name
+                                          (unescaped_symbolic_name))))))))))))))))))))))
 
 ================================================================================
 Atom - ANY(filter_expression)
@@ -509,23 +510,24 @@ RETURN ANY ( n IN node.names );
                   (projection_item
                     (expression
                       (atom
-                        (filter_expression
-                          (id_in_coll
-                            (variable
-                              (symbolic_name
-                                (unescaped_symbolic_name)))
-                            (expression
-                              (property_or_labels_expression
-                                (expression
-                                  (atom
-                                    (variable
-                                      (symbolic_name
-                                        (unescaped_symbolic_name)))))
-                                (property_lookup
-                                  (property_key_name
-                                    (schema_name
-                                      (symbolic_name
-                                        (unescaped_symbolic_name)))))))))))))))))))))
+                        (quantifier
+                          (filter_expression
+                            (id_in_coll
+                              (variable
+                                (symbolic_name
+                                  (unescaped_symbolic_name)))
+                              (expression
+                                (property_or_labels_expression
+                                  (expression
+                                    (atom
+                                      (variable
+                                        (symbolic_name
+                                          (unescaped_symbolic_name)))))
+                                  (property_lookup
+                                    (property_key_name
+                                      (schema_name
+                                        (symbolic_name
+                                          (unescaped_symbolic_name))))))))))))))))))))))
 
 ================================================================================
 Atom - NONE(filter_expression)
@@ -547,23 +549,24 @@ RETURN NONE ( n IN node.names );
                   (projection_item
                     (expression
                       (atom
-                        (filter_expression
-                          (id_in_coll
-                            (variable
-                              (symbolic_name
-                                (unescaped_symbolic_name)))
-                            (expression
-                              (property_or_labels_expression
-                                (expression
-                                  (atom
-                                    (variable
-                                      (symbolic_name
-                                        (unescaped_symbolic_name)))))
-                                (property_lookup
-                                  (property_key_name
-                                    (schema_name
-                                      (symbolic_name
-                                        (unescaped_symbolic_name)))))))))))))))))))))
+                        (quantifier
+                          (filter_expression
+                            (id_in_coll
+                              (variable
+                                (symbolic_name
+                                  (unescaped_symbolic_name)))
+                              (expression
+                                (property_or_labels_expression
+                                  (expression
+                                    (atom
+                                      (variable
+                                        (symbolic_name
+                                          (unescaped_symbolic_name)))))
+                                  (property_lookup
+                                    (property_key_name
+                                      (schema_name
+                                        (symbolic_name
+                                          (unescaped_symbolic_name))))))))))))))))))))))
 
 ================================================================================
 Atom - SINGLE(filter_expression)
@@ -585,23 +588,24 @@ RETURN SINGLE ( n IN node.names );
                   (projection_item
                     (expression
                       (atom
-                        (filter_expression
-                          (id_in_coll
-                            (variable
-                              (symbolic_name
-                                (unescaped_symbolic_name)))
-                            (expression
-                              (property_or_labels_expression
-                                (expression
-                                  (atom
-                                    (variable
-                                      (symbolic_name
-                                        (unescaped_symbolic_name)))))
-                                (property_lookup
-                                  (property_key_name
-                                    (schema_name
-                                      (symbolic_name
-                                        (unescaped_symbolic_name)))))))))))))))))))))
+                        (quantifier
+                          (filter_expression
+                            (id_in_coll
+                              (variable
+                                (symbolic_name
+                                  (unescaped_symbolic_name)))
+                              (expression
+                                (property_or_labels_expression
+                                  (expression
+                                    (atom
+                                      (variable
+                                        (symbolic_name
+                                          (unescaped_symbolic_name)))))
+                                  (property_lookup
+                                    (property_key_name
+                                      (schema_name
+                                        (symbolic_name
+                                          (unescaped_symbolic_name))))))))))))))))))))))
 
 ================================================================================
 Atom - relationships pattern
