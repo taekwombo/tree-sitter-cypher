@@ -227,15 +227,17 @@ RETURN foo CONTAINS 'bar' IN list;
                     (expression
                       (string_list_null_predicate_expression
                         (expression
-                          (atom
-                            (variable
-                              (symbolic_name
-                                (unescaped_symbolic_name)))))
-                        (string_predicate_expression
-                          (expression
-                            (atom
-                              (literal
-                                (string_literal)))))
+                          (string_list_null_predicate_expression
+                            (expression
+                              (atom
+                                (variable
+                                  (symbolic_name
+                                    (unescaped_symbolic_name)))))
+                            (string_predicate_expression
+                              (expression
+                                (atom
+                                  (literal
+                                    (string_literal)))))))
                         (list_predicate_expression
                           (expression
                             (atom
@@ -440,4 +442,3 @@ RETURN arr[x][y];
                             (variable
                               (symbolic_name
                                 (unescaped_symbolic_name)))))))))))))))))
-

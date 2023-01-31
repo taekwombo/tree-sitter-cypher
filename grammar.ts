@@ -370,9 +370,9 @@ module.exports = grammar({
             word('not'),
             $.expression,
         )),
-        comparison_expression: ($) => prec.right(seq(
+        comparison_expression: ($) => prec.left(5, seq(
             $.expression,
-            repeat1(prec(5, seq(
+            seq(
                 choice(
                     '=',
                     '<>',
@@ -382,21 +382,21 @@ module.exports = grammar({
                     '>=',
                 ),
                 $.expression,
-            ))),
+            ),
         )),
-        string_list_null_predicate_expression: ($) => prec.right(seq(
+        string_list_null_predicate_expression: ($) => prec(6, seq(
             $.expression,
-            repeat1(choice(
+            choice(
                 $.list_predicate_expression,
                 $.string_predicate_expression,
                 $.null_predicate_expression,
-            )),
+            ),
         )),
-        list_predicate_expression: ($) => prec(6, seq(
+        list_predicate_expression: ($) => prec.left(6, seq(
             word('in'),
             $.expression,
         )),
-        string_predicate_expression: ($) => prec(6, seq(
+        string_predicate_expression: ($) => prec.left(6, seq(
             choice(
                 seq(word('starts'), word('with')),
                 seq(word('ends'), word('with')),
@@ -445,7 +445,7 @@ module.exports = grammar({
                 ),
             )
         )),
-        property_or_labels_expression: ($) => prec.left(11, seq(
+        property_or_labels_expression: ($) => prec.right(11, seq(
             $.expression,
             choice(
                 seq(

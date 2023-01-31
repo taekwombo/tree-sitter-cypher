@@ -9885,13 +9885,13 @@ RETURN count(label) AS numLabels
                         (unescaped_symbolic_name))))
                   (where
                     (expression
-                      (string_list_null_operator_expression
+                      (string_list_null_predicate_expression
                         (expression
                           (atom
                             (variable
                               (symbolic_name
                                 (unescaped_symbolic_name)))))
-                        (string_operator_expression
+                        (string_predicate_expression
                           (expression
                             (atom
                               (literal
@@ -9954,38 +9954,38 @@ RETURN count(label) AS numLabels
                         (unescaped_symbolic_name))))
                   (where
                     (expression
-                      (string_list_null_operator_expression
+                      (and_expression
                         (expression
-                          (atom
-                            (variable
-                              (symbolic_name
-                                (unescaped_symbolic_name)))))
-                        (string_operator_expression
-                          (expression
-                            (and_expression
+                          (string_list_null_predicate_expression
+                            (expression
+                              (atom
+                                (variable
+                                  (symbolic_name
+                                    (unescaped_symbolic_name)))))
+                            (string_predicate_expression
                               (expression
                                 (atom
                                   (literal
-                                    (string_literal))))
-                              (expression
-                                (comparison_expression
-                                  (expression
-                                    (additive_expression
-                                      (expression
-                                        (atom
-                                          (variable
-                                            (symbolic_name
-                                              (unescaped_symbolic_name)))))
-                                      (expression
-                                        (atom
-                                          (variable
-                                            (symbolic_name
-                                              (unescaped_symbolic_name)))))))
-                                  (expression
-                                    (atom
-                                      (variable
-                                        (symbolic_name
-                                          (unescaped_symbolic_name))))))))))))))))
+                                    (string_literal)))))))
+                        (expression
+                          (comparison_expression
+                            (expression
+                              (additive_expression
+                                (expression
+                                  (atom
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))
+                                (expression
+                                  (atom
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))))
+                            (expression
+                              (atom
+                                (variable
+                                  (symbolic_name
+                                    (unescaped_symbolic_name)))))))))))))
             (return
               (projection_body
                 (projection_items
@@ -10034,38 +10034,38 @@ CALL db.labels() YIELD x WHERE label CONTAINS 'User' AND foo + bar = foo RETURN 
                         (unescaped_symbolic_name))))
                   (where
                     (expression
-                      (string_list_null_operator_expression
+                      (and_expression
                         (expression
-                          (atom
-                            (variable
-                              (symbolic_name
-                                (unescaped_symbolic_name)))))
-                        (string_operator_expression
-                          (expression
-                            (and_expression
+                          (string_list_null_predicate_expression
+                            (expression
+                              (atom
+                                (variable
+                                  (symbolic_name
+                                    (unescaped_symbolic_name)))))
+                            (string_predicate_expression
                               (expression
                                 (atom
                                   (literal
-                                    (string_literal))))
-                              (expression
-                                (comparison_expression
-                                  (expression
-                                    (additive_expression
-                                      (expression
-                                        (atom
-                                          (variable
-                                            (symbolic_name
-                                              (unescaped_symbolic_name)))))
-                                      (expression
-                                        (atom
-                                          (variable
-                                            (symbolic_name
-                                              (unescaped_symbolic_name)))))))
-                                  (expression
-                                    (atom
-                                      (variable
-                                        (symbolic_name
-                                          (unescaped_symbolic_name))))))))))))))))
+                                    (string_literal)))))))
+                        (expression
+                          (comparison_expression
+                            (expression
+                              (additive_expression
+                                (expression
+                                  (atom
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))
+                                (expression
+                                  (atom
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))))
+                            (expression
+                              (atom
+                                (variable
+                                  (symbolic_name
+                                    (unescaped_symbolic_name)))))))))))))
             (return
               (projection_body
                 (projection_items
