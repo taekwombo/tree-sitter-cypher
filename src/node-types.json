@@ -1,6 +1,6 @@
 [
   {
-    "type": "addition_expression",
+    "type": "additive_expression",
     "named": true,
     "fields": {},
     "children": {
@@ -57,7 +57,7 @@
           "named": true
         },
         {
-          "type": "filter_expression",
+          "type": "existential_subquery",
           "named": true
         },
         {
@@ -85,7 +85,11 @@
           "named": true
         },
         {
-          "type": "relationships_pattern",
+          "type": "pattern_predicate",
+          "named": true
+        },
+        {
+          "type": "quantifier",
           "named": true
         },
         {
@@ -234,6 +238,29 @@
     "fields": {}
   },
   {
+    "type": "existential_subquery",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "pattern",
+          "named": true
+        },
+        {
+          "type": "regular_query",
+          "named": true
+        },
+        {
+          "type": "where",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "explicit_procedure_invocation",
     "named": true,
     "fields": {},
@@ -276,7 +303,7 @@
       "required": true,
       "types": [
         {
-          "type": "addition_expression",
+          "type": "additive_expression",
           "named": true
         },
         {
@@ -296,6 +323,10 @@
           "named": true
         },
         {
+          "type": "list_operator_expression",
+          "named": true
+        },
+        {
           "type": "multiplicative_expression",
           "named": true
         },
@@ -312,7 +343,7 @@
           "named": true
         },
         {
-          "type": "string_list_null_operator_expression",
+          "type": "string_list_null_predicate_expression",
           "named": true
         },
         {
@@ -370,7 +401,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "symbolic_name",
@@ -534,7 +565,22 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "list_predicate_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
       "types": [
         {
           "type": "expression",
@@ -766,7 +812,7 @@
     "fields": {}
   },
   {
-    "type": "null_operator_expression",
+    "type": "null_predicate_expression",
     "named": true,
     "fields": {}
   },
@@ -957,6 +1003,21 @@
     }
   },
   {
+    "type": "pattern_predicate",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "relationships_pattern",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "procedure_name",
     "named": true,
     "fields": {},
@@ -1137,6 +1198,21 @@
         },
         {
           "type": "property_lookup",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "quantifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "filter_expression",
           "named": true
         }
       ]
@@ -1556,7 +1632,7 @@
     }
   },
   {
-    "type": "string_list_null_operator_expression",
+    "type": "string_list_null_predicate_expression",
     "named": true,
     "fields": {},
     "children": {
@@ -1568,15 +1644,15 @@
           "named": true
         },
         {
-          "type": "list_operator_expression",
+          "type": "list_predicate_expression",
           "named": true
         },
         {
-          "type": "null_operator_expression",
+          "type": "null_predicate_expression",
           "named": true
         },
         {
-          "type": "string_operator_expression",
+          "type": "string_predicate_expression",
           "named": true
         }
       ]
@@ -1598,7 +1674,7 @@
     }
   },
   {
-    "type": "string_operator_expression",
+    "type": "string_predicate_expression",
     "named": true,
     "fields": {},
     "children": {
