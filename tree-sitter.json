@@ -24,7 +24,7 @@
     "go": false,
     "node": true,
     "python": false,
-    "rust": false,
+    "rust": true,
     "swift": false
   }
 }

@@ -1,0 +1,26 @@
+[package]
+name = "tree-sitter-cypher"
+description = "Cypher Tree-sitter grammar"
+version = "0.0.1"
+license = "MIT"
+readme = "README.md"
+keywords = ["incremental", "parsing", "tree-sitter", "cypher"]
+categories = ["parsing", "text-editors"]
+repository = "git+https://github.com/taekwombo/tree-sitter-cypher.git"
+edition = "2021"
+autoexamples = false
+
+build = "bindings/rust/build.rs"
+include = ["bindings/rust/*", "grammar.js", "queries/*", "src/*"]
+
+[lib]
+path = "bindings/rust/lib.rs"
+
+[dependencies]
+tree-sitter-language = "0.1"
+
+[build-dependencies]
+cc = "1.1.22"
+
+[dev-dependencies]
+tree-sitter = "0.24.2"
