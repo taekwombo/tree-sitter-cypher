@@ -3,4 +3,7 @@
 test.cql
 tree-sitter-cypher.wasm
 /build
+*.a
+*.o
+*.so
 

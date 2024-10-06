@@ -20,7 +20,7 @@
     }
   },
   "bindings": {
-    "c": false,
+    "c": true,
     "go": false,
     "node": true,
     "python": false,
