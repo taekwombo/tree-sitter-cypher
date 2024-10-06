@@ -25,6 +25,6 @@
     "node": true,
     "python": true,
     "rust": true,
-    "swift": false
+    "swift": true
   }
 }
