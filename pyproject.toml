@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tree-sitter-cypher"
+description = "Cypher Tree-sitter grammar"
+version = "0.0.1"
+keywords = ["incremental", "parsing", "tree-sitter", "cypher"]
+classifiers = [
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Software Development :: Compilers",
+  "Topic :: Text Processing :: Linguistic",
+  "Typing :: Typed",
+]
+requires-python = ">=3.9"
+license.text = "MIT"
+readme = "README.md"
+
+[project.urls]
+Homepage = "git+https://github.com/taekwombo/tree-sitter-cypher.git"
+
+[project.optional-dependencies]
+core = ["tree-sitter~=0.22"]
+
+[tool.cibuildwheel]
+build = "cp39-*"
+build-frontend = "build"
