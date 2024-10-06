@@ -33,6 +33,10 @@ Test parser in debug mode against `test.cql` file:
 
     npm run test:dev
 
+Update openCypher repository, generate tests, and run tests with "-u" flag:
+
+    npm run test:regenerate
+
 #### References
 * [opencypher]
 * [opencypher/tools] repo

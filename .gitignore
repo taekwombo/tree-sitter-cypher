@@ -1,4 +1,6 @@
 /**/node_modules/
 /target
 test.cql
+tree-sitter-cypher.wasm
+/build
 

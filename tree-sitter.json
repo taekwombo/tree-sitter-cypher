@@ -1,0 +1,30 @@
+{
+  "grammars": [
+    {
+      "name": "cypher",
+      "camelcase": "Cypher",
+      "scope": "source.cql",
+      "path": ".",
+      "file-types": [
+        "cql"
+      ],
+      "highlights": "./queries/highlights.scm"
+    }
+  ],
+  "metadata": {
+    "version": "0.0.1",
+    "license": "MIT",
+    "description": "Cypher Tree-sitter grammar",
+    "links": {
+      "repository": "git+https://github.com/taekwombo/tree-sitter-cypher.git"
+    }
+  },
+  "bindings": {
+    "c": false,
+    "go": false,
+    "node": true,
+    "python": false,
+    "rust": false,
+    "swift": false
+  }
+}

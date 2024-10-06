@@ -1,4 +1,5 @@
 {
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
   "name": "cypher",
   "rules": {
     "cypher": {
@@ -7295,7 +7296,8 @@
     },
     "hex_integer": {
       "type": "PATTERN",
-      "value": "0x[0-9a-f]+"
+      "value": "0x[0-9a-f]+",
+      "flags": "i"
     },
     "decimal_integer": {
       "type": "CHOICE",
@@ -11695,7 +11697,8 @@
     },
     "unescaped_symbolic_name": {
       "type": "PATTERN",
-      "value": "(\\p{ID_Start}|\\p{Pc})(\\p{ID_Continue}|\\p{Sc})*"
+      "value": "(\\p{ID_Start}|\\p{Pc})(\\p{ID_Continue}|\\p{Sc})*",
+      "flags": "u"
     },
     "escaped_symbolic_name": {
       "type": "REPEAT1",
@@ -12002,4 +12005,3 @@
   ],
   "supertypes": []
 }
-

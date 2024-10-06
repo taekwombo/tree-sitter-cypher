@@ -176,6 +176,7 @@
   {
     "type": "cypher",
     "named": true,
+    "root": true,
     "fields": {},
     "children": {
       "multiple": false,
