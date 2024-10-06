@@ -9,7 +9,7 @@
     "build:wasm": "npm run build && tree-sitter build --wasm",
     "start": "npm run build:wasm && tree-sitter web-ui",
     "test": "tree-sitter test",
-    "test:bindings": "node --test ./bindings/node/binding_test.js && cargo build",
+    "test:bindings": "node --test ./bindings/node/binding_test.js && cargo build && go test ./bindings/go/binding_test.go",
     "test:dev": "nodemon --ext ts,cql --watch grammar.ts --watch test.cql --exec 'npm run build && tree-sitter parse test.cql'",
     "test:watch": "nodemon --ext ts,txt,scm,cql --watch grammar.ts --watch test --watch queries --exec 'npm run build && npm run test'",
     "test:regenerate": "git submodule update --init -f ./openCypher && node ./scripts/gen_corpus.js -- --force && npm run test -- -u"
