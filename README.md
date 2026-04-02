@@ -37,6 +37,16 @@ Update openCypher repository, generate tests, and run tests with "-u" flag:
 
     npm run test:regenerate
 
+#### Testing bindings
+```sh
+go test ./bindings/go/binding_test.go
+python -m unittest ./bindings/python/tests/test_binding.py
+node ./bindings/node/binding_test.js
+
+cargo test
+swift test
+```
+
 #### References
 * [opencypher]
 * [opencypher/tools] repo

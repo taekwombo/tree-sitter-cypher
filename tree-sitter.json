@@ -13,7 +13,7 @@
   ],
   "metadata": {
     "version": "0.0.1",
-    "license": "MIT",
+    "license": "UNLICENSE",
     "description": "Cypher Tree-sitter grammar",
     "links": {
       "repository": "git+https://github.com/taekwombo/tree-sitter-cypher.git"
