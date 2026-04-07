@@ -1,0 +1,104 @@
+================================================================================
+List expression chain
+================================================================================
+
+RETURN [[1]][0][0];
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (list_operator_expression
+                        (expression
+                          (list_operator_expression
+                            (expression
+                              (atom
+                                (literal
+                                  (list_literal
+                                    (expression
+                                      (atom
+                                        (literal
+                                          (list_literal
+                                            (expression
+                                              (atom
+                                                (literal
+                                                  (number_literal
+                                                    (integer_literal
+                                                      (decimal_integer))))))))))))))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))))
+                        (expression
+                          (atom
+                            (literal
+                              (number_literal
+                                (integer_literal
+                                  (decimal_integer))))))))))))))))))
+
+================================================================================
+Property lookup expression chain
+================================================================================
+
+MATCH (node)
+RETURN node.propertyA.propertyB.propertyC;
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (match
+                (pattern
+                  (pattern_part
+                    (anonymous_pattern_part
+                      (pattern_element
+                        (node_pattern
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name))))))))))
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (property_or_labels_expression
+                        (expression
+                          (property_or_labels_expression
+                            (expression
+                              (property_or_labels_expression
+                                (expression
+                                  (atom
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))
+                                (property_lookup
+                                  (property_key_name
+                                    (schema_name
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))))
+                            (property_lookup
+                              (property_key_name
+                                (schema_name
+                                  (symbolic_name
+                                    (unescaped_symbolic_name)))))))
+                        (property_lookup
+                          (property_key_name
+                            (schema_name
+                              (symbolic_name
+                                (unescaped_symbolic_name)))))))))))))))))
