@@ -1,0 +1,91 @@
+================================================================================
+shortestPath
+================================================================================
+
+MATCH p=shortestPath((a)-[:X*]->())
+RETURN *
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (match
+                (pattern
+                  (pattern_part
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))
+                    (anonymous_pattern_part
+                      (shortest_path_pattern
+                        (pattern_element
+                          (node_pattern
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name))))
+                          (pattern_element_chain
+                            (relationship_pattern
+                              (dash)
+                              (relationship_detail
+                                (relationship_types
+                                  (rel_type_name
+                                    (schema_name
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))
+                                (range_literal))
+                              (dash)
+                              (right_arrow_head))
+                            (node_pattern)))))))))
+            (return
+              (projection_body
+                (projection_items)))))))))
+
+================================================================================
+allShortestPaths
+================================================================================
+
+MATCH p=allShortestPaths((a)-[:X*]->())
+RETURN *
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (match
+                (pattern
+                  (pattern_part
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))
+                    (anonymous_pattern_part
+                      (shortest_path_pattern
+                        (pattern_element
+                          (node_pattern
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name))))
+                          (pattern_element_chain
+                            (relationship_pattern
+                              (dash)
+                              (relationship_detail
+                                (relationship_types
+                                  (rel_type_name
+                                    (schema_name
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))
+                                (range_literal))
+                              (dash)
+                              (right_arrow_head))
+                            (node_pattern)))))))))
+            (return
+              (projection_body
+                (projection_items)))))))))

@@ -1,0 +1,320 @@
+================================================================================
+Start
+================================================================================
+
+START
+    n = node (*),                   // NodeLookup IdLookup
+    n = node (1),                   // NodeLookup IdLookup LiteralIds
+    n = node ({ 1 }),               // NodeLookup IdLookup LegacyParameter DecimalInteger
+    n = node ({ test }),            // NodeLookup IdLookup LegacyParameter SymbolicName
+    n = node :test ({ test }),      // NodeLookup IndexQuery LegacyParameter
+    n = node :test ("test"),        // NodeLookup IndexQuery StringLiteral
+    n = node :test (test { test }), // NodeLookup IdentifiedIndexLookup
+    n = node :test (test "test"),   // NodeLookup IdentifiedIndexLookup
+
+    n = relationship (*),                   // RelationshipLookup IdLookup
+    n = relationship (1),                   // RelationshipLookup IdLookup LiteralIds
+    n = relationship ({ 1 }),               // RelationshipLookup IdLookup LegacyParameter DecimalInteger
+    n = relationship ({ test }),            // RelationshipLookup IdLookup LegacyParameter SymbolicName
+    n = relationship :test ({ test }),      // RelationshipLookup IndexQuery LegacyParameter
+    n = relationship :test ("test"),        // RelationshipLookup IndexQuery StringLiteral
+    n = relationship :test (test { test }), // RelationshipLookup IdentifiedIndexLookup
+    n = relationship :test (test "test"),   // RelationshipLookup IdentifiedIndexLookup
+
+    n = rel (*),                   // RelationshipLookup IdLookup
+    n = rel (1),                   // RelationshipLookup IdLookup LiteralIds
+    n = rel ({ 1 }),               // RelationshipLookup IdLookup LegacyParameter DecimalInteger
+    n = rel ({ test }),            // RelationshipLookup IdLookup LegacyParameter SymbolicName
+    n = rel :test ({ test }),      // RelationshipLookup IndexQuery LegacyParameter
+    n = rel :test ("test"),        // RelationshipLookup IndexQuery StringLiteral
+    n = rel :test (test { test }), // RelationshipLookup IdentifiedIndexLookup
+    n = rel :test (test "test")    // RelationshipLookup IdentifiedIndexLookup
+WHERE 1 = 1
+RETURN n
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (start
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (id_lookup)))
+                (comment)
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (id_lookup
+                      (literal_ids
+                        (integer_literal
+                          (decimal_integer))))))
+                (comment)
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (id_lookup
+                      (legacy_parameter
+                        (decimal_integer)))))
+                (comment)
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (id_lookup
+                      (legacy_parameter
+                        (symbolic_name
+                          (unescaped_symbolic_name))))))
+                (comment)
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (index_query_or_lookup
+                      (symbolic_name
+                        (unescaped_symbolic_name))
+                      (legacy_parameter
+                        (symbolic_name
+                          (unescaped_symbolic_name))))))
+                (comment)
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (index_query_or_lookup
+                      (symbolic_name
+                        (unescaped_symbolic_name))
+                      (string_literal))))
+                (comment)
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (index_query_or_lookup
+                      (symbolic_name
+                        (unescaped_symbolic_name))
+                      (symbolic_name
+                        (unescaped_symbolic_name))
+                      (legacy_parameter
+                        (symbolic_name
+                          (unescaped_symbolic_name))))))
+                (comment)
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (index_query_or_lookup
+                      (symbolic_name
+                        (unescaped_symbolic_name))
+                      (symbolic_name
+                        (unescaped_symbolic_name))
+                      (string_literal))))
+                (comment)
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (id_lookup)))
+                (comment)
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (id_lookup
+                      (literal_ids
+                        (integer_literal
+                          (decimal_integer))))))
+                (comment)
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (id_lookup
+                      (legacy_parameter
+                        (decimal_integer)))))
+                (comment)
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (id_lookup
+                      (legacy_parameter
+                        (symbolic_name
+                          (unescaped_symbolic_name))))))
+                (comment)
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (index_query_or_lookup
+                      (symbolic_name
+                        (unescaped_symbolic_name))
+                      (legacy_parameter
+                        (symbolic_name
+                          (unescaped_symbolic_name))))))
+                (comment)
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (index_query_or_lookup
+                      (symbolic_name
+                        (unescaped_symbolic_name))
+                      (string_literal))))
+                (comment)
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (index_query_or_lookup
+                      (symbolic_name
+                        (unescaped_symbolic_name))
+                      (symbolic_name
+                        (unescaped_symbolic_name))
+                      (legacy_parameter
+                        (symbolic_name
+                          (unescaped_symbolic_name))))))
+                (comment)
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (index_query_or_lookup
+                      (symbolic_name
+                        (unescaped_symbolic_name))
+                      (symbolic_name
+                        (unescaped_symbolic_name))
+                      (string_literal))))
+                (comment)
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (id_lookup)))
+                (comment)
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (id_lookup
+                      (literal_ids
+                        (integer_literal
+                          (decimal_integer))))))
+                (comment)
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (id_lookup
+                      (legacy_parameter
+                        (decimal_integer)))))
+                (comment)
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (id_lookup
+                      (legacy_parameter
+                        (symbolic_name
+                          (unescaped_symbolic_name))))))
+                (comment)
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (index_query_or_lookup
+                      (symbolic_name
+                        (unescaped_symbolic_name))
+                      (legacy_parameter
+                        (symbolic_name
+                          (unescaped_symbolic_name))))))
+                (comment)
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (index_query_or_lookup
+                      (symbolic_name
+                        (unescaped_symbolic_name))
+                      (string_literal))))
+                (comment)
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (index_query_or_lookup
+                      (symbolic_name
+                        (unescaped_symbolic_name))
+                      (symbolic_name
+                        (unescaped_symbolic_name))
+                      (legacy_parameter
+                        (symbolic_name
+                          (unescaped_symbolic_name))))))
+                (comment)
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (index_query_or_lookup
+                      (symbolic_name
+                        (unescaped_symbolic_name))
+                      (symbolic_name
+                        (unescaped_symbolic_name))
+                      (string_literal))))
+                (comment)
+                (where
+                  (expression
+                    (comparison_expression
+                      (expression
+                        (atom
+                          (literal
+                            (number_literal
+                              (integer_literal
+                                (decimal_integer))))))
+                      (expression
+                        (atom
+                          (literal
+                            (number_literal
+                              (integer_literal
+                                (decimal_integer)))))))))))
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name
+                            (unescaped_symbolic_name)))))))))))))))

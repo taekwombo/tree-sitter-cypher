@@ -1,0 +1,93 @@
+================================================================================
+Legacy List Expression
+================================================================================
+
+MATCH (a)
+WHERE
+    a.users FILTER (users IN [])
+    AND
+    a.users EXTRACT (users IN [] | expr)
+RETURN 1
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (match
+                (pattern
+                  (pattern_part
+                    (anonymous_pattern_part
+                      (pattern_element
+                        (node_pattern
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name))))))))
+                (where
+                  (expression
+                    (and_expression
+                      (expression
+                        (legacy_list_expression
+                          (expression
+                            (property_or_labels_expression
+                              (expression
+                                (atom
+                                  (variable
+                                    (symbolic_name
+                                      (unescaped_symbolic_name)))))
+                              (property_lookup
+                                (property_key_name
+                                  (schema_name
+                                    (symbolic_name
+                                      (unescaped_symbolic_name)))))))
+                          (filter_expression
+                            (id_in_coll
+                              (variable
+                                (symbolic_name
+                                  (unescaped_symbolic_name)))
+                              (expression
+                                (atom
+                                  (literal
+                                    (list_literal))))))))
+                      (expression
+                        (legacy_list_expression
+                          (expression
+                            (property_or_labels_expression
+                              (expression
+                                (atom
+                                  (variable
+                                    (symbolic_name
+                                      (unescaped_symbolic_name)))))
+                              (property_lookup
+                                (property_key_name
+                                  (schema_name
+                                    (symbolic_name
+                                      (unescaped_symbolic_name)))))))
+                          (filter_expression
+                            (id_in_coll
+                              (variable
+                                (symbolic_name
+                                  (unescaped_symbolic_name)))
+                              (expression
+                                (atom
+                                  (literal
+                                    (list_literal))))))
+                          (expression
+                            (atom
+                              (variable
+                                (symbolic_name
+                                  (unescaped_symbolic_name))))))))))))
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (literal
+                          (number_literal
+                            (integer_literal
+                              (decimal_integer))))))))))))))))

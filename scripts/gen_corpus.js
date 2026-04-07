@@ -1,20 +1,31 @@
 const path = require('path');
 const fs = require('fs');
 
-const sourcePath = path.resolve(
-    __dirname,    
-    '../openCypher/tools/grammar/src/test/resources/cypher.txt',
-);
+const PATHS = {
+  legacy: {
+    source: './openCypher/tools/grammar/src/test/resources/cypher-legacy.txt',
+    target: './test/corpus/generated-legacy.txt',
+  },
+  source: './openCypher/tools/grammar/src/test/resources/cypher.txt',
+  target: './test/corpus/generated.txt',
 
-const targetPath = path.resolve(
-    __dirname,
-    '../test/corpus/generated.txt',
-);
+  getPaths(legacy) {
+    return legacy
+      ? [PATHS.legacy.source, PATHS.legacy.target]
+      : [PATHS.source, PATHS.target];
+  },
+};
 
 async function run () {
-    const stat = await fs.promises.stat(targetPath).catch(() => null);
-
     const forceGenerate = process.argv.includes('--force');
+    const generateLegacy = process.argv.includes('--legacy');
+    const [sourcePath, targetPath] = PATHS.getPaths(generateLegacy);
+    const { name: sourceName, ext: sourceExt } = path.parse(sourcePath);
+
+    const stat = await fs.promises.stat(targetPath).catch(() => null);
+    const testName = generateLegacy
+      ? 'openCypher-legacy.txt: '
+      : 'openCypher.txt: ';
 
     if (stat) {
         if (!forceGenerate) {
@@ -42,7 +53,7 @@ async function run () {
 
             return [
                 heading,
-                'openCypher.txt: '.concat(index),
+                testName.concat(index),
                 heading,
                 '',
                 chunk,

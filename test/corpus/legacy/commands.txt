@@ -1,0 +1,110 @@
+================================================================================
+Commands - Create Index
+================================================================================
+
+CREATE INDEX ON :Carrots (property_growth);
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (command
+      (index_command
+        (node_label
+          (label_name
+            (schema_name
+              (symbolic_name
+                (unescaped_symbolic_name)))))
+        (property_key_name
+          (schema_name
+            (symbolic_name
+              (unescaped_symbolic_name))))))))
+
+================================================================================
+Commands - Drop Index
+================================================================================
+
+DROP INDEX ON :Carrots (property_growth);
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (command
+      (index_command
+        (node_label
+          (label_name
+            (schema_name
+              (symbolic_name
+                (unescaped_symbolic_name)))))
+        (property_key_name
+          (schema_name
+            (symbolic_name
+              (unescaped_symbolic_name))))))))
+
+================================================================================
+Commands - Drop Constraint 1
+================================================================================
+
+CREATE CONSTRAINT ON (n:Person) ASSERT n.name IS UNIQUE
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (command
+      (constraint_command
+        (variable
+          (symbolic_name
+            (unescaped_symbolic_name)))
+        (node_label
+          (label_name
+            (schema_name
+              (symbolic_name
+                (unescaped_symbolic_name)))))
+        (property_expression
+          (atom
+            (variable
+              (symbolic_name
+                (unescaped_symbolic_name))))
+          (property_lookup
+            (property_key_name
+              (schema_name
+                (symbolic_name
+                  (unescaped_symbolic_name))))))))))
+
+================================================================================
+Commands - Drop Constraint 2
+================================================================================
+
+DROP CONSTRAINT ON()-[l:LIKED]->() ASSERT EXISTS (l.why)
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (command
+      (constraint_command
+        (relationship_pattern
+          (dash)
+          (relationship_detail
+            (variable
+              (symbolic_name
+                (unescaped_symbolic_name)))
+            (relationship_types
+              (rel_type_name
+                (schema_name
+                  (symbolic_name
+                    (unescaped_symbolic_name))))))
+          (dash)
+          (right_arrow_head))
+        (property_expression
+          (atom
+            (variable
+              (symbolic_name
+                (unescaped_symbolic_name))))
+          (property_lookup
+            (property_key_name
+              (schema_name
+                (symbolic_name
+                  (unescaped_symbolic_name))))))))))

@@ -1,0 +1,96 @@
+================================================================================
+Pre-parser - query options - cypher option
+================================================================================
+
+CYPHER 2.3 
+    optionA = valueA
+    optionB = valueB
+START n = node  (6, 7, 8) RETURN n
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (query_options
+    (cypher_option
+      (regular_decimal_real)
+      (configuration_option
+        (symbolic_name
+          (unescaped_symbolic_name))
+        (symbolic_name
+          (unescaped_symbolic_name)))
+      (configuration_option
+        (symbolic_name
+          (unescaped_symbolic_name))
+        (symbolic_name
+          (unescaped_symbolic_name)))))
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (start
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (id_lookup
+                      (literal_ids
+                        (integer_literal
+                          (decimal_integer))
+                        (integer_literal
+                          (decimal_integer))
+                        (integer_literal
+                          (decimal_integer))))))))
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name
+                            (unescaped_symbolic_name)))))))))))))))
+
+================================================================================
+Pre-parser - query options - explain, profile
+================================================================================
+
+EXPLAIN PROFILE CYPHER 2.3 START n = node  (6, 7, 8) RETURN n
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (query_options
+    (cypher_option
+      (regular_decimal_real)))
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (start
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (id_lookup
+                      (literal_ids
+                        (integer_literal
+                          (decimal_integer))
+                        (integer_literal
+                          (decimal_integer))
+                        (integer_literal
+                          (decimal_integer))))))))
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name
+                            (unescaped_symbolic_name)))))))))))))))

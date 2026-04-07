@@ -11,13 +11,18 @@ module.exports = grammar({
     ],
     rules: {
         cypher: ($) => seq(
+            optional($.query_options),
             $.statement,
             optional(';'),
         ),
-        statement: ($) => $.query,
+        statement: ($) => choice(
+            $.query,
+            $.command,
+        ),
         query: $ => choice(
             $.regular_query,
             $.standalone_call,
+            $.bulk_import_query,
         ),
         regular_query: ($) => seq(
             $.single_query,
@@ -57,16 +62,20 @@ module.exports = grammar({
             $.delete,
             $.set,
             $.remove,
+            $.for_each,
         ),
         reading_clause: ($) => choice(
             $.match,
             $.unwind,
             $.in_query_call,
+            $.load_csv,
+            $.start,
         ),
         match: ($) => seq(
             optional(word('optional')),
             word('match'),
             $.pattern,
+            repeat($.hint),
             optional($.where),
         ),
         unwind: ($) => seq(
@@ -87,6 +96,7 @@ module.exports = grammar({
         ),
         create: ($) => seq(
             word('create'),
+            optional(word('unique')),
             $.pattern,
         ),
         set: ($) => seq(
@@ -258,7 +268,10 @@ module.exports = grammar({
             ),
             $.anonymous_pattern_part,
         ),
-        anonymous_pattern_part: ($) => $.pattern_element,
+        anonymous_pattern_part: ($) => choice(
+            $.pattern_element,
+            $.shortest_path_pattern,
+        ),
         pattern_element: ($) => choice(
             seq(
                 $.node_pattern,
@@ -311,6 +324,7 @@ module.exports = grammar({
         properties: ($) => prec(1, choice(
             $.map_literal,
             $.parameter,
+            $.legacy_parameter,
         )),
         relationship_types: ($) => seq(
             ':',
@@ -348,6 +362,7 @@ module.exports = grammar({
             $.exponential_expression,
             $.unary_expression,
             $.list_operator_expression,
+            $.legacy_list_expression,
             $.property_or_labels_expression,
             $.atom,
         ),
@@ -401,6 +416,7 @@ module.exports = grammar({
                 seq(word('starts'), word('with')),
                 seq(word('ends'), word('with')),
                 seq(word('contains')),
+                "=~",
             ),
             $.expression,
         )),
@@ -471,6 +487,9 @@ module.exports = grammar({
             $.function_invocation,
             $.existential_subquery,
             prec.left($.variable),
+            $.shortest_path_pattern,
+            $.legacy_parameter,
+            $.reduce,
         ),
         literal: ($) => choice(
             $.number_literal,
@@ -747,20 +766,6 @@ module.exports = grammar({
             word('add'),
             word('drop'),
         ),
-        symbolic_name: ($) => prec.left(choice(
-            $.unescaped_symbolic_name,
-            $.escaped_symbolic_name,
-            word('count'),
-            word('filter'),
-            word('extract'),
-            word('any'),
-            word('none'),
-            word('single'),
-        )),
-        unescaped_symbolic_name: ($) => (
-            /(\p{ID_Start}|\p{Pc})(\p{ID_Continue}|\p{Sc})*/u
-        ),
-        escaped_symbolic_name: () => repeat1(/`[^`]*`/),
         comment: ($) => choice(
             seq(
                 '/*',
@@ -832,6 +837,225 @@ module.exports = grammar({
             '\u{2007}',
             '\u{202f}',
         )),
+
+        // Legacy productions
+        bulk_import_query: ($) => seq(
+            $.periodic_commit_hint,
+            $.load_csv_query,
+        ),
+        periodic_commit_hint: ($) => seq(
+            word('using'),
+            word('periodic'),
+            word('commit'),
+            optional($.integer_literal),
+        ),
+        load_csv_query: ($) => seq(
+            $.load_csv,
+            $.single_query,
+        ),
+        load_csv: ($) => seq(
+            word('load'),
+            word('csv'),
+            optional(seq(
+                word('with'),
+                word('headers'),
+            )),
+            word('from'),
+            $.expression,
+            word('as'),
+            $.variable,
+            optional(seq(
+                word('fieldterminator'),
+                $.string_literal,
+            ))
+        ),
+        for_each: ($) => prec.right(seq(
+            word('foreach'),
+            '(',
+                $.variable,
+                word('in'),
+                $.expression,
+                '|',
+                repeat1($.updating_clause),
+            ')',
+        )),
+        hint: ($) => seq(
+            word('using'),
+            choice(
+                seq(
+                    word('index'),
+                    $.variable,
+                    $.node_label,
+                    '(',
+                    $.property_key_name,
+                    ')',
+                ),
+                seq(
+                    word('join'),
+                    word('on'),
+                    $.variable,
+                    repeat(seq(',', $.variable)),
+                ),
+                seq(
+                    word('scan'),
+                    $.variable,
+                    $.node_label,
+                ),
+            ),
+        ),
+        shortest_path_pattern: ($) => seq(
+            choice(word('shortestpath'), word('allshortestpaths')),
+            '(',
+                $.pattern_element,
+            ')',
+        ),
+        legacy_parameter: ($) => seq(
+            '{',
+                choice($.symbolic_name, $.decimal_integer),
+            '}',
+        ),
+        legacy_list_expression: ($) => prec(11, seq(
+            $.expression,
+            choice(
+                seq(
+                    word('filter'),
+                    '(',
+                        $.filter_expression,
+                    ')',
+                ),
+                seq(
+                    word('extract'),
+                    '(',
+                        $.filter_expression,
+                        optional(seq('|', $.expression)),
+                    ')',
+                ),
+            ),
+        )),
+        reduce: ($) => seq(
+            word('reduce'),
+            '(',
+                $.variable,
+                '=',
+                $.expression,
+                ',',
+                $.id_in_coll,
+                '|',
+                $.expression,
+            ')',
+        ),
+        rel_type: ($) => seq(':', $.rel_type_name),
+        start: ($) => seq(
+            word('start'),
+            $.start_point,
+            repeat(seq(',', $.start_point)),
+            optional($.where)
+        ),
+        start_point: ($) => seq(
+            $.variable,
+            '=',
+            $.start_lookup,
+        ),
+        start_lookup: ($) => seq(
+            choice(
+                word('node'),
+                word('relationship'),
+                word('rel'),
+            ),
+            choice(
+                // IdentifiedIndexLookup, IndexQuery
+                $.index_query_or_lookup,
+                $.id_lookup,
+            ),
+        ),
+        index_query_or_lookup: ($) => seq(
+            ':',
+            $.symbolic_name,
+            '(',
+                optional($.symbolic_name),
+                choice($.string_literal, $.legacy_parameter),
+            ')',
+        ),
+        id_lookup: ($) => seq(
+            '(',
+                choice('*', $.literal_ids, $.legacy_parameter),
+            ')',
+        ),
+        literal_ids: ($) => seq(
+            $.integer_literal,
+            repeat(seq(',', $.integer_literal)),
+        ),
+        query_options: ($) => repeat1(choice(
+            $.cypher_option,
+            word('explain'),
+            word('profile'),
+        )),
+        cypher_option: ($) => seq(
+            word('cypher'),
+            optional($.regular_decimal_real),
+            repeat($.configuration_option),
+        ),
+        configuration_option: ($) => seq(
+            $.symbolic_name,
+            '=',
+            $.symbolic_name,
+        ),
+        command: ($) => choice(
+            $.index_command,
+            $.constraint_command,
+        ),
+        // Combination of:
+        // - CreateIndex
+        // - DropIndex
+        index_command: ($) => seq(
+            choice(word('create'), word('drop')),
+            word('index'),
+            word('on'),
+            $.node_label,
+            '(',
+                $.property_key_name,
+            ')',
+        ),
+        // More general combination of:
+        // - UniqueConstraint,
+        // - NodePropertyExistenceConstraint
+        // - RelationshipPropertyExistenceConstraint
+        constraint_command: ($) => seq(
+            choice(word('create'), word('drop')),
+            word('constraint'),
+            word('on'),
+            choice(
+                seq('(', $.variable, $.node_label, ')'),
+                // More general than defined in RelationshipPatternSyntax.
+                seq(
+                    '(', ')',
+                    $.relationship_pattern,
+                    '(', ')',
+                ),
+            ),
+            word('assert'),
+            choice(
+                seq($.property_expression, word('is'), word('unique')),
+                seq(word('exists'), '(', $.property_expression, ')'),
+            ),
+        ),
+
+        // Keep below other rules so that queries can be parsed correctly, for example:
+        // CREATE INDEX ... would be parsed as $.create (CREATE $.variable = ...).
+        symbolic_name: ($) => prec.left(choice(
+            $.unescaped_symbolic_name,
+            $.escaped_symbolic_name,
+            word('count'),
+            word('filter'),
+            word('extract'),
+            word('any'),
+            word('none'),
+            word('single'),
+        )),
+        unescaped_symbolic_name: ($) => (
+            /(\p{ID_Start}|\p{Pc})(\p{ID_Continue}|\p{Sc})*/u
+        ),
+        escaped_symbolic_name: () => prec.right(repeat1(/`[^`]*`/)),
     },
 });
 

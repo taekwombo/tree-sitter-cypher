@@ -1,0 +1,2006 @@
+================================================================================
+openCypher-legacy.txt: 0
+================================================================================
+
+CREATE ()
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (updating_clause
+              (create
+                (pattern
+                  (pattern_part
+                    (anonymous_pattern_part
+                      (pattern_element
+                        (node_pattern)))))))))))))
+
+================================================================================
+openCypher-legacy.txt: 1
+================================================================================
+
+CREATE( )
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (updating_clause
+              (create
+                (pattern
+                  (pattern_part
+                    (anonymous_pattern_part
+                      (pattern_element
+                        (node_pattern)))))))))))))
+
+================================================================================
+openCypher-legacy.txt: 2
+================================================================================
+
+CYPHER 3.0 MATCH (n) RETURN n
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (query_options
+    (cypher_option
+      (regular_decimal_real)))
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (match
+                (pattern
+                  (pattern_part
+                    (anonymous_pattern_part
+                      (pattern_element
+                        (node_pattern
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name))))))))))
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name
+                            (unescaped_symbolic_name)))))))))))))))
+
+================================================================================
+openCypher-legacy.txt: 3
+================================================================================
+
+CREATE (n:Person { name : 'Andres', title : 'Developer' })
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (updating_clause
+              (create
+                (pattern
+                  (pattern_part
+                    (anonymous_pattern_part
+                      (pattern_element
+                        (node_pattern
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name)))
+                          (node_labels
+                            (node_label
+                              (label_name
+                                (schema_name
+                                  (symbolic_name
+                                    (unescaped_symbolic_name))))))
+                          (properties
+                            (map_literal
+                              (property_key_name
+                                (schema_name
+                                  (symbolic_name
+                                    (unescaped_symbolic_name))))
+                              (expression
+                                (atom
+                                  (literal
+                                    (string_literal))))
+                              (property_key_name
+                                (schema_name
+                                  (symbolic_name
+                                    (unescaped_symbolic_name))))
+                              (expression
+                                (atom
+                                  (literal
+                                    (string_literal)))))))))))))))))))
+
+================================================================================
+openCypher-legacy.txt: 4
+================================================================================
+
+MATCH (node1:Label1)
+
+WHERE node1.propertyA = {value}
+
+RETURN node2.propertyA, node2.propertyB
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (match
+                (pattern
+                  (pattern_part
+                    (anonymous_pattern_part
+                      (pattern_element
+                        (node_pattern
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name)))
+                          (node_labels
+                            (node_label
+                              (label_name
+                                (schema_name
+                                  (symbolic_name
+                                    (unescaped_symbolic_name)))))))))))
+                (where
+                  (expression
+                    (comparison_expression
+                      (expression
+                        (property_or_labels_expression
+                          (expression
+                            (atom
+                              (variable
+                                (symbolic_name
+                                  (unescaped_symbolic_name)))))
+                          (property_lookup
+                            (property_key_name
+                              (schema_name
+                                (symbolic_name
+                                  (unescaped_symbolic_name)))))))
+                      (expression
+                        (atom
+                          (legacy_parameter
+                            (symbolic_name
+                              (unescaped_symbolic_name))))))))))
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (property_or_labels_expression
+                        (expression
+                          (atom
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))))
+                        (property_lookup
+                          (property_key_name
+                            (schema_name
+                              (symbolic_name
+                                (unescaped_symbolic_name))))))))
+                  (projection_item
+                    (expression
+                      (property_or_labels_expression
+                        (expression
+                          (atom
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))))
+                        (property_lookup
+                          (property_key_name
+                            (schema_name
+                              (symbolic_name
+                                (unescaped_symbolic_name)))))))))))))))))
+
+================================================================================
+openCypher-legacy.txt: 5
+================================================================================
+
+MATCH (tom:Person)-[:ACTED_IN]->(tomHanksMovies) RETURN tom
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (match
+                (pattern
+                  (pattern_part
+                    (anonymous_pattern_part
+                      (pattern_element
+                        (node_pattern
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name)))
+                          (node_labels
+                            (node_label
+                              (label_name
+                                (schema_name
+                                  (symbolic_name
+                                    (unescaped_symbolic_name)))))))
+                        (pattern_element_chain
+                          (relationship_pattern
+                            (dash)
+                            (relationship_detail
+                              (relationship_types
+                                (rel_type_name
+                                  (schema_name
+                                    (symbolic_name
+                                      (unescaped_symbolic_name))))))
+                            (dash)
+                            (right_arrow_head))
+                          (node_pattern
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))))))))))
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name
+                            (unescaped_symbolic_name)))))))))))))))
+
+================================================================================
+openCypher-legacy.txt: 6
+================================================================================
+
+MATCH (tom:Person)  -[:ACTED_IN]->(tomHanksMovies) RETURN tom
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (match
+                (pattern
+                  (pattern_part
+                    (anonymous_pattern_part
+                      (pattern_element
+                        (node_pattern
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name)))
+                          (node_labels
+                            (node_label
+                              (label_name
+                                (schema_name
+                                  (symbolic_name
+                                    (unescaped_symbolic_name)))))))
+                        (pattern_element_chain
+                          (relationship_pattern
+                            (dash)
+                            (relationship_detail
+                              (relationship_types
+                                (rel_type_name
+                                  (schema_name
+                                    (symbolic_name
+                                      (unescaped_symbolic_name))))))
+                            (dash)
+                            (right_arrow_head))
+                          (node_pattern
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))))))))))
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name
+                            (unescaped_symbolic_name)))))))))))))))
+
+================================================================================
+openCypher-legacy.txt: 7
+================================================================================
+
+MATCH (tom:Person  )-[:ACTED_IN]->(tomHanksMovies) RETURN tom
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (match
+                (pattern
+                  (pattern_part
+                    (anonymous_pattern_part
+                      (pattern_element
+                        (node_pattern
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name)))
+                          (node_labels
+                            (node_label
+                              (label_name
+                                (schema_name
+                                  (symbolic_name
+                                    (unescaped_symbolic_name)))))))
+                        (pattern_element_chain
+                          (relationship_pattern
+                            (dash)
+                            (relationship_detail
+                              (relationship_types
+                                (rel_type_name
+                                  (schema_name
+                                    (symbolic_name
+                                      (unescaped_symbolic_name))))))
+                            (dash)
+                            (right_arrow_head))
+                          (node_pattern
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))))))))))
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name
+                            (unescaped_symbolic_name)))))))))))))))
+
+================================================================================
+openCypher-legacy.txt: 8
+================================================================================
+
+match(n)return n        
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (match
+                (pattern
+                  (pattern_part
+                    (anonymous_pattern_part
+                      (pattern_element
+                        (node_pattern
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name))))))))))
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name
+                            (unescaped_symbolic_name)))))))))))))))
+
+================================================================================
+openCypher-legacy.txt: 9
+================================================================================
+
+WITH range(2011, 2014) AS years, range(1,12) as months
+FOREACH(year IN years |
+  MERGE (y:Year {year: year})
+  FOREACH(month IN months |
+    CREATE (m:Month {month: month})
+    MERGE (y)-[:HAS_MONTH]->(m)
+    FOREACH(day IN (CASE
+                      WHEN month IN [1,3,5,7,8,10,12] THEN range(1,31)
+                      WHEN month = 2 THEN
+                        CASE
+                          WHEN year % 4 <> 0 THEN range(1,28)
+                          WHEN year % 100 <> 0 THEN range(1,29)
+                          WHEN year % 400 <> 0 THEN range(1,29)
+                          ELSE range(1,28)
+                        END
+                      ELSE range(1,30)
+                    END) |
+      CREATE (dd:Day {day: day})
+      MERGE (m)-[:HAS_DAY]->(dd))))
+
+WITH *
+
+MATCH (year:Year)-[:HAS_MONTH]->(month)-[:HAS_DAY]->(day)
+WITH year,month,day
+ORDER BY year.year, month.month, day.day
+WITH collect(day) as days
+FOREACH(i in RANGE(0, length(days) - 2) |
+    FOREACH(day1 in [days[i]] |
+        FOREACH(day2 in [days[i + 1]] |
+            CREATE UNIQUE (day1)-[:NEXT]->(day2))))
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (multi_part_query
+            (with
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (function_invocation
+                          (function_name
+                            (symbolic_name
+                              (unescaped_symbolic_name)))
+                          (expression
+                            (atom
+                              (literal
+                                (number_literal
+                                  (integer_literal
+                                    (decimal_integer))))))
+                          (expression
+                            (atom
+                              (literal
+                                (number_literal
+                                  (integer_literal
+                                    (decimal_integer)))))))))
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name))))
+                  (projection_item
+                    (expression
+                      (atom
+                        (function_invocation
+                          (function_name
+                            (symbolic_name
+                              (unescaped_symbolic_name)))
+                          (expression
+                            (atom
+                              (literal
+                                (number_literal
+                                  (integer_literal
+                                    (decimal_integer))))))
+                          (expression
+                            (atom
+                              (literal
+                                (number_literal
+                                  (integer_literal
+                                    (decimal_integer)))))))))
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))))))
+            (updating_clause
+              (for_each
+                (variable
+                  (symbolic_name
+                    (unescaped_symbolic_name)))
+                (expression
+                  (atom
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))))
+                (updating_clause
+                  (merge
+                    (pattern_part
+                      (anonymous_pattern_part
+                        (pattern_element
+                          (node_pattern
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))
+                            (node_labels
+                              (node_label
+                                (label_name
+                                  (schema_name
+                                    (symbolic_name
+                                      (unescaped_symbolic_name))))))
+                            (properties
+                              (map_literal
+                                (property_key_name
+                                  (schema_name
+                                    (symbolic_name
+                                      (unescaped_symbolic_name))))
+                                (expression
+                                  (atom
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))))))))))
+                (updating_clause
+                  (for_each
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name
+                            (unescaped_symbolic_name)))))
+                    (updating_clause
+                      (create
+                        (pattern
+                          (pattern_part
+                            (anonymous_pattern_part
+                              (pattern_element
+                                (node_pattern
+                                  (variable
+                                    (symbolic_name
+                                      (unescaped_symbolic_name)))
+                                  (node_labels
+                                    (node_label
+                                      (label_name
+                                        (schema_name
+                                          (symbolic_name
+                                            (unescaped_symbolic_name))))))
+                                  (properties
+                                    (map_literal
+                                      (property_key_name
+                                        (schema_name
+                                          (symbolic_name
+                                            (unescaped_symbolic_name))))
+                                      (expression
+                                        (atom
+                                          (variable
+                                            (symbolic_name
+                                              (unescaped_symbolic_name))))))))))))))
+                    (updating_clause
+                      (merge
+                        (pattern_part
+                          (anonymous_pattern_part
+                            (pattern_element
+                              (node_pattern
+                                (variable
+                                  (symbolic_name
+                                    (unescaped_symbolic_name))))
+                              (pattern_element_chain
+                                (relationship_pattern
+                                  (dash)
+                                  (relationship_detail
+                                    (relationship_types
+                                      (rel_type_name
+                                        (schema_name
+                                          (symbolic_name
+                                            (unescaped_symbolic_name))))))
+                                  (dash)
+                                  (right_arrow_head))
+                                (node_pattern
+                                  (variable
+                                    (symbolic_name
+                                      (unescaped_symbolic_name))))))))))
+                    (updating_clause
+                      (for_each
+                        (variable
+                          (symbolic_name
+                            (unescaped_symbolic_name)))
+                        (expression
+                          (atom
+                            (parenthesized_expression
+                              (expression
+                                (atom
+                                  (case_expression
+                                    (case_alternatives
+                                      (expression
+                                        (string_list_null_predicate_expression
+                                          (expression
+                                            (atom
+                                              (variable
+                                                (symbolic_name
+                                                  (unescaped_symbolic_name)))))
+                                          (list_predicate_expression
+                                            (expression
+                                              (atom
+                                                (literal
+                                                  (list_literal
+                                                    (expression
+                                                      (atom
+                                                        (literal
+                                                          (number_literal
+                                                            (integer_literal
+                                                              (decimal_integer))))))
+                                                    (expression
+                                                      (atom
+                                                        (literal
+                                                          (number_literal
+                                                            (integer_literal
+                                                              (decimal_integer))))))
+                                                    (expression
+                                                      (atom
+                                                        (literal
+                                                          (number_literal
+                                                            (integer_literal
+                                                              (decimal_integer))))))
+                                                    (expression
+                                                      (atom
+                                                        (literal
+                                                          (number_literal
+                                                            (integer_literal
+                                                              (decimal_integer))))))
+                                                    (expression
+                                                      (atom
+                                                        (literal
+                                                          (number_literal
+                                                            (integer_literal
+                                                              (decimal_integer))))))
+                                                    (expression
+                                                      (atom
+                                                        (literal
+                                                          (number_literal
+                                                            (integer_literal
+                                                              (decimal_integer))))))
+                                                    (expression
+                                                      (atom
+                                                        (literal
+                                                          (number_literal
+                                                            (integer_literal
+                                                              (decimal_integer)))))))))))))
+                                      (expression
+                                        (atom
+                                          (function_invocation
+                                            (function_name
+                                              (symbolic_name
+                                                (unescaped_symbolic_name)))
+                                            (expression
+                                              (atom
+                                                (literal
+                                                  (number_literal
+                                                    (integer_literal
+                                                      (decimal_integer))))))
+                                            (expression
+                                              (atom
+                                                (literal
+                                                  (number_literal
+                                                    (integer_literal
+                                                      (decimal_integer))))))))))
+                                    (case_alternatives
+                                      (expression
+                                        (comparison_expression
+                                          (expression
+                                            (atom
+                                              (variable
+                                                (symbolic_name
+                                                  (unescaped_symbolic_name)))))
+                                          (expression
+                                            (atom
+                                              (literal
+                                                (number_literal
+                                                  (integer_literal
+                                                    (decimal_integer))))))))
+                                      (expression
+                                        (atom
+                                          (case_expression
+                                            (case_alternatives
+                                              (expression
+                                                (comparison_expression
+                                                  (expression
+                                                    (multiplicative_expression
+                                                      (expression
+                                                        (atom
+                                                          (variable
+                                                            (symbolic_name
+                                                              (unescaped_symbolic_name)))))
+                                                      (expression
+                                                        (atom
+                                                          (literal
+                                                            (number_literal
+                                                              (integer_literal
+                                                                (decimal_integer))))))))
+                                                  (expression
+                                                    (atom
+                                                      (literal
+                                                        (number_literal
+                                                          (integer_literal
+                                                            (decimal_integer))))))))
+                                              (expression
+                                                (atom
+                                                  (function_invocation
+                                                    (function_name
+                                                      (symbolic_name
+                                                        (unescaped_symbolic_name)))
+                                                    (expression
+                                                      (atom
+                                                        (literal
+                                                          (number_literal
+                                                            (integer_literal
+                                                              (decimal_integer))))))
+                                                    (expression
+                                                      (atom
+                                                        (literal
+                                                          (number_literal
+                                                            (integer_literal
+                                                              (decimal_integer))))))))))
+                                            (case_alternatives
+                                              (expression
+                                                (comparison_expression
+                                                  (expression
+                                                    (multiplicative_expression
+                                                      (expression
+                                                        (atom
+                                                          (variable
+                                                            (symbolic_name
+                                                              (unescaped_symbolic_name)))))
+                                                      (expression
+                                                        (atom
+                                                          (literal
+                                                            (number_literal
+                                                              (integer_literal
+                                                                (decimal_integer))))))))
+                                                  (expression
+                                                    (atom
+                                                      (literal
+                                                        (number_literal
+                                                          (integer_literal
+                                                            (decimal_integer))))))))
+                                              (expression
+                                                (atom
+                                                  (function_invocation
+                                                    (function_name
+                                                      (symbolic_name
+                                                        (unescaped_symbolic_name)))
+                                                    (expression
+                                                      (atom
+                                                        (literal
+                                                          (number_literal
+                                                            (integer_literal
+                                                              (decimal_integer))))))
+                                                    (expression
+                                                      (atom
+                                                        (literal
+                                                          (number_literal
+                                                            (integer_literal
+                                                              (decimal_integer))))))))))
+                                            (case_alternatives
+                                              (expression
+                                                (comparison_expression
+                                                  (expression
+                                                    (multiplicative_expression
+                                                      (expression
+                                                        (atom
+                                                          (variable
+                                                            (symbolic_name
+                                                              (unescaped_symbolic_name)))))
+                                                      (expression
+                                                        (atom
+                                                          (literal
+                                                            (number_literal
+                                                              (integer_literal
+                                                                (decimal_integer))))))))
+                                                  (expression
+                                                    (atom
+                                                      (literal
+                                                        (number_literal
+                                                          (integer_literal
+                                                            (decimal_integer))))))))
+                                              (expression
+                                                (atom
+                                                  (function_invocation
+                                                    (function_name
+                                                      (symbolic_name
+                                                        (unescaped_symbolic_name)))
+                                                    (expression
+                                                      (atom
+                                                        (literal
+                                                          (number_literal
+                                                            (integer_literal
+                                                              (decimal_integer))))))
+                                                    (expression
+                                                      (atom
+                                                        (literal
+                                                          (number_literal
+                                                            (integer_literal
+                                                              (decimal_integer))))))))))
+                                            (expression
+                                              (atom
+                                                (function_invocation
+                                                  (function_name
+                                                    (symbolic_name
+                                                      (unescaped_symbolic_name)))
+                                                  (expression
+                                                    (atom
+                                                      (literal
+                                                        (number_literal
+                                                          (integer_literal
+                                                            (decimal_integer))))))
+                                                  (expression
+                                                    (atom
+                                                      (literal
+                                                        (number_literal
+                                                          (integer_literal
+                                                            (decimal_integer)))))))))))))
+                                    (expression
+                                      (atom
+                                        (function_invocation
+                                          (function_name
+                                            (symbolic_name
+                                              (unescaped_symbolic_name)))
+                                          (expression
+                                            (atom
+                                              (literal
+                                                (number_literal
+                                                  (integer_literal
+                                                    (decimal_integer))))))
+                                          (expression
+                                            (atom
+                                              (literal
+                                                (number_literal
+                                                  (integer_literal
+                                                    (decimal_integer)))))))))))))))
+                        (updating_clause
+                          (create
+                            (pattern
+                              (pattern_part
+                                (anonymous_pattern_part
+                                  (pattern_element
+                                    (node_pattern
+                                      (variable
+                                        (symbolic_name
+                                          (unescaped_symbolic_name)))
+                                      (node_labels
+                                        (node_label
+                                          (label_name
+                                            (schema_name
+                                              (symbolic_name
+                                                (unescaped_symbolic_name))))))
+                                      (properties
+                                        (map_literal
+                                          (property_key_name
+                                            (schema_name
+                                              (symbolic_name
+                                                (unescaped_symbolic_name))))
+                                          (expression
+                                            (atom
+                                              (variable
+                                                (symbolic_name
+                                                  (unescaped_symbolic_name))))))))))))))
+                        (updating_clause
+                          (merge
+                            (pattern_part
+                              (anonymous_pattern_part
+                                (pattern_element
+                                  (node_pattern
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name))))
+                                  (pattern_element_chain
+                                    (relationship_pattern
+                                      (dash)
+                                      (relationship_detail
+                                        (relationship_types
+                                          (rel_type_name
+                                            (schema_name
+                                              (symbolic_name
+                                                (unescaped_symbolic_name))))))
+                                      (dash)
+                                      (right_arrow_head))
+                                    (node_pattern
+                                      (variable
+                                        (symbolic_name
+                                          (unescaped_symbolic_name))))))))))))))))
+            (with
+              (projection_body
+                (projection_items)))
+            (reading_clause
+              (match
+                (pattern
+                  (pattern_part
+                    (anonymous_pattern_part
+                      (pattern_element
+                        (node_pattern
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name)))
+                          (node_labels
+                            (node_label
+                              (label_name
+                                (schema_name
+                                  (symbolic_name
+                                    (unescaped_symbolic_name)))))))
+                        (pattern_element_chain
+                          (relationship_pattern
+                            (dash)
+                            (relationship_detail
+                              (relationship_types
+                                (rel_type_name
+                                  (schema_name
+                                    (symbolic_name
+                                      (unescaped_symbolic_name))))))
+                            (dash)
+                            (right_arrow_head))
+                          (node_pattern
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))))
+                        (pattern_element_chain
+                          (relationship_pattern
+                            (dash)
+                            (relationship_detail
+                              (relationship_types
+                                (rel_type_name
+                                  (schema_name
+                                    (symbolic_name
+                                      (unescaped_symbolic_name))))))
+                            (dash)
+                            (right_arrow_head))
+                          (node_pattern
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))))))))))
+            (with
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name
+                            (unescaped_symbolic_name))))))
+                  (projection_item
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name
+                            (unescaped_symbolic_name))))))
+                  (projection_item
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name
+                            (unescaped_symbolic_name)))))))
+                (order
+                  (sort_item
+                    (expression
+                      (property_or_labels_expression
+                        (expression
+                          (atom
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))))
+                        (property_lookup
+                          (property_key_name
+                            (schema_name
+                              (symbolic_name
+                                (unescaped_symbolic_name))))))))
+                  (sort_item
+                    (expression
+                      (property_or_labels_expression
+                        (expression
+                          (atom
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))))
+                        (property_lookup
+                          (property_key_name
+                            (schema_name
+                              (symbolic_name
+                                (unescaped_symbolic_name))))))))
+                  (sort_item
+                    (expression
+                      (property_or_labels_expression
+                        (expression
+                          (atom
+                            (variable
+                              (symbolic_name
+                                (unescaped_symbolic_name)))))
+                        (property_lookup
+                          (property_key_name
+                            (schema_name
+                              (symbolic_name
+                                (unescaped_symbolic_name)))))))))))
+            (with
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (function_invocation
+                          (function_name
+                            (symbolic_name
+                              (unescaped_symbolic_name)))
+                          (expression
+                            (atom
+                              (variable
+                                (symbolic_name
+                                  (unescaped_symbolic_name))))))))
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))))))
+            (single_part_query
+              (updating_clause
+                (for_each
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (expression
+                    (atom
+                      (function_invocation
+                        (function_name
+                          (symbolic_name
+                            (unescaped_symbolic_name)))
+                        (expression
+                          (atom
+                            (literal
+                              (number_literal
+                                (integer_literal
+                                  (decimal_integer))))))
+                        (expression
+                          (additive_expression
+                            (expression
+                              (atom
+                                (function_invocation
+                                  (function_name
+                                    (symbolic_name
+                                      (unescaped_symbolic_name)))
+                                  (expression
+                                    (atom
+                                      (variable
+                                        (symbolic_name
+                                          (unescaped_symbolic_name))))))))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer)))))))))))
+                  (updating_clause
+                    (for_each
+                      (variable
+                        (symbolic_name
+                          (unescaped_symbolic_name)))
+                      (expression
+                        (atom
+                          (literal
+                            (list_literal
+                              (expression
+                                (list_operator_expression
+                                  (expression
+                                    (atom
+                                      (variable
+                                        (symbolic_name
+                                          (unescaped_symbolic_name)))))
+                                  (expression
+                                    (atom
+                                      (variable
+                                        (symbolic_name
+                                          (unescaped_symbolic_name)))))))))))
+                      (updating_clause
+                        (for_each
+                          (variable
+                            (symbolic_name
+                              (unescaped_symbolic_name)))
+                          (expression
+                            (atom
+                              (literal
+                                (list_literal
+                                  (expression
+                                    (list_operator_expression
+                                      (expression
+                                        (atom
+                                          (variable
+                                            (symbolic_name
+                                              (unescaped_symbolic_name)))))
+                                      (expression
+                                        (additive_expression
+                                          (expression
+                                            (atom
+                                              (variable
+                                                (symbolic_name
+                                                  (unescaped_symbolic_name)))))
+                                          (expression
+                                            (atom
+                                              (literal
+                                                (number_literal
+                                                  (integer_literal
+                                                    (decimal_integer))))))))))))))
+                          (updating_clause
+                            (create
+                              (pattern
+                                (pattern_part
+                                  (anonymous_pattern_part
+                                    (pattern_element
+                                      (node_pattern
+                                        (variable
+                                          (symbolic_name
+                                            (unescaped_symbolic_name))))
+                                      (pattern_element_chain
+                                        (relationship_pattern
+                                          (dash)
+                                          (relationship_detail
+                                            (relationship_types
+                                              (rel_type_name
+                                                (schema_name
+                                                  (symbolic_name
+                                                    (unescaped_symbolic_name))))))
+                                          (dash)
+                                          (right_arrow_head))
+                                        (node_pattern
+                                          (variable
+                                            (symbolic_name
+                                              (unescaped_symbolic_name))))))))))))))))))))))))
+
+================================================================================
+openCypher-legacy.txt: 10
+================================================================================
+
+CREATE CONSTRAINT ON (n:Person) ASSERT n.name IS UNIQUE
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (command
+      (constraint_command
+        (variable
+          (symbolic_name
+            (unescaped_symbolic_name)))
+        (node_label
+          (label_name
+            (schema_name
+              (symbolic_name
+                (unescaped_symbolic_name)))))
+        (property_expression
+          (atom
+            (variable
+              (symbolic_name
+                (unescaped_symbolic_name))))
+          (property_lookup
+            (property_key_name
+              (schema_name
+                (symbolic_name
+                  (unescaped_symbolic_name))))))))))
+
+================================================================================
+openCypher-legacy.txt: 11
+================================================================================
+
+CREATE CONSTRAINT ON (n:Person)ASSERT n.name IS UNIQUE
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (command
+      (constraint_command
+        (variable
+          (symbolic_name
+            (unescaped_symbolic_name)))
+        (node_label
+          (label_name
+            (schema_name
+              (symbolic_name
+                (unescaped_symbolic_name)))))
+        (property_expression
+          (atom
+            (variable
+              (symbolic_name
+                (unescaped_symbolic_name))))
+          (property_lookup
+            (property_key_name
+              (schema_name
+                (symbolic_name
+                  (unescaped_symbolic_name))))))))))
+
+================================================================================
+openCypher-legacy.txt: 12
+================================================================================
+
+CREATE CONSTRAINT ON(n:Person)ASSERT n.name IS UNIQUE
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (command
+      (constraint_command
+        (variable
+          (symbolic_name
+            (unescaped_symbolic_name)))
+        (node_label
+          (label_name
+            (schema_name
+              (symbolic_name
+                (unescaped_symbolic_name)))))
+        (property_expression
+          (atom
+            (variable
+              (symbolic_name
+                (unescaped_symbolic_name))))
+          (property_lookup
+            (property_key_name
+              (schema_name
+                (symbolic_name
+                  (unescaped_symbolic_name))))))))))
+
+================================================================================
+openCypher-legacy.txt: 13
+================================================================================
+
+CREATE CONSTRAINT ON (p:Person) ASSERT EXISTS(p.name)
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (command
+      (constraint_command
+        (variable
+          (symbolic_name
+            (unescaped_symbolic_name)))
+        (node_label
+          (label_name
+            (schema_name
+              (symbolic_name
+                (unescaped_symbolic_name)))))
+        (property_expression
+          (atom
+            (variable
+              (symbolic_name
+                (unescaped_symbolic_name))))
+          (property_lookup
+            (property_key_name
+              (schema_name
+                (symbolic_name
+                  (unescaped_symbolic_name))))))))))
+
+================================================================================
+openCypher-legacy.txt: 14
+================================================================================
+
+CREATE CONSTRAINT ON ()-[l:LIKED]-() ASSERT EXISTS(l.why)
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (command
+      (constraint_command
+        (relationship_pattern
+          (dash)
+          (relationship_detail
+            (variable
+              (symbolic_name
+                (unescaped_symbolic_name)))
+            (relationship_types
+              (rel_type_name
+                (schema_name
+                  (symbolic_name
+                    (unescaped_symbolic_name))))))
+          (dash))
+        (property_expression
+          (atom
+            (variable
+              (symbolic_name
+                (unescaped_symbolic_name))))
+          (property_lookup
+            (property_key_name
+              (schema_name
+                (symbolic_name
+                  (unescaped_symbolic_name))))))))))
+
+================================================================================
+openCypher-legacy.txt: 15
+================================================================================
+
+CREATE CONSTRAINT ON ()-[l:LIKED]-() ASSERT EXISTS (l.why)
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (command
+      (constraint_command
+        (relationship_pattern
+          (dash)
+          (relationship_detail
+            (variable
+              (symbolic_name
+                (unescaped_symbolic_name)))
+            (relationship_types
+              (rel_type_name
+                (schema_name
+                  (symbolic_name
+                    (unescaped_symbolic_name))))))
+          (dash))
+        (property_expression
+          (atom
+            (variable
+              (symbolic_name
+                (unescaped_symbolic_name))))
+          (property_lookup
+            (property_key_name
+              (schema_name
+                (symbolic_name
+                  (unescaped_symbolic_name))))))))))
+
+================================================================================
+openCypher-legacy.txt: 16
+================================================================================
+
+CREATE CONSTRAINT ON()-[l:LIKED]-() ASSERT EXISTS (l.why)
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (command
+      (constraint_command
+        (relationship_pattern
+          (dash)
+          (relationship_detail
+            (variable
+              (symbolic_name
+                (unescaped_symbolic_name)))
+            (relationship_types
+              (rel_type_name
+                (schema_name
+                  (symbolic_name
+                    (unescaped_symbolic_name))))))
+          (dash))
+        (property_expression
+          (atom
+            (variable
+              (symbolic_name
+                (unescaped_symbolic_name))))
+          (property_lookup
+            (property_key_name
+              (schema_name
+                (symbolic_name
+                  (unescaped_symbolic_name))))))))))
+
+================================================================================
+openCypher-legacy.txt: 17
+================================================================================
+
+CREATE CONSTRAINT ON()-[l:LIKED]-()ASSERT EXISTS (l.why)
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (command
+      (constraint_command
+        (relationship_pattern
+          (dash)
+          (relationship_detail
+            (variable
+              (symbolic_name
+                (unescaped_symbolic_name)))
+            (relationship_types
+              (rel_type_name
+                (schema_name
+                  (symbolic_name
+                    (unescaped_symbolic_name))))))
+          (dash))
+        (property_expression
+          (atom
+            (variable
+              (symbolic_name
+                (unescaped_symbolic_name))))
+          (property_lookup
+            (property_key_name
+              (schema_name
+                (symbolic_name
+                  (unescaped_symbolic_name))))))))))
+
+================================================================================
+openCypher-legacy.txt: 18
+================================================================================
+
+WITH {eyes: 'blue'} AS n
+RETURN CASE n.eyes
+ WHEN 'blue' THEN 1
+ WHEN 'brown' THEN 2
+ ELSE 3
+END
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (multi_part_query
+            (with
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (literal
+                          (map_literal
+                            (property_key_name
+                              (schema_name
+                                (symbolic_name
+                                  (unescaped_symbolic_name))))
+                            (expression
+                              (atom
+                                (literal
+                                  (string_literal))))))))
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))))))
+            (single_part_query
+              (return
+                (projection_body
+                  (projection_items
+                    (projection_item
+                      (expression
+                        (atom
+                          (case_expression
+                            (expression
+                              (property_or_labels_expression
+                                (expression
+                                  (atom
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))
+                                (property_lookup
+                                  (property_key_name
+                                    (schema_name
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))))
+                            (case_alternatives
+                              (expression
+                                (atom
+                                  (literal
+                                    (string_literal))))
+                              (expression
+                                (atom
+                                  (literal
+                                    (number_literal
+                                      (integer_literal
+                                        (decimal_integer)))))))
+                            (case_alternatives
+                              (expression
+                                (atom
+                                  (literal
+                                    (string_literal))))
+                              (expression
+                                (atom
+                                  (literal
+                                    (number_literal
+                                      (integer_literal
+                                        (decimal_integer)))))))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))))))))))))))))
+
+================================================================================
+openCypher-legacy.txt: 19
+================================================================================
+
+WITH {eyes: 'blue'} AS n
+RETURN CASE (n.eyes)
+ WHEN 'blue' THEN 1
+ WHEN 'brown' THEN 2
+ ELSE 3
+END
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (multi_part_query
+            (with
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (literal
+                          (map_literal
+                            (property_key_name
+                              (schema_name
+                                (symbolic_name
+                                  (unescaped_symbolic_name))))
+                            (expression
+                              (atom
+                                (literal
+                                  (string_literal))))))))
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))))))
+            (single_part_query
+              (return
+                (projection_body
+                  (projection_items
+                    (projection_item
+                      (expression
+                        (atom
+                          (case_expression
+                            (expression
+                              (atom
+                                (parenthesized_expression
+                                  (expression
+                                    (property_or_labels_expression
+                                      (expression
+                                        (atom
+                                          (variable
+                                            (symbolic_name
+                                              (unescaped_symbolic_name)))))
+                                      (property_lookup
+                                        (property_key_name
+                                          (schema_name
+                                            (symbolic_name
+                                              (unescaped_symbolic_name))))))))))
+                            (case_alternatives
+                              (expression
+                                (atom
+                                  (literal
+                                    (string_literal))))
+                              (expression
+                                (atom
+                                  (literal
+                                    (number_literal
+                                      (integer_literal
+                                        (decimal_integer)))))))
+                            (case_alternatives
+                              (expression
+                                (atom
+                                  (literal
+                                    (string_literal))))
+                              (expression
+                                (atom
+                                  (literal
+                                    (number_literal
+                                      (integer_literal
+                                        (decimal_integer)))))))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))))))))))))))))
+
+================================================================================
+openCypher-legacy.txt: 20
+================================================================================
+
+WITH {eyes: 'blue'} AS n
+RETURN CASE(n.eyes)
+ WHEN 'blue' THEN 1
+ WHEN 'brown' THEN 2
+ ELSE 3
+END
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (multi_part_query
+            (with
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (literal
+                          (map_literal
+                            (property_key_name
+                              (schema_name
+                                (symbolic_name
+                                  (unescaped_symbolic_name))))
+                            (expression
+                              (atom
+                                (literal
+                                  (string_literal))))))))
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))))))
+            (single_part_query
+              (return
+                (projection_body
+                  (projection_items
+                    (projection_item
+                      (expression
+                        (atom
+                          (case_expression
+                            (expression
+                              (atom
+                                (parenthesized_expression
+                                  (expression
+                                    (property_or_labels_expression
+                                      (expression
+                                        (atom
+                                          (variable
+                                            (symbolic_name
+                                              (unescaped_symbolic_name)))))
+                                      (property_lookup
+                                        (property_key_name
+                                          (schema_name
+                                            (symbolic_name
+                                              (unescaped_symbolic_name))))))))))
+                            (case_alternatives
+                              (expression
+                                (atom
+                                  (literal
+                                    (string_literal))))
+                              (expression
+                                (atom
+                                  (literal
+                                    (number_literal
+                                      (integer_literal
+                                        (decimal_integer)))))))
+                            (case_alternatives
+                              (expression
+                                (atom
+                                  (literal
+                                    (string_literal))))
+                              (expression
+                                (atom
+                                  (literal
+                                    (number_literal
+                                      (integer_literal
+                                        (decimal_integer)))))))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))))))))))))))))
+
+================================================================================
+openCypher-legacy.txt: 21
+================================================================================
+
+WITH {eyes: 'blue'} AS n
+RETURN CASE n.eyes
+ WHEN   'blue'   THEN   1
+ WHEN   'brown'   THEN   2
+ ELSE 3
+END
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (multi_part_query
+            (with
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (literal
+                          (map_literal
+                            (property_key_name
+                              (schema_name
+                                (symbolic_name
+                                  (unescaped_symbolic_name))))
+                            (expression
+                              (atom
+                                (literal
+                                  (string_literal))))))))
+                    (variable
+                      (symbolic_name
+                        (unescaped_symbolic_name)))))))
+            (single_part_query
+              (return
+                (projection_body
+                  (projection_items
+                    (projection_item
+                      (expression
+                        (atom
+                          (case_expression
+                            (expression
+                              (property_or_labels_expression
+                                (expression
+                                  (atom
+                                    (variable
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))
+                                (property_lookup
+                                  (property_key_name
+                                    (schema_name
+                                      (symbolic_name
+                                        (unescaped_symbolic_name)))))))
+                            (case_alternatives
+                              (expression
+                                (atom
+                                  (literal
+                                    (string_literal))))
+                              (expression
+                                (atom
+                                  (literal
+                                    (number_literal
+                                      (integer_literal
+                                        (decimal_integer)))))))
+                            (case_alternatives
+                              (expression
+                                (atom
+                                  (literal
+                                    (string_literal))))
+                              (expression
+                                (atom
+                                  (literal
+                                    (number_literal
+                                      (integer_literal
+                                        (decimal_integer)))))))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))))))))))))))))
+
+================================================================================
+openCypher-legacy.txt: 22
+================================================================================
+
+CYPHER 2.3 START n = node(6, 7, 8) RETURN n
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (query_options
+    (cypher_option
+      (regular_decimal_real)))
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (start
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (id_lookup
+                      (literal_ids
+                        (integer_literal
+                          (decimal_integer))
+                        (integer_literal
+                          (decimal_integer))
+                        (integer_literal
+                          (decimal_integer))))))))
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name
+                            (unescaped_symbolic_name)))))))))))))))
+
+================================================================================
+openCypher-legacy.txt: 23
+================================================================================
+
+CYPHER 2.3 START n =  node(6,  7,8)   RETURN n
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (query_options
+    (cypher_option
+      (regular_decimal_real)))
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (start
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (id_lookup
+                      (literal_ids
+                        (integer_literal
+                          (decimal_integer))
+                        (integer_literal
+                          (decimal_integer))
+                        (integer_literal
+                          (decimal_integer))))))))
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name
+                            (unescaped_symbolic_name)))))))))))))))
+
+================================================================================
+openCypher-legacy.txt: 24
+================================================================================
+
+CYPHER 2.3 START n = node  (6, 7, 8) RETURN n
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (query_options
+    (cypher_option
+      (regular_decimal_real)))
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (reading_clause
+              (start
+                (start_point
+                  (variable
+                    (symbolic_name
+                      (unescaped_symbolic_name)))
+                  (start_lookup
+                    (id_lookup
+                      (literal_ids
+                        (integer_literal
+                          (decimal_integer))
+                        (integer_literal
+                          (decimal_integer))
+                        (integer_literal
+                          (decimal_integer))))))))
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (atom
+                        (variable
+                          (symbolic_name
+                            (unescaped_symbolic_name)))))))))))))))
+
+================================================================================
+openCypher-legacy.txt: 25
+================================================================================
+
+USING PERIODIC COMMIT 500
+LOAD CSV FROM 'http://neo4j.com/docs/3.1.0/csv/artists.csv' AS line
+CREATE (:Artist { name: line[1], year: toInt(line[2])})
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (bulk_import_query
+        (periodic_commit_hint
+          (integer_literal
+            (decimal_integer)))
+        (load_csv_query
+          (load_csv
+            (expression
+              (atom
+                (literal
+                  (string_literal))))
+            (variable
+              (symbolic_name
+                (unescaped_symbolic_name))))
+          (single_query
+            (single_part_query
+              (updating_clause
+                (create
+                  (pattern
+                    (pattern_part
+                      (anonymous_pattern_part
+                        (pattern_element
+                          (node_pattern
+                            (node_labels
+                              (node_label
+                                (label_name
+                                  (schema_name
+                                    (symbolic_name
+                                      (unescaped_symbolic_name))))))
+                            (properties
+                              (map_literal
+                                (property_key_name
+                                  (schema_name
+                                    (symbolic_name
+                                      (unescaped_symbolic_name))))
+                                (expression
+                                  (list_operator_expression
+                                    (expression
+                                      (atom
+                                        (variable
+                                          (symbolic_name
+                                            (unescaped_symbolic_name)))))
+                                    (expression
+                                      (atom
+                                        (literal
+                                          (number_literal
+                                            (integer_literal
+                                              (decimal_integer))))))))
+                                (property_key_name
+                                  (schema_name
+                                    (symbolic_name
+                                      (unescaped_symbolic_name))))
+                                (expression
+                                  (atom
+                                    (function_invocation
+                                      (function_name
+                                        (symbolic_name
+                                          (unescaped_symbolic_name)))
+                                      (expression
+                                        (list_operator_expression
+                                          (expression
+                                            (atom
+                                              (variable
+                                                (symbolic_name
+                                                  (unescaped_symbolic_name)))))
+                                          (expression
+                                            (atom
+                                              (literal
+                                                (number_literal
+                                                  (integer_literal
+                                                    (decimal_integer)))))))))))))))))))))))))))
+
+================================================================================
+openCypher-legacy.txt: 26
+================================================================================
+
+RETURN "flags" =~ "regex"
+
+--------------------------------------------------------------------------------
+
+(cypher
+  (statement
+    (query
+      (regular_query
+        (single_query
+          (single_part_query
+            (return
+              (projection_body
+                (projection_items
+                  (projection_item
+                    (expression
+                      (string_list_null_predicate_expression
+                        (expression
+                          (atom
+                            (literal
+                              (string_literal))))
+                        (string_predicate_expression
+                          (expression
+                            (atom
+                              (literal
+                                (string_literal)))))))))))))))))

@@ -40,6 +40,10 @@
         {
           "type": "pattern_element",
           "named": true
+        },
+        {
+          "type": "shortest_path_pattern",
+          "named": true
         }
       ]
     }
@@ -62,6 +66,10 @@
         },
         {
           "type": "function_invocation",
+          "named": true
+        },
+        {
+          "type": "legacy_parameter",
           "named": true
         },
         {
@@ -93,6 +101,14 @@
           "named": true
         },
         {
+          "type": "reduce",
+          "named": true
+        },
+        {
+          "type": "shortest_path_pattern",
+          "named": true
+        },
+        {
           "type": "variable",
           "named": true
         }
@@ -103,6 +119,25 @@
     "type": "boolean_literal",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "bulk_import_query",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "load_csv_query",
+          "named": true
+        },
+        {
+          "type": "periodic_commit_hint",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "case_alternatives",
@@ -139,6 +174,25 @@
     }
   },
   {
+    "type": "command",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "constraint_command",
+          "named": true
+        },
+        {
+          "type": "index_command",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "comment",
     "named": true,
     "extra": true,
@@ -154,6 +208,48 @@
       "types": [
         {
           "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "configuration_option",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "symbolic_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "constraint_command",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "node_label",
+          "named": true
+        },
+        {
+          "type": "property_expression",
+          "named": true
+        },
+        {
+          "type": "relationship_pattern",
+          "named": true
+        },
+        {
+          "type": "variable",
           "named": true
         }
       ]
@@ -180,11 +276,34 @@
     "root": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
+          "type": "query_options",
+          "named": true
+        },
+        {
           "type": "statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "cypher_option",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "configuration_option",
+          "named": true
+        },
+        {
+          "type": "regular_decimal_real",
           "named": true
         }
       ]
@@ -325,6 +444,10 @@
           "named": true
         },
         {
+          "type": "legacy_list_expression",
+          "named": true
+        },
+        {
           "type": "list_operator_expression",
           "named": true
         },
@@ -379,6 +502,29 @@
     }
   },
   {
+    "type": "for_each",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "updating_clause",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "function_invocation",
     "named": true,
     "fields": {},
@@ -417,6 +563,29 @@
     }
   },
   {
+    "type": "hint",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "node_label",
+          "named": true
+        },
+        {
+          "type": "property_key_name",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "id_in_coll",
     "named": true,
     "fields": {},
@@ -430,6 +599,25 @@
         },
         {
           "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "id_lookup",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "legacy_parameter",
+          "named": true
+        },
+        {
+          "type": "literal_ids",
           "named": true
         }
       ]
@@ -464,6 +652,48 @@
         },
         {
           "type": "yield_items",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "index_command",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "node_label",
+          "named": true
+        },
+        {
+          "type": "property_key_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "index_query_or_lookup",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "legacy_parameter",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "symbolic_name",
           "named": true
         }
       ]
@@ -511,6 +741,44 @@
     "type": "left_arrow_head",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "legacy_list_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "filter_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "legacy_parameter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "decimal_integer",
+          "named": true
+        },
+        {
+          "type": "symbolic_name",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "limit",
@@ -627,6 +895,63 @@
     }
   },
   {
+    "type": "literal_ids",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "integer_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "load_csv",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "load_csv_query",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "load_csv",
+          "named": true
+        },
+        {
+          "type": "single_query",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "map_literal",
     "named": true,
     "fields": {},
@@ -653,6 +978,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "hint",
+          "named": true
+        },
         {
           "type": "pattern",
           "named": true
@@ -1020,6 +1349,21 @@
     }
   },
   {
+    "type": "periodic_commit_hint",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "integer_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "procedure_name",
     "named": true,
     "fields": {},
@@ -1122,6 +1466,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "legacy_parameter",
+          "named": true
+        },
         {
           "type": "map_literal",
           "named": true
@@ -1229,11 +1577,30 @@
       "required": true,
       "types": [
         {
+          "type": "bulk_import_query",
+          "named": true
+        },
+        {
           "type": "regular_query",
           "named": true
         },
         {
           "type": "standalone_call",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "query_options",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "cypher_option",
           "named": true
         }
       ]
@@ -1267,11 +1634,42 @@
           "named": true
         },
         {
+          "type": "load_csv",
+          "named": true
+        },
+        {
           "type": "match",
           "named": true
         },
         {
+          "type": "start",
+          "named": true
+        },
+        {
           "type": "unwind",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "reduce",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "id_in_coll",
+          "named": true
+        },
+        {
+          "type": "variable",
           "named": true
         }
       ]
@@ -1524,6 +1922,21 @@
     }
   },
   {
+    "type": "shortest_path_pattern",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "pattern_element",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "single_part_query",
     "named": true,
     "fields": {},
@@ -1619,6 +2032,63 @@
     }
   },
   {
+    "type": "start",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "start_point",
+          "named": true
+        },
+        {
+          "type": "where",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "start_lookup",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "id_lookup",
+          "named": true
+        },
+        {
+          "type": "index_query_or_lookup",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "start_point",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "start_lookup",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "statement",
     "named": true,
     "fields": {},
@@ -1626,6 +2096,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "command",
+          "named": true
+        },
         {
           "type": "query",
           "named": true
@@ -1772,6 +2246,10 @@
         },
         {
           "type": "delete",
+          "named": true
+        },
+        {
+          "type": "for_each",
           "named": true
         },
         {
@@ -1992,6 +2470,10 @@
     "named": false
   },
   {
+    "type": "=~",
+    "named": false
+  },
+  {
     "type": ">",
     "named": false
   },
@@ -2020,6 +2502,10 @@
     "named": false
   },
   {
+    "type": "allshortestpaths",
+    "named": false
+  },
+  {
     "type": "and",
     "named": false
   },
@@ -2040,6 +2526,10 @@
     "named": false
   },
   {
+    "type": "assert",
+    "named": false
+  },
+  {
     "type": "by",
     "named": false
   },
@@ -2049,6 +2539,10 @@
   },
   {
     "type": "case",
+    "named": false
+  },
+  {
+    "type": "commit",
     "named": false
   },
   {
@@ -2065,6 +2559,14 @@
   },
   {
     "type": "create",
+    "named": false
+  },
+  {
+    "type": "csv",
+    "named": false
+  },
+  {
+    "type": "cypher",
     "named": false
   },
   {
@@ -2112,6 +2614,10 @@
     "named": false
   },
   {
+    "type": "explain",
+    "named": false
+  },
+  {
     "type": "exponent_decimal_real",
     "named": true
   },
@@ -2124,7 +2630,23 @@
     "named": false
   },
   {
+    "type": "fieldterminator",
+    "named": false
+  },
+  {
     "type": "filter",
+    "named": false
+  },
+  {
+    "type": "foreach",
+    "named": false
+  },
+  {
+    "type": "from",
+    "named": false
+  },
+  {
+    "type": "headers",
     "named": false
   },
   {
@@ -2136,11 +2658,23 @@
     "named": false
   },
   {
+    "type": "index",
+    "named": false
+  },
+  {
     "type": "is",
     "named": false
   },
   {
+    "type": "join",
+    "named": false
+  },
+  {
     "type": "limit",
+    "named": false
+  },
+  {
+    "type": "load",
     "named": false
   },
   {
@@ -2153,6 +2687,10 @@
   },
   {
     "type": "merge",
+    "named": false
+  },
+  {
+    "type": "node",
     "named": false
   },
   {
@@ -2192,8 +2730,28 @@
     "named": false
   },
   {
+    "type": "periodic",
+    "named": false
+  },
+  {
+    "type": "profile",
+    "named": false
+  },
+  {
+    "type": "reduce",
+    "named": false
+  },
+  {
     "type": "regular_decimal_real",
     "named": true
+  },
+  {
+    "type": "rel",
+    "named": false
+  },
+  {
+    "type": "relationship",
+    "named": false
   },
   {
     "type": "remove",
@@ -2208,7 +2766,15 @@
     "named": false
   },
   {
+    "type": "scan",
+    "named": false
+  },
+  {
     "type": "set",
+    "named": false
+  },
+  {
+    "type": "shortestpath",
     "named": false
   },
   {
@@ -2217,6 +2783,10 @@
   },
   {
     "type": "skip",
+    "named": false
+  },
+  {
+    "type": "start",
     "named": false
   },
   {
@@ -2245,6 +2815,10 @@
   },
   {
     "type": "unwind",
+    "named": false
+  },
+  {
+    "type": "using",
     "named": false
   },
   {
