@@ -3,6 +3,12 @@ tree-sitter-cypher
 
 Cypher grammar for [tree-sitter].
 
+> Master branch does not include legacy grammar support (e.g. =~ regex syntax).
+> 
+> Legacy grammar is provided on `legacy` branch and `-legacy` suffixed tags.
+>
+> [M23-legacy](https://github.com/taekwombo/tree-sitter-cypher/releases/tag/M23-legacy)
+
 ### Development
 
 #### Initialising repository
