@@ -972,8 +972,7 @@ RETURN -1.0
                           (atom
                             (literal
                               (number_literal
-                                (double_literal
-                                  (regular_decimal_real))))))))))))))))))
+                                (decimal_literal)))))))))))))))))
 
 ================================================================================
 openCypher.txt: 21
@@ -1015,8 +1014,7 @@ RETURN 3 + 1 - +2.0
                               (atom
                                 (literal
                                   (number_literal
-                                    (double_literal
-                                      (regular_decimal_real))))))))))))))))))))
+                                    (decimal_literal)))))))))))))))))))
 
 ================================================================================
 openCypher.txt: 22
@@ -1090,8 +1088,7 @@ RETURN 1e10
                       (atom
                         (literal
                           (number_literal
-                            (double_literal
-                              (exponent_decimal_real))))))))))))))))
+                            (decimal_literal)))))))))))))))
 
 ================================================================================
 openCypher.txt: 25
@@ -1115,8 +1112,7 @@ RETURN 1.5e10
                       (atom
                         (literal
                           (number_literal
-                            (double_literal
-                              (exponent_decimal_real))))))))))))))))
+                            (decimal_literal)))))))))))))))
 
 ================================================================================
 openCypher.txt: 26
@@ -1142,8 +1138,7 @@ RETURN -1.5e10
                           (atom
                             (literal
                               (number_literal
-                                (double_literal
-                                  (exponent_decimal_real))))))))))))))))))
+                                (decimal_literal)))))))))))))))))
 
 ================================================================================
 openCypher.txt: 27
@@ -1167,8 +1162,7 @@ RETURN .5
                       (atom
                         (literal
                           (number_literal
-                            (double_literal
-                              (regular_decimal_real))))))))))))))))
+                            (decimal_literal)))))))))))))))
 
 ================================================================================
 openCypher.txt: 28
@@ -1192,8 +1186,7 @@ RETURN .0
                       (atom
                         (literal
                           (number_literal
-                            (double_literal
-                              (regular_decimal_real))))))))))))))))
+                            (decimal_literal)))))))))))))))
 
 ================================================================================
 openCypher.txt: 29
@@ -4046,8 +4039,7 @@ RETURN 1.0e10
                       (atom
                         (literal
                           (number_literal
-                            (double_literal
-                              (exponent_decimal_real))))))))))))))))
+                            (decimal_literal)))))))))))))))
 
 ================================================================================
 openCypher.txt: 85
@@ -5412,8 +5404,7 @@ RETURN 1e10
                       (atom
                         (literal
                           (number_literal
-                            (double_literal
-                              (exponent_decimal_real))))))))))))))))
+                            (decimal_literal)))))))))))))))
 
 ================================================================================
 openCypher.txt: 118
@@ -5437,8 +5428,7 @@ RETURN 1e-10
                       (atom
                         (literal
                           (number_literal
-                            (double_literal
-                              (exponent_decimal_real))))))))))))))))
+                            (decimal_literal)))))))))))))))
 
 ================================================================================
 openCypher.txt: 119
@@ -5462,8 +5452,7 @@ RETURN 1.0e-10
                       (atom
                         (literal
                           (number_literal
-                            (double_literal
-                              (exponent_decimal_real))))))))))))))))
+                            (decimal_literal)))))))))))))))
 
 ================================================================================
 openCypher.txt: 120
@@ -5487,8 +5476,7 @@ RETURN .1e-10
                       (atom
                         (literal
                           (number_literal
-                            (double_literal
-                              (exponent_decimal_real))))))))))))))))
+                            (decimal_literal)))))))))))))))
 
 ================================================================================
 openCypher.txt: 121
@@ -5512,8 +5500,7 @@ RETURN .1e10
                       (atom
                         (literal
                           (number_literal
-                            (double_literal
-                              (exponent_decimal_real))))))))))))))))
+                            (decimal_literal)))))))))))))))
 
 ================================================================================
 openCypher.txt: 122
@@ -5537,8 +5524,7 @@ RETURN .1E10
                       (atom
                         (literal
                           (number_literal
-                            (double_literal
-                              (exponent_decimal_real))))))))))))))))
+                            (decimal_literal)))))))))))))))
 
 ================================================================================
 openCypher.txt: 123
@@ -5564,8 +5550,7 @@ RETURN -.01E10
                           (atom
                             (literal
                               (number_literal
-                                (double_literal
-                                  (exponent_decimal_real))))))))))))))))))
+                                (decimal_literal)))))))))))))))))
 
 ================================================================================
 openCypher.txt: 124
@@ -5591,8 +5576,7 @@ RETURN -590.01E5
                           (atom
                             (literal
                               (number_literal
-                                (double_literal
-                                  (exponent_decimal_real))))))))))))))))))
+                                (decimal_literal)))))))))))))))))
 
 ================================================================================
 openCypher.txt: 125
@@ -5616,8 +5600,7 @@ RETURN 1.0
                       (atom
                         (literal
                           (number_literal
-                            (double_literal
-                              (regular_decimal_real))))))))))))))))
+                            (decimal_literal)))))))))))))))
 
 ================================================================================
 openCypher.txt: 126
@@ -5641,8 +5624,7 @@ RETURN 1.00001
                       (atom
                         (literal
                           (number_literal
-                            (double_literal
-                              (regular_decimal_real))))))))))))))))
+                            (decimal_literal)))))))))))))))
 
 ================================================================================
 openCypher.txt: 127
@@ -5666,8 +5648,7 @@ RETURN .00001
                       (atom
                         (literal
                           (number_literal
-                            (double_literal
-                              (regular_decimal_real))))))))))))))))
+                            (decimal_literal)))))))))))))))
 
 ================================================================================
 openCypher.txt: 128
@@ -5691,8 +5672,7 @@ RETURN .0020123
                       (atom
                         (literal
                           (number_literal
-                            (double_literal
-                              (regular_decimal_real))))))))))))))))
+                            (decimal_literal)))))))))))))))
 
 ================================================================================
 openCypher.txt: 129
@@ -5716,8 +5696,7 @@ RETURN 10101.0020123
                       (atom
                         (literal
                           (number_literal
-                            (double_literal
-                              (regular_decimal_real))))))))))))))))
+                            (decimal_literal)))))))))))))))
 
 ================================================================================
 openCypher.txt: 130
@@ -5741,8 +5720,7 @@ RETURN 10101.4
                       (atom
                         (literal
                           (number_literal
-                            (double_literal
-                              (regular_decimal_real))))))))))))))))
+                            (decimal_literal)))))))))))))))
 
 ================================================================================
 openCypher.txt: 131
@@ -5766,8 +5744,7 @@ RETURN 99882.04000
                       (atom
                         (literal
                           (number_literal
-                            (double_literal
-                              (regular_decimal_real))))))))))))))))
+                            (decimal_literal)))))))))))))))
 
 ================================================================================
 openCypher.txt: 132
