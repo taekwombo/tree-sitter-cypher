@@ -129,4 +129,19 @@ RETURN
                       (atom
                         (literal
                           (number_literal
-                            (decimal_literal)))))))))))))))
+                            (decimal_literal))))))
+                  (projection_item
+                    (expression
+                      (atom
+                        (literal
+                          (number_literal)))))
+                  (projection_item
+                    (expression
+                      (atom
+                        (literal
+                          (number_literal)))))
+                  (projection_item
+                    (expression
+                      (atom
+                        (literal
+                          (number_literal))))))))))))))
