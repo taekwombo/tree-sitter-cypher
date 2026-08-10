@@ -196,11 +196,6 @@
     "fields": {}
   },
   {
-    "type": "decimal_integer",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "delete",
     "named": true,
     "fields": {},
@@ -210,25 +205,6 @@
       "types": [
         {
           "type": "expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "double_literal",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "exponent_decimal_real",
-          "named": true
-        },
-        {
-          "type": "regular_decimal_real",
           "named": true
         }
       ]
@@ -824,10 +800,10 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "double_literal",
+          "type": "decimal_literal",
           "named": true
         },
         {
@@ -1964,10 +1940,6 @@
     "named": false
   },
   {
-    "type": "0",
-    "named": false
-  },
-  {
     "type": ":",
     "named": false
   },
@@ -2068,6 +2040,14 @@
     "named": false
   },
   {
+    "type": "decimal_integer",
+    "named": true
+  },
+  {
+    "type": "decimal_literal",
+    "named": true
+  },
+  {
     "type": "delete",
     "named": false
   },
@@ -2112,10 +2092,6 @@
     "named": false
   },
   {
-    "type": "exponent_decimal_real",
-    "named": true
-  },
-  {
     "type": "extract",
     "named": false
   },
@@ -2136,6 +2112,14 @@
     "named": false
   },
   {
+    "type": "inf",
+    "named": false
+  },
+  {
+    "type": "infinity",
+    "named": false
+  },
+  {
     "type": "is",
     "named": false
   },
@@ -2153,6 +2137,10 @@
   },
   {
     "type": "merge",
+    "named": false
+  },
+  {
+    "type": "nan",
     "named": false
   },
   {
@@ -2190,10 +2178,6 @@
   {
     "type": "order",
     "named": false
-  },
-  {
-    "type": "regular_decimal_real",
-    "named": true
   },
   {
     "type": "remove",

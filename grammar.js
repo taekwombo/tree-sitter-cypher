@@ -1,6 +1,12 @@
 "use strict";
 // opencypher tests
 // https://github.com/opencypher/openCypher/blob/c816756d50df9cde73cae573ef871f2d7e76c70a/tools/grammar/src/test/resources/cypher.txt
+const OCT_INT = /0o(_?[0-7])+/;
+const HEX_INT = /0x(_?[0-9a-f])+/i;
+const DEC_INT = /[0-9](_?[0-9])*/;
+const DECIMAL = token.immediate(seq(optional(DEC_INT), '.', DEC_INT));
+const DECIMAL_SCIENTIFIC = token.immediate(seq(choice(DEC_INT, DECIMAL), choice('e', 'E'), optional(choice('-', '+')), DEC_INT));
+const DECIMAL_LITERAL = token.immediate(seq(choice(DECIMAL, DECIMAL_SCIENTIFIC), optional(choice('f', 'F', 'd', 'D'))));
 module.exports = grammar({
     name: 'cypher',
     extras: ($) => [$.comment, $._whitespace_char],
@@ -111,18 +117,16 @@ module.exports = grammar({
         variable: ($) => $.symbolic_name,
         string_literal: ($) => choice(seq(`'`, repeat(choice(/[^'\\]+/, $.escaped_char)), `'`), seq(`"`, repeat(choice(/[^"\\]+/, $.escaped_char)), `"`)),
         escaped_char: () => token(seq('\\', choice('\\', `"`, `'`, /[^uU]/, /[u][a-fA-F0-9]{4}/, /[U][a-fA-F0-9]{8}/))),
-        number_literal: ($) => choice($.double_literal, $.integer_literal),
+        number_literal: ($) => choice($.decimal_literal, $.integer_literal, word('inf'), word('infinity'), word('nan')),
         map_literal: ($) => seq('{', optional(seq($.property_key_name, ':', $.expression, repeat(seq(',', $.property_key_name, ':', $.expression)))), '}'),
         parameter: ($) => seq('$', choice($.symbolic_name, $.decimal_integer)),
         property_expression: ($) => seq($.atom, repeat($.property_lookup)),
         property_key_name: ($) => $.schema_name,
         integer_literal: ($) => choice($.hex_integer, $.octal_integer, $.decimal_integer),
-        hex_integer: () => /0x[0-9a-f]+/i,
-        decimal_integer: () => choice('0', /[1-9][0-9]*/),
-        octal_integer: () => /0o[0-7]+/,
-        double_literal: ($) => choice($.exponent_decimal_real, $.regular_decimal_real),
-        exponent_decimal_real: () => token(seq(choice(/[0-9]+/, seq(/[0-9]+/, '.', /[0-9]+/), seq('.', /[0-9]+/)), word('e'), optional('-'), /[0-9]+/)),
-        regular_decimal_real: () => /[0-9]*\.[0-9]+/,
+        hex_integer: ($) => HEX_INT,
+        decimal_integer: ($) => DEC_INT,
+        octal_integer: ($) => OCT_INT,
+        decimal_literal: ($) => DECIMAL_LITERAL,
         schema_name: ($) => choice($.symbolic_name, $.reserved_word),
         reserved_word: () => choice(word('all'), word('asc'), word('ascending'), word('by'), word('create'), word('delete'), word('desc'), word('descending'), word('detach'), word('exists'), word('limit'), word('match'), word('merge'), word('on'), word('optional'), word('order'), word('remove'), word('return'), word('set'), word('skip'), word('where'), word('with'), word('union'), word('unwind'), word('and'), word('as'), word('contains'), word('distinct'), word('ends'), word('in'), word('is'), word('not'), word('or'), word('starts'), word('xor'), word('false'), word('true'), word('null'), word('constraint'), word('unique'), word('case'), word('when'), word('then'), word('else'), word('end'), word('mandatory'), word('scalar'), word('of'), word('add'), word('drop')),
         symbolic_name: ($) => prec.left(choice($.unescaped_symbolic_name, $.escaped_symbolic_name, word('count'), word('filter'), word('extract'), word('any'), word('none'), word('single'))),
