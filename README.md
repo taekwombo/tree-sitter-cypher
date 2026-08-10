@@ -9,6 +9,10 @@ Cypher grammar for [tree-sitter].
 >
 > [M23-legacy](https://github.com/taekwombo/tree-sitter-cypher/releases/tag/M23-legacy)
 
+### Integrations
+- EMACS mode is available: https://codeberg.org/nutcase/cypher-ts-mode
+- Neovim (nvim-treesitter) has to be configured manually, see [adding custom languages](https://github.com/nvim-treesitter/nvim-treesitter#adding-custom-languages)
+
 ### Development
 
 #### Initialising repository
