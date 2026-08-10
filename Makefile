@@ -1,6 +1,7 @@
 LANGUAGE_NAME := tree-sitter-cypher
 HOMEPAGE_URL := git+https://github.com/taekwombo/tree-sitter-cypher.git
 VERSION := 0.0.1
+DESCRIPTION := Cypher Tree-sitter grammar
 
 # repository
 SRC_DIR := src

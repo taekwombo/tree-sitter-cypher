@@ -25,29 +25,47 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-14]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Set up tree-sitter
         uses: tree-sitter/setup-action/cli@v2
-      # - name: Set up examples
-      #   run: |-
-      #     git clone https://github.com/desktop/desktop examples/desktop --single-branch --depth=1 --filter=blob:none
-      #     git clone https://github.com/reduxjs/redux examples/redux --single-branch --depth=1 --filter=blob:none
-      #     git clone https://github.com/microsoft/vscode examples/vscode --single-branch --depth=1 --filter=blob:none
+      - name: Set up tree-sitter library
+        uses: tree-sitter/setup-action/lib@v2
       - name: Run tests
-        uses: tree-sitter/parser-test-action@v2
+        uses: tree-sitter/parser-test-action@v3
         with:
-          test-rust: true
-          test-node: true
-          test-python: true
           test-go: true
+          go-version: "1.23"
+          test-node: false
+          test-python: true
+          test-rust: true
           test-swift: true
-      # - name: Parse examples
-      #   id: test
-      #   uses: tree-sitter/parse-action@v4
-      #   with:
-      #     files: |
-      #       examples/**/*.ts
-      #       examples/**/*.tsx
-      #       !examples/redux/src/types/store.ts
-      #       !examples/vscode/src/bootstrap-window.ts
-      #       !examples/vscode/extensions/vscode-colorize-perf-tests/test/colorize-fixtures/test-checker.ts
+      - name: Zig Set up
+        uses: mlugg/setup-zig@v2
+        with:
+          version: 0.16.0
+          use-tool-cache: true
+      - name: Zig Run Build
+        shell: sh
+        run: zig build
+      - name: Zig Run Tests
+        shell: sh
+        run: zig build -Dtest
+      - name: Java Set up
+        uses: actions/setup-java@v5
+        with:
+          cache: maven
+          distribution: microsoft
+          java-version: "25"
+          cache-dependency-path: pom.xml
+      - name: Java Build parser library
+        shell: sh
+        run: |-
+          cmake -B build \
+            -DBUILD_SHARED_LIBS=ON \
+            -DCMAKE_INSTALL_LIBDIR=lib \
+            -DCMAKE_INSTALL_BINDIR=lib \
+            -DCMAKE_INSTALL_PREFIX="$RUNNER_TOOL_CACHE/tree-sitter/lib"
+          cmake --build build && cmake --install build --config Debug
+      - name: Java Run Tests
+        shell: sh
+        run: mvn -B --no-transfer-progress test

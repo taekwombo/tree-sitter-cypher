@@ -13,7 +13,6 @@ classifiers = [
   "Topic :: Text Processing :: Linguistic",
   "Typing :: Typed",
 ]
-authors = [{  }]
 requires-python = ">=3.10"
 license.text = "UNLICENSE"
 readme = "README.md"

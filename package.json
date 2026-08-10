@@ -35,8 +35,8 @@
   "devDependencies": {
     "@types/node": "^22",
     "nodemon": "^3",
-    "tree-sitter": "0.25.0",
-    "tree-sitter-cli": "0.26.8",
+    "tree-sitter": "0.25.1",
+    "tree-sitter-cli": "0.26.12",
     "typescript": "^5"
   }
 }
