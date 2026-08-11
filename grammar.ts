@@ -29,6 +29,9 @@ module.exports = grammar({
     inline: ($) => [
         $.namespace,
         $.variable_in_parens,
+
+        $.double_quote_string,
+        $.single_quote_string,
     ],
     rules: {
         cypher: ($) => seq(
@@ -501,11 +504,6 @@ module.exports = grammar({
             $.map_literal,
             $.list_literal,
         ),
-        null_literal: () => word('null'),
-        boolean_literal: () => choice(
-            word('true'),
-            word('false'),
-        ),
         list_literal: ($) => seq(
             '[',
             optional(seq(
@@ -637,33 +635,6 @@ module.exports = grammar({
             $.expression,
         ),
         variable: ($) => $.symbolic_name,
-        string_literal: ($) => choice(
-            seq(
-                `'`,
-                repeat(choice(/[^'\\]+/, $.escaped_char)),
-                `'`,
-            ),
-            seq(
-                `"`,
-                repeat(choice(/[^"\\]+/, $.escaped_char)),
-                `"`,
-            ),
-        ),
-        escaped_char: () => token(seq('\\', choice(
-            '\\',
-            `"`,
-            `'`,
-            /[^uU]/,
-            /[u][a-fA-F0-9]{4}/,
-            /[U][a-fA-F0-9]{8}/,
-        ))),
-        number_literal: ($) => choice(
-            $.decimal_literal,
-            $.integer_literal,
-            word('inf'),
-            word('infinity'),
-            word('nan'),
-        ),
         map_literal: ($) => seq(
             '{',
             optional(seq(
@@ -685,6 +656,14 @@ module.exports = grammar({
             repeat($.property_lookup),
         ),
         property_key_name: ($) => $.schema_name,
+        /* --- Literals --- */
+        number_literal:  ($) => choice(
+            $.decimal_literal,
+            $.integer_literal,
+            word('inf'),
+            word('infinity'),
+            word('nan'),
+        ),
         integer_literal: ($) => choice(
             $.hex_integer,
             $.octal_integer,
@@ -694,8 +673,37 @@ module.exports = grammar({
         decimal_integer: ($) => DEC_INT,
         octal_integer:   ($) => OCT_INT,
         decimal_literal: ($) => DECIMAL_LITERAL,
-        schema_name: ($) => choice($.symbolic_name, $.reserved_word),
-        reserved_word: () => choice(
+        null_literal:    ($) => word('null'),
+        boolean_literal: ($) => choice(word('true'), word('false')),
+
+        string_literal:      ($) => choice($.single_quote_string, $.double_quote_string),
+        single_quote_string: ($) => seq(
+            `'`,
+            repeat(choice(
+                /[^'\\]+/,
+                $.escaped_char,
+                alias(`''`, $.escaped_char),
+            )),
+            `'`,
+        ),
+        double_quote_string: ($) => seq(
+            `"`,
+            repeat(choice(
+                /[^"\\]+/,
+                $.escaped_char,
+                alias(`""`, $.escaped_char),
+            )),
+            `"`,
+        ),
+        escaped_char: () => token(choice(
+            '\\\\',
+            /\\[^uU]/,
+            /\\u[a-fA-F0-9]{4}/,
+            /\\U[a-fA-F0-9]{6}/,  // TODO: Probably should support 8 digit mode for compatibility.
+        )),
+        /* --- END --- */
+        schema_name: ($) => choice($.symbolic_name, $.reserved_word),       // ??
+        reserved_word: () => choice(                                        // ??
             word('all'),
             word('asc'),
             word('ascending'),

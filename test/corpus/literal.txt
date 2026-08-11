@@ -3,7 +3,7 @@ Literals
 ================================================================================
 
 RETURN 1, 0x10, 0o5, 1, 5.2, .02e1, 2.3e-3,
-    'String value', "String value \n \u1000",
+    'String value', "String value \n \u1000", 'string''', "string""",
     true, false,
     null,
     [1, 2, 3, 4],
@@ -77,6 +77,18 @@ RETURN 1, 0x10, 0o5, 1, 5.2, .02e1, 2.3e-3,
                         (literal
                           (string_literal
                             (escaped_char)
+                            (escaped_char))))))
+                  (projection_item
+                    (expression
+                      (atom
+                        (literal
+                          (string_literal
+                            (escaped_char))))))
+                  (projection_item
+                    (expression
+                      (atom
+                        (literal
+                          (string_literal
                             (escaped_char))))))
                   (projection_item
                     (expression
