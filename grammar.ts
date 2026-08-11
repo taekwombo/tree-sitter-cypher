@@ -496,25 +496,6 @@ module.exports = grammar({
             $.existential_subquery,
             prec.left($.variable),
         ),
-        literal: ($) => choice(
-            $.number_literal,
-            $.string_literal,
-            $.boolean_literal,
-            $.null_literal,
-            $.map_literal,
-            $.list_literal,
-        ),
-        list_literal: ($) => seq(
-            '[',
-            optional(seq(
-                $.expression,
-                repeat(seq(
-                    ',',
-                    $.expression,
-                )),
-            )),
-            ']',
-        ),
         parenthesized_expression: ($) => choice(
             $.variable_in_parens,
             seq(
@@ -635,28 +616,21 @@ module.exports = grammar({
             $.expression,
         ),
         variable: ($) => $.symbolic_name,
-        map_literal: ($) => seq(
-            '{',
-            optional(seq(
-                $.property_key_name,
-                ':',
-                $.expression,
-                repeat(seq(
-                    ',',
-                    $.property_key_name,
-                    ':',
-                    $.expression,
-                )),
-            )),
-            '}',
-        ),
         parameter: ($) => seq('$', choice($.symbolic_name, $.decimal_integer)),
         property_expression: ($) => seq(
             $.atom,
             repeat($.property_lookup),
         ),
-        property_key_name: ($) => $.schema_name,
+        /* --- CURATED --- */
         /* --- Literals --- */
+        literal: ($) => choice(
+            $.number_literal,
+            $.string_literal,
+            $.boolean_literal,
+            $.null_literal,
+            $.map_literal,
+            $.list_literal,
+        ),
         number_literal:  ($) => choice(
             $.decimal_literal,
             $.integer_literal,
@@ -701,6 +675,19 @@ module.exports = grammar({
             /\\u[a-fA-F0-9]{4}/,
             /\\U[a-fA-F0-9]{6}/,  // TODO: Probably should support 8 digit mode for compatibility.
         )),
+        list_literal: ($) => seq(
+            '[',
+            optional(commaSeparated($.expression)),
+            ']',
+        ),
+        map_literal: ($) => seq(
+            '{',
+            optional(commaSeparated(
+                seq($.property_key_name, ':', $.expression)
+            )),
+            '}',
+        ),
+        property_key_name: ($) => $.schema_name,
         /* --- END --- */
         schema_name: ($) => choice($.symbolic_name, $.reserved_word),       // ??
         reserved_word: () => choice(                                        // ??
@@ -843,8 +830,7 @@ module.exports = grammar({
     },
 });
 
-// TODO: Add tests and use this function.
-function comma_separated(rule: Rule): SeqRule {
+function commaSeparated(rule: Rule): SeqRule {
     return seq(rule, repeat(seq(',', rule)));
 }
 

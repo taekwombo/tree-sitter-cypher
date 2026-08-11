@@ -93,8 +93,6 @@ module.exports = grammar({
         list_operator_expression: ($) => prec(11, seq($.expression, choice(seq('[', $.expression, ']'), seq('[', optional($.expression), '..', optional($.expression), ']')))),
         property_or_labels_expression: ($) => prec.right(11, seq($.expression, choice(seq(repeat1($.property_lookup), optional($.node_labels)), seq(repeat($.property_lookup), $.node_labels)))),
         atom: ($) => choice($.literal, $.parameter, $.case_expression, seq(word('count'), /\(\s*\*\s*\)/), $.list_comprehension, $.pattern_comprehension, $.quantifier, $.pattern_predicate, $.parenthesized_expression, $.function_invocation, $.existential_subquery, prec.left($.variable)),
-        literal: ($) => choice($.number_literal, $.string_literal, $.boolean_literal, $.null_literal, $.map_literal, $.list_literal),
-        list_literal: ($) => seq('[', optional(seq($.expression, repeat(seq(',', $.expression)))), ']'),
         parenthesized_expression: ($) => choice($.variable_in_parens, seq('(', $.expression, ')')),
         relationships_pattern: ($) => seq($.node_pattern, prec.right(repeat1($.pattern_element_chain))),
         pattern_predicate: ($) => $.relationships_pattern,
@@ -115,11 +113,11 @@ module.exports = grammar({
         case_expression: ($) => seq(choice(seq(word('case'), repeat($.case_alternatives)), seq(word('case'), $.expression, repeat($.case_alternatives))), optional(seq(word('else'), $.expression)), word('end')),
         case_alternatives: ($) => seq(word('when'), $.expression, word('then'), $.expression),
         variable: ($) => $.symbolic_name,
-        map_literal: ($) => seq('{', optional(seq($.property_key_name, ':', $.expression, repeat(seq(',', $.property_key_name, ':', $.expression)))), '}'),
         parameter: ($) => seq('$', choice($.symbolic_name, $.decimal_integer)),
         property_expression: ($) => seq($.atom, repeat($.property_lookup)),
-        property_key_name: ($) => $.schema_name,
+        /* --- CURATED --- */
         /* --- Literals --- */
+        literal: ($) => choice($.number_literal, $.string_literal, $.boolean_literal, $.null_literal, $.map_literal, $.list_literal),
         number_literal: ($) => choice($.decimal_literal, $.integer_literal, word('inf'), word('infinity'), word('nan')),
         integer_literal: ($) => choice($.hex_integer, $.octal_integer, $.decimal_integer),
         hex_integer: ($) => HEX_INT,
@@ -132,6 +130,9 @@ module.exports = grammar({
         single_quote_string: ($) => seq(`'`, repeat(choice(/[^'\\]+/, $.escaped_char, alias(`''`, $.escaped_char))), `'`),
         double_quote_string: ($) => seq(`"`, repeat(choice(/[^"\\]+/, $.escaped_char, alias(`""`, $.escaped_char))), `"`),
         escaped_char: () => token(choice('\\\\', /\\[^uU]/, /\\u[a-fA-F0-9]{4}/, /\\U[a-fA-F0-9]{6}/)),
+        list_literal: ($) => seq('[', optional(commaSeparated($.expression)), ']'),
+        map_literal: ($) => seq('{', optional(commaSeparated(seq($.property_key_name, ':', $.expression))), '}'),
+        property_key_name: ($) => $.schema_name,
         /* --- END --- */
         schema_name: ($) => choice($.symbolic_name, $.reserved_word), // ??
         reserved_word: () => choice(// ??
@@ -146,8 +147,7 @@ module.exports = grammar({
         _whitespace_char: ($) => token(choice('\u{0009}', '\u{000a}', '\u{000b}', '\u{000c}', '\u{000d}', '\u{001c}', '\u{001d}', '\u{001e}', '\u{001f}', '\u{0020}', '\u{1680}', '\u{180e}', '\u{2000}', '\u{2001}', '\u{2002}', '\u{2003}', '\u{2004}', '\u{2005}', '\u{2006}', '\u{2008}', '\u{2009}', '\u{200a}', '\u{2028}', '\u{2029}', '\u{205f}', '\u{3000}', '\u{00a0}', '\u{2007}', '\u{202f}')),
     },
 });
-// TODO: Add tests and use this function.
-function comma_separated(rule) {
+function commaSeparated(rule) {
     return seq(rule, repeat(seq(',', rule)));
 }
 function word(keyword) {
