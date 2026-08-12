@@ -4,6 +4,7 @@
   "description": "Cypher Tree-sitter grammar",
   "main": "bindings/node",
   "types": "bindings/node",
+  "type": "module",
   "scripts": {
     "build": "tsc -p tsconfig.json && tree-sitter generate",
     "build:wasm": "npm run build && tree-sitter build --wasm",
@@ -33,7 +34,7 @@
     "node-gyp-build": "^4.8.2"
   },
   "devDependencies": {
-    "@types/node": "^22",
+    "@types/node": "^24",
     "nodemon": "^3",
     "tree-sitter": "0.25.1",
     "tree-sitter-cli": "0.26.12",

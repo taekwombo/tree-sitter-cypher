@@ -5,12 +5,12 @@ Reserved word
 MATCH (
     :ALL
     :ASC
-    : ASCENDING
-    : BY
-    :CREATE:
-    DELETE
-    : DESC:
-    DESCENDING
+    :ASCENDING
+    :BY
+    :CREATE
+    :DELETE
+    :DESC
+    :DESCENDING
     :DETACH
     :exists
     :limit
