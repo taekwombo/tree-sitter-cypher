@@ -235,8 +235,7 @@ RETURN foo CONTAINS 'bar' IN list;
                             (expression
                               (atom
                                 (variable
-                                  (symbolic_name
-                                    (unescaped_symbolic_name)))))
+                                  (identifier))))
                             (string_predicate_expression
                               (expression
                                 (atom
@@ -246,8 +245,7 @@ RETURN foo CONTAINS 'bar' IN list;
                           (expression
                             (atom
                               (variable
-                                (symbolic_name
-                                  (unescaped_symbolic_name))))))))))))))))))
+                                (identifier)))))))))))))))))
 
 ================================================================================
 CIP2021-08-10 - Addition
@@ -434,15 +432,12 @@ RETURN arr[x][y];
                             (expression
                               (atom
                                 (variable
-                                  (symbolic_name
-                                    (unescaped_symbolic_name)))))
+                                  (identifier))))
                             (expression
                               (atom
                                 (variable
-                                  (symbolic_name
-                                    (unescaped_symbolic_name)))))))
+                                  (identifier))))))
                         (expression
                           (atom
                             (variable
-                              (symbolic_name
-                                (unescaped_symbolic_name)))))))))))))))))
+                              (identifier))))))))))))))))

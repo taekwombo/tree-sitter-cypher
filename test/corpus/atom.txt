@@ -29,8 +29,7 @@ RETURN $1, $0, $named_parameter;
                     (expression
                       (atom
                         (parameter
-                          (symbolic_name
-                            (unescaped_symbolic_name)))))))))))))))
+                          (identifier))))))))))))))
 
 ================================================================================
 Atom - case expression - simple
@@ -61,13 +60,10 @@ END;
                               (expression
                                 (atom
                                   (variable
-                                    (symbolic_name
-                                      (unescaped_symbolic_name)))))
+                                    (identifier))))
                               (property_lookup
                                 (property_key_name
-                                  (schema_name
-                                    (symbolic_name
-                                      (unescaped_symbolic_name)))))))
+                                  (identifier)))))
                           (case_alternatives
                             (expression
                               (atom
@@ -111,13 +107,11 @@ END;
                             (expression
                               (atom
                                 (variable
-                                  (symbolic_name
-                                    (unescaped_symbolic_name)))))
+                                  (identifier))))
                             (expression
                               (atom
                                 (variable
-                                  (symbolic_name
-                                    (unescaped_symbolic_name)))))))))))))))))))
+                                  (identifier))))))))))))))))))
 
 ================================================================================
 Atom - COUNT(*)
@@ -164,8 +158,7 @@ RETURN [ x IN [1, 2, 3, 4] | x + 2 ];
                           (filter_expression
                             (id_in_coll
                               (variable
-                                (symbolic_name
-                                  (unescaped_symbolic_name)))
+                                (identifier))
                               (expression
                                 (atom
                                   (literal
@@ -199,8 +192,7 @@ RETURN [ x IN [1, 2, 3, 4] | x + 2 ];
                               (expression
                                 (atom
                                   (variable
-                                    (symbolic_name
-                                      (unescaped_symbolic_name)))))
+                                    (identifier))))
                               (expression
                                 (atom
                                   (literal
@@ -232,8 +224,7 @@ RETURN [ x IN [1, 2, 3, 4] WHERE x / 2 | x + 2 ];
                           (filter_expression
                             (id_in_coll
                               (variable
-                                (symbolic_name
-                                  (unescaped_symbolic_name)))
+                                (identifier))
                               (expression
                                 (atom
                                   (literal
@@ -268,8 +259,7 @@ RETURN [ x IN [1, 2, 3, 4] WHERE x / 2 | x + 2 ];
                                   (expression
                                     (atom
                                       (variable
-                                        (symbolic_name
-                                          (unescaped_symbolic_name)))))
+                                        (identifier))))
                                   (expression
                                     (atom
                                       (literal
@@ -281,8 +271,7 @@ RETURN [ x IN [1, 2, 3, 4] WHERE x / 2 | x + 2 ];
                               (expression
                                 (atom
                                   (variable
-                                    (symbolic_name
-                                      (unescaped_symbolic_name)))))
+                                    (identifier))))
                               (expression
                                 (atom
                                   (literal
@@ -318,13 +307,10 @@ RETURN [()-[r:ACTED_IN]->() WHERE r.year = 2022 | r.year - 2];
                                 (dash)
                                 (relationship_detail
                                   (variable
-                                    (symbolic_name
-                                      (unescaped_symbolic_name)))
+                                    (identifier))
                                   (relationship_types
                                     (rel_type_name
-                                      (schema_name
-                                        (symbolic_name
-                                          (unescaped_symbolic_name))))))
+                                      (identifier))))
                                 (dash)
                                 (right_arrow_head))
                               (node_pattern)))
@@ -335,13 +321,10 @@ RETURN [()-[r:ACTED_IN]->() WHERE r.year = 2022 | r.year - 2];
                                   (expression
                                     (atom
                                       (variable
-                                        (symbolic_name
-                                          (unescaped_symbolic_name)))))
+                                        (identifier))))
                                   (property_lookup
                                     (property_key_name
-                                      (schema_name
-                                        (symbolic_name
-                                          (unescaped_symbolic_name)))))))
+                                      (identifier)))))
                               (expression
                                 (atom
                                   (literal
@@ -355,13 +338,10 @@ RETURN [()-[r:ACTED_IN]->() WHERE r.year = 2022 | r.year - 2];
                                   (expression
                                     (atom
                                       (variable
-                                        (symbolic_name
-                                          (unescaped_symbolic_name)))))
+                                        (identifier))))
                                   (property_lookup
                                     (property_key_name
-                                      (schema_name
-                                        (symbolic_name
-                                          (unescaped_symbolic_name)))))))
+                                      (identifier)))))
                               (expression
                                 (atom
                                   (literal
@@ -391,8 +371,7 @@ RETURN [r = ()-[r:ACTED_IN]->() WHERE r.year = 2022 | r.year - 2];
                       (atom
                         (pattern_comprehension
                           (variable
-                            (symbolic_name
-                              (unescaped_symbolic_name)))
+                            (identifier))
                           (relationships_pattern
                             (node_pattern)
                             (pattern_element_chain
@@ -400,13 +379,10 @@ RETURN [r = ()-[r:ACTED_IN]->() WHERE r.year = 2022 | r.year - 2];
                                 (dash)
                                 (relationship_detail
                                   (variable
-                                    (symbolic_name
-                                      (unescaped_symbolic_name)))
+                                    (identifier))
                                   (relationship_types
                                     (rel_type_name
-                                      (schema_name
-                                        (symbolic_name
-                                          (unescaped_symbolic_name))))))
+                                      (identifier))))
                                 (dash)
                                 (right_arrow_head))
                               (node_pattern)))
@@ -417,13 +393,10 @@ RETURN [r = ()-[r:ACTED_IN]->() WHERE r.year = 2022 | r.year - 2];
                                   (expression
                                     (atom
                                       (variable
-                                        (symbolic_name
-                                          (unescaped_symbolic_name)))))
+                                        (identifier))))
                                   (property_lookup
                                     (property_key_name
-                                      (schema_name
-                                        (symbolic_name
-                                          (unescaped_symbolic_name)))))))
+                                      (identifier)))))
                               (expression
                                 (atom
                                   (literal
@@ -437,13 +410,10 @@ RETURN [r = ()-[r:ACTED_IN]->() WHERE r.year = 2022 | r.year - 2];
                                   (expression
                                     (atom
                                       (variable
-                                        (symbolic_name
-                                          (unescaped_symbolic_name)))))
+                                        (identifier))))
                                   (property_lookup
                                     (property_key_name
-                                      (schema_name
-                                        (symbolic_name
-                                          (unescaped_symbolic_name)))))))
+                                      (identifier)))))
                               (expression
                                 (atom
                                   (literal
@@ -475,20 +445,16 @@ RETURN ALL ( n IN node.names );
                           (filter_expression
                             (id_in_coll
                               (variable
-                                (symbolic_name
-                                  (unescaped_symbolic_name)))
+                                (identifier))
                               (expression
                                 (property_or_labels_expression
                                   (expression
                                     (atom
                                       (variable
-                                        (symbolic_name
-                                          (unescaped_symbolic_name)))))
+                                        (identifier))))
                                   (property_lookup
                                     (property_key_name
-                                      (schema_name
-                                        (symbolic_name
-                                          (unescaped_symbolic_name))))))))))))))))))))))
+                                      (identifier))))))))))))))))))))
 
 ================================================================================
 Atom - ANY(filter_expression)
@@ -514,20 +480,16 @@ RETURN ANY ( n IN node.names );
                           (filter_expression
                             (id_in_coll
                               (variable
-                                (symbolic_name
-                                  (unescaped_symbolic_name)))
+                                (identifier))
                               (expression
                                 (property_or_labels_expression
                                   (expression
                                     (atom
                                       (variable
-                                        (symbolic_name
-                                          (unescaped_symbolic_name)))))
+                                        (identifier))))
                                   (property_lookup
                                     (property_key_name
-                                      (schema_name
-                                        (symbolic_name
-                                          (unescaped_symbolic_name))))))))))))))))))))))
+                                      (identifier))))))))))))))))))))
 
 ================================================================================
 Atom - NONE(filter_expression)
@@ -553,20 +515,16 @@ RETURN NONE ( n IN node.names );
                           (filter_expression
                             (id_in_coll
                               (variable
-                                (symbolic_name
-                                  (unescaped_symbolic_name)))
+                                (identifier))
                               (expression
                                 (property_or_labels_expression
                                   (expression
                                     (atom
                                       (variable
-                                        (symbolic_name
-                                          (unescaped_symbolic_name)))))
+                                        (identifier))))
                                   (property_lookup
                                     (property_key_name
-                                      (schema_name
-                                        (symbolic_name
-                                          (unescaped_symbolic_name))))))))))))))))))))))
+                                      (identifier))))))))))))))))))))
 
 ================================================================================
 Atom - SINGLE(filter_expression)
@@ -592,20 +550,16 @@ RETURN SINGLE ( n IN node.names );
                           (filter_expression
                             (id_in_coll
                               (variable
-                                (symbolic_name
-                                  (unescaped_symbolic_name)))
+                                (identifier))
                               (expression
                                 (property_or_labels_expression
                                   (expression
                                     (atom
                                       (variable
-                                        (symbolic_name
-                                          (unescaped_symbolic_name)))))
+                                        (identifier))))
                                   (property_lookup
                                     (property_key_name
-                                      (schema_name
-                                        (symbolic_name
-                                          (unescaped_symbolic_name))))))))))))))))))))))
+                                      (identifier))))))))))))))))))))
 
 ================================================================================
 Atom - relationships pattern
@@ -631,59 +585,45 @@ RETURN (n:ACTOR)-[r:ACTED_IN]->(:MOVIE)-[d:DIRECTED_BY]->(x:DIRECTOR);
                           (relationships_pattern
                             (node_pattern
                               (variable
-                                (symbolic_name
-                                  (unescaped_symbolic_name)))
+                                (identifier))
                               (node_labels
                                 (node_label
                                   (label_name
-                                    (schema_name
-                                      (symbolic_name
-                                        (unescaped_symbolic_name)))))))
+                                    (identifier)))))
                             (pattern_element_chain
                               (relationship_pattern
                                 (dash)
                                 (relationship_detail
                                   (variable
-                                    (symbolic_name
-                                      (unescaped_symbolic_name)))
+                                    (identifier))
                                   (relationship_types
                                     (rel_type_name
-                                      (schema_name
-                                        (symbolic_name
-                                          (unescaped_symbolic_name))))))
+                                      (identifier))))
                                 (dash)
                                 (right_arrow_head))
                               (node_pattern
                                 (node_labels
                                   (node_label
                                     (label_name
-                                      (schema_name
-                                        (symbolic_name
-                                          (unescaped_symbolic_name))))))))
+                                      (identifier))))))
                             (pattern_element_chain
                               (relationship_pattern
                                 (dash)
                                 (relationship_detail
                                   (variable
-                                    (symbolic_name
-                                      (unescaped_symbolic_name)))
+                                    (identifier))
                                   (relationship_types
                                     (rel_type_name
-                                      (schema_name
-                                        (symbolic_name
-                                          (unescaped_symbolic_name))))))
+                                      (identifier))))
                                 (dash)
                                 (right_arrow_head))
                               (node_pattern
                                 (variable
-                                  (symbolic_name
-                                    (unescaped_symbolic_name)))
+                                  (identifier))
                                 (node_labels
                                   (node_label
                                     (label_name
-                                      (schema_name
-                                        (symbolic_name
-                                          (unescaped_symbolic_name))))))))))))))))))))))
+                                      (identifier))))))))))))))))))))
 
 ================================================================================
 Atom - parenthesized expression
@@ -735,23 +675,19 @@ RETURN hocus_pocus(DISTINCT x, y, z);
                       (atom
                         (function_invocation
                           (function_name
-                            (symbolic_name
-                              (unescaped_symbolic_name)))
+                            (identifier))
                           (expression
                             (atom
                               (variable
-                                (symbolic_name
-                                  (unescaped_symbolic_name)))))
+                                (identifier))))
                           (expression
                             (atom
                               (variable
-                                (symbolic_name
-                                  (unescaped_symbolic_name)))))
+                                (identifier))))
                           (expression
                             (atom
                               (variable
-                                (symbolic_name
-                                  (unescaped_symbolic_name))))))))))))))))))
+                                (identifier)))))))))))))))))
 
 ================================================================================
 Atom - variable
@@ -774,5 +710,4 @@ RETURN hocus_pocus;
                     (expression
                       (atom
                         (variable
-                          (symbolic_name
-                            (unescaped_symbolic_name)))))))))))))))
+                          (identifier))))))))))))))

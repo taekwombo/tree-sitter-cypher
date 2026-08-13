@@ -3,108 +3,133 @@ Reserved word
 ================================================================================
 
 MATCH (
+    :ALLSHORTESTPATHS
     :ALL
+    :AND
+    :ANY
+    :AS
     :ASC
     :ASCENDING
     :BY
+    :CALL
+    :CASE
+    :CONTAINS
+    :COUNT
     :CREATE
     :DELETE
     :DESC
     :DESCENDING
     :DETACH
-    :exists
-    :limit
-    :match
-    :merge
-    :on
-    :optional
-    :order
-    :remove
-    :return
-    :set
-    :skip
-    :where
-    :with
-    :union
-    :unwind
-    :and
-    :as
-    :contains
-    :distinct
-    :ends
-    :in
-    :is
-    :not
-    :or
-    :starts
-    :xor
-    :false
-    :true
-    :null
-    :constraint
-    :unique
-    :case
-    :when
-    :then
-    :else
-    :end
-    :mandatory
-    :scalar
-    :of
-    :add
-    :drop
+    :DISTINCT
+    :ELSE
+    :END
+    :ENDS
+    :EXISTS
+    :FALSE
+    :GROUP
+    :GROUPS
+    :IN
+    :INF
+    :INFINITY
+    :IS
+    :LIMIT
+    :MATCH
+    :MERGE
+    :NAN
+    :NONE
+    :NOT
+    :NULL
+    :OFFSET
+    :ON
+    :OPTIONAL
+    :OR
+    :ORDER
+    :PATH
+    :PATHS
+    :REDUCE
+    :REMOVE
+    :RETURN
+    :SET
+    :SHORTEST
+    :SHORTESTPATH
+    :SINGLE
+    :SKIP
+    :STARTS
+    :THEN
+    :TRIM
+    :TRUE
+    :UNION
+    :UNWIND
+    :WHEN
+    :WHERE
+    :WITH
+    :XOR
+    :YIELD
 )
 RETURN {
+
+    allshortestpaths: 1,
     all: 1,
+    and: 1,
+    any: 1,
+    as: 1,
     asc: 1,
     ascending: 1,
     by: 1,
+    call: 1,
+    case: 1,
+    contains: 1,
+    count: 1,
     create: 1,
     delete: 1,
     desc: 1,
     descending: 1,
     detach: 1,
+    distinct: 1,
+    else: 1,
+    end: 1,
+    ends: 1,
     exists: 1,
+    false: 1,
+    group: 1,
+    groups: 1,
+    in: 1,
+    inf: 1,
+    infinity: 1,
+    is: 1,
     limit: 1,
     match: 1,
     merge: 1,
+    nan: 1,
+    none: 1,
+    not: 1,
+    null: 1,
+    offset: 1,
     on: 1,
     optional: 1,
+    or: 1,
     order: 1,
+    path: 1,
+    paths: 1,
+    reduce: 1,
     remove: 1,
     return: 1,
     set: 1,
+    shortest: 1,
+    shortestpath: 1,
+    single: 1,
     skip: 1,
-    where: 1,
-    with: 1,
+    starts: 1,
+    then: 1,
+    trim: 1,
+    true: 1,
     union: 1,
     unwind: 1,
-    and: 1,
-    as: 1,
-    contains: 1,
-    distinct: 1,
-    ends: 1,
-    in: 1,
-    is: 1,
-    not: 1,
-    or: 1,
-    starts: 1,
-    xor: 1,
-    false: 1,
-    true: 1,
-    null: 1,
-    constraint: 1,
-    unique: 1,
-    case: 1,
     when: 1,
-    then: 1,
-    else: 1,
-    end: 1,
-    mandatory: 1,
-    scalar: 1,
-    of: 1,
-    add: 1,
-    drop: 1
+    where: 1,
+    with: 1,
+    xor: 1,
+    yield: 1
 } as reserved;
 
 --------------------------------------------------------------------------------
@@ -125,204 +150,190 @@ RETURN {
                           (node_labels
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))
+                                (identifier)))
                             (node_label
                               (label_name
-                                (schema_name
-                                  (reserved_word))))))))))))
+                                (identifier)))
+                            (node_label
+                              (label_name
+                                (identifier)))
+                            (node_label
+                              (label_name
+                                (identifier)))
+                            (node_label
+                              (label_name
+                                (identifier)))
+                            (node_label
+                              (label_name
+                                (identifier)))
+                            (node_label
+                              (label_name
+                                (identifier)))
+                            (node_label
+                              (label_name
+                                (identifier)))
+                            (node_label
+                              (label_name
+                                (identifier)))
+                            (node_label
+                              (label_name
+                                (identifier)))
+                            (node_label
+                              (label_name
+                                (identifier)))
+                            (node_label
+                              (label_name
+                                (identifier)))
+                            (node_label
+                              (label_name
+                                (identifier)))
+                            (node_label
+                              (label_name
+                                (identifier)))))))))))
             (return
               (projection_body
                 (projection_items
@@ -332,8 +343,7 @@ RETURN {
                         (literal
                           (map_literal
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -341,8 +351,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -350,8 +359,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -359,8 +367,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -368,8 +375,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -377,8 +383,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -386,8 +391,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -395,8 +399,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -404,8 +407,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -413,8 +415,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -422,8 +423,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -431,8 +431,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -440,8 +439,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -449,8 +447,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -458,8 +455,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -467,8 +463,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -476,8 +471,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -485,8 +479,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -494,8 +487,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -503,8 +495,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -512,8 +503,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -521,8 +511,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -530,8 +519,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -539,8 +527,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -548,8 +535,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -557,8 +543,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -566,8 +551,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -575,8 +559,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -584,8 +567,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -593,8 +575,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -602,8 +583,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -611,8 +591,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -620,8 +599,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -629,8 +607,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -638,8 +615,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -647,8 +623,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -656,8 +631,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -665,8 +639,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -674,8 +647,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -683,8 +655,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -692,8 +663,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -701,8 +671,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -710,8 +679,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -719,8 +687,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -728,8 +695,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -737,8 +703,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -746,8 +711,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -755,8 +719,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -764,8 +727,7 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -773,8 +735,103 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))
                             (property_key_name
-                              (schema_name
-                                (reserved_word)))
+                              (identifier))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))
+                            (property_key_name
+                              (identifier))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))
+                            (property_key_name
+                              (identifier))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))
+                            (property_key_name
+                              (identifier))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))
+                            (property_key_name
+                              (identifier))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))
+                            (property_key_name
+                              (identifier))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))
+                            (property_key_name
+                              (identifier))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))
+                            (property_key_name
+                              (identifier))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))
+                            (property_key_name
+                              (identifier))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))
+                            (property_key_name
+                              (identifier))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))
+                            (property_key_name
+                              (identifier))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))
+                            (property_key_name
+                              (identifier))
+                            (expression
+                              (atom
+                                (literal
+                                  (number_literal
+                                    (integer_literal
+                                      (decimal_integer))))))
+                            (property_key_name
+                              (identifier))
                             (expression
                               (atom
                                 (literal
@@ -782,5 +839,4 @@ RETURN {
                                     (integer_literal
                                       (decimal_integer))))))))))
                     (variable
-                      (symbolic_name
-                        (unescaped_symbolic_name)))))))))))))
+                      (identifier))))))))))))

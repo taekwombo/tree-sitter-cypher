@@ -65,8 +65,7 @@ RETURN (a)-->()
                           (relationships_pattern
                             (node_pattern
                               (variable
-                                (symbolic_name
-                                  (unescaped_symbolic_name))))
+                                (identifier)))
                             (pattern_element_chain
                               (relationship_pattern
                                 (dash)
@@ -97,14 +96,11 @@ RETURN actor
                       (pattern_element
                         (node_pattern
                           (variable
-                            (symbolic_name
-                              (unescaped_symbolic_name)))
+                            (identifier))
                           (node_labels
                             (node_label
                               (label_name
-                                (schema_name
-                                  (symbolic_name
-                                    (unescaped_symbolic_name)))))))))))
+                                (identifier)))))))))
                 (where
                   (expression
                     (atom
@@ -112,26 +108,21 @@ RETURN actor
                         (relationships_pattern
                           (node_pattern
                             (variable
-                              (symbolic_name
-                                (unescaped_symbolic_name))))
+                              (identifier)))
                           (pattern_element_chain
                             (relationship_pattern
                               (dash)
                               (relationship_detail
                                 (relationship_types
                                   (rel_type_name
-                                    (schema_name
-                                      (symbolic_name
-                                        (unescaped_symbolic_name))))))
+                                    (identifier))))
                               (dash)
                               (right_arrow_head))
                             (node_pattern
                               (node_labels
                                 (node_label
                                   (label_name
-                                    (schema_name
-                                      (symbolic_name
-                                        (unescaped_symbolic_name)))))))))))))))
+                                    (identifier)))))))))))))
             (return
               (projection_body
                 (projection_items
@@ -139,8 +130,7 @@ RETURN actor
                     (expression
                       (atom
                         (variable
-                          (symbolic_name
-                            (unescaped_symbolic_name)))))))))))))))
+                          (identifier))))))))))))))
 
 ================================================================================
 CIP2018-10-29 - PatternPredicate 2B
@@ -170,14 +160,11 @@ RETURN actor,
                       (pattern_element
                         (node_pattern
                           (variable
-                            (symbolic_name
-                              (unescaped_symbolic_name)))
+                            (identifier))
                           (node_labels
                             (node_label
                               (label_name
-                                (schema_name
-                                  (symbolic_name
-                                    (unescaped_symbolic_name)))))))))))))
+                                (identifier)))))))))))
             (return
               (projection_body
                 (projection_items
@@ -185,8 +172,7 @@ RETURN actor,
                     (expression
                       (atom
                         (variable
-                          (symbolic_name
-                            (unescaped_symbolic_name))))))
+                          (identifier)))))
                   (projection_item
                     (expression
                       (atom
@@ -198,26 +184,21 @@ RETURN actor,
                                   (relationships_pattern
                                     (node_pattern
                                       (variable
-                                        (symbolic_name
-                                          (unescaped_symbolic_name))))
+                                        (identifier)))
                                     (pattern_element_chain
                                       (relationship_pattern
                                         (dash)
                                         (relationship_detail
                                           (relationship_types
                                             (rel_type_name
-                                              (schema_name
-                                                (symbolic_name
-                                                  (unescaped_symbolic_name))))))
+                                              (identifier))))
                                         (dash)
                                         (right_arrow_head))
                                       (node_pattern
                                         (node_labels
                                           (node_label
                                             (label_name
-                                              (schema_name
-                                                (symbolic_name
-                                                  (unescaped_symbolic_name))))))))))))
+                                              (identifier))))))))))
                             (expression
                               (atom
                                 (literal
@@ -229,26 +210,21 @@ RETURN actor,
                                   (relationships_pattern
                                     (node_pattern
                                       (variable
-                                        (symbolic_name
-                                          (unescaped_symbolic_name))))
+                                        (identifier)))
                                     (pattern_element_chain
                                       (relationship_pattern
                                         (dash)
                                         (relationship_detail
                                           (relationship_types
                                             (rel_type_name
-                                              (schema_name
-                                                (symbolic_name
-                                                  (unescaped_symbolic_name))))))
+                                              (identifier))))
                                         (dash)
                                         (right_arrow_head))
                                       (node_pattern
                                         (node_labels
                                           (node_label
                                             (label_name
-                                              (schema_name
-                                                (symbolic_name
-                                                  (unescaped_symbolic_name))))))))))))
+                                              (identifier))))))))))
                             (expression
                               (atom
                                 (literal
@@ -258,8 +234,7 @@ RETURN actor,
                               (literal
                                 (string_literal)))))))
                     (variable
-                      (symbolic_name
-                        (unescaped_symbolic_name)))))))))))))
+                      (identifier))))))))))))
 
 ================================================================================
 CIP2018-10-29 - PatternPredicate 2C
@@ -286,14 +261,11 @@ RETURN movie
                       (pattern_element
                         (node_pattern
                           (variable
-                            (symbolic_name
-                              (unescaped_symbolic_name)))
+                            (identifier))
                           (node_labels
                             (node_label
                               (label_name
-                                (schema_name
-                                  (symbolic_name
-                                    (unescaped_symbolic_name)))))))
+                                (identifier)))))
                         (pattern_element_chain
                           (relationship_pattern
                             (left_arrow_head)
@@ -301,20 +273,15 @@ RETURN movie
                             (relationship_detail
                               (relationship_types
                                 (rel_type_name
-                                  (schema_name
-                                    (symbolic_name
-                                      (unescaped_symbolic_name))))))
+                                  (identifier))))
                             (dash))
                           (node_pattern
                             (variable
-                              (symbolic_name
-                                (unescaped_symbolic_name)))
+                              (identifier))
                             (node_labels
                               (node_label
                                 (label_name
-                                  (schema_name
-                                    (symbolic_name
-                                      (unescaped_symbolic_name))))))))))))))
+                                  (identifier))))))))))))
             (with
               (projection_body
                 (projection_items
@@ -322,23 +289,19 @@ RETURN movie
                     (expression
                       (atom
                         (variable
-                          (symbolic_name
-                            (unescaped_symbolic_name))))))
+                          (identifier)))))
                   (projection_item
                     (expression
                       (atom
                         (function_invocation
                           (function_name
-                            (symbolic_name
-                              (unescaped_symbolic_name)))
+                            (identifier))
                           (expression
                             (atom
                               (variable
-                                (symbolic_name
-                                  (unescaped_symbolic_name))))))))
+                                (identifier)))))))
                     (variable
-                      (symbolic_name
-                        (unescaped_symbolic_name))))))
+                      (identifier)))))
               (where
                 (expression
                   (atom
@@ -346,13 +309,11 @@ RETURN movie
                       (filter_expression
                         (id_in_coll
                           (variable
-                            (symbolic_name
-                              (unescaped_symbolic_name)))
+                            (identifier))
                           (expression
                             (atom
                               (variable
-                                (symbolic_name
-                                  (unescaped_symbolic_name))))))
+                                (identifier)))))
                         (where
                           (expression
                             (atom
@@ -360,26 +321,21 @@ RETURN movie
                                 (relationships_pattern
                                   (node_pattern
                                     (variable
-                                      (symbolic_name
-                                        (unescaped_symbolic_name))))
+                                      (identifier)))
                                   (pattern_element_chain
                                     (relationship_pattern
                                       (dash)
                                       (relationship_detail
                                         (relationship_types
                                           (rel_type_name
-                                            (schema_name
-                                              (symbolic_name
-                                                (unescaped_symbolic_name))))))
+                                            (identifier))))
                                       (dash)
                                       (right_arrow_head))
                                     (node_pattern
                                       (node_labels
                                         (node_label
                                           (label_name
-                                            (schema_name
-                                              (symbolic_name
-                                                (unescaped_symbolic_name)))))))))))))))))))
+                                            (identifier)))))))))))))))))
             (single_part_query
               (return
                 (projection_body
@@ -388,8 +344,7 @@ RETURN movie
                       (expression
                         (atom
                           (variable
-                            (symbolic_name
-                              (unescaped_symbolic_name))))))))))))))))
+                            (identifier)))))))))))))))
 
 ================================================================================
 CIP2018-10-29 - ExistentialSubquery 3A
@@ -418,14 +373,11 @@ RETURN actor
                       (pattern_element
                         (node_pattern
                           (variable
-                            (symbolic_name
-                              (unescaped_symbolic_name)))
+                            (identifier))
                           (node_labels
                             (node_label
                               (label_name
-                                (schema_name
-                                  (symbolic_name
-                                    (unescaped_symbolic_name)))))))))))
+                                (identifier)))))))))
                 (where
                   (expression
                     (atom
@@ -436,29 +388,23 @@ RETURN actor
                               (pattern_element
                                 (node_pattern
                                   (variable
-                                    (symbolic_name
-                                      (unescaped_symbolic_name)))
+                                    (identifier))
                                   (node_labels
                                     (node_label
                                       (label_name
-                                        (schema_name
-                                          (symbolic_name
-                                            (unescaped_symbolic_name)))))))
+                                        (identifier)))))
                                 (pattern_element_chain
                                   (relationship_pattern
                                     (dash)
                                     (relationship_detail
                                       (relationship_types
                                         (rel_type_name
-                                          (schema_name
-                                            (symbolic_name
-                                              (unescaped_symbolic_name))))))
+                                          (identifier))))
                                     (dash)
                                     (right_arrow_head))
                                   (node_pattern
                                     (variable
-                                      (symbolic_name
-                                        (unescaped_symbolic_name)))))
+                                      (identifier))))
                                 (pattern_element_chain
                                   (relationship_pattern
                                     (left_arrow_head)
@@ -466,14 +412,11 @@ RETURN actor
                                     (relationship_detail
                                       (relationship_types
                                         (rel_type_name
-                                          (schema_name
-                                            (symbolic_name
-                                              (unescaped_symbolic_name))))))
+                                          (identifier))))
                                     (dash))
                                   (node_pattern
                                     (variable
-                                      (symbolic_name
-                                        (unescaped_symbolic_name)))))))))
+                                      (identifier))))))))
                         (where
                           (expression
                             (comparison_expression
@@ -482,25 +425,19 @@ RETURN actor
                                   (expression
                                     (atom
                                       (variable
-                                        (symbolic_name
-                                          (unescaped_symbolic_name)))))
+                                        (identifier))))
                                   (property_lookup
                                     (property_key_name
-                                      (schema_name
-                                        (symbolic_name
-                                          (unescaped_symbolic_name)))))))
+                                      (identifier)))))
                               (expression
                                 (property_or_labels_expression
                                   (expression
                                     (atom
                                       (variable
-                                        (symbolic_name
-                                          (unescaped_symbolic_name)))))
+                                        (identifier))))
                                   (property_lookup
                                     (property_key_name
-                                      (schema_name
-                                        (symbolic_name
-                                          (unescaped_symbolic_name))))))))))))))))
+                                      (identifier))))))))))))))
             (return
               (projection_body
                 (projection_items
@@ -508,8 +445,7 @@ RETURN actor
                     (expression
                       (atom
                         (variable
-                          (symbolic_name
-                            (unescaped_symbolic_name)))))))))))))))
+                          (identifier))))))))))))))
 
 ================================================================================
 CIP2018-10-29 - ExistentialSubquery 3B
@@ -541,14 +477,11 @@ RETURN actor
                       (pattern_element
                         (node_pattern
                           (variable
-                            (symbolic_name
-                              (unescaped_symbolic_name)))
+                            (identifier))
                           (node_labels
                             (node_label
                               (label_name
-                                (schema_name
-                                  (symbolic_name
-                                    (unescaped_symbolic_name)))))))))))
+                                (identifier)))))))))
                 (where
                   (expression
                     (atom
@@ -564,29 +497,23 @@ RETURN actor
                                         (pattern_element
                                           (node_pattern
                                             (variable
-                                              (symbolic_name
-                                                (unescaped_symbolic_name)))
+                                              (identifier))
                                             (node_labels
                                               (node_label
                                                 (label_name
-                                                  (schema_name
-                                                    (symbolic_name
-                                                      (unescaped_symbolic_name)))))))
+                                                  (identifier)))))
                                           (pattern_element_chain
                                             (relationship_pattern
                                               (dash)
                                               (relationship_detail
                                                 (relationship_types
                                                   (rel_type_name
-                                                    (schema_name
-                                                      (symbolic_name
-                                                        (unescaped_symbolic_name))))))
+                                                    (identifier))))
                                               (dash)
                                               (right_arrow_head))
                                             (node_pattern
                                               (variable
-                                                (symbolic_name
-                                                  (unescaped_symbolic_name)))))
+                                                (identifier))))
                                           (pattern_element_chain
                                             (relationship_pattern
                                               (left_arrow_head)
@@ -594,14 +521,11 @@ RETURN actor
                                               (relationship_detail
                                                 (relationship_types
                                                   (rel_type_name
-                                                    (schema_name
-                                                      (symbolic_name
-                                                        (unescaped_symbolic_name))))))
+                                                    (identifier))))
                                               (dash))
                                             (node_pattern
                                               (variable
-                                                (symbolic_name
-                                                  (unescaped_symbolic_name)))))))))
+                                                (identifier))))))))
                                   (where
                                     (expression
                                       (comparison_expression
@@ -610,25 +534,19 @@ RETURN actor
                                             (expression
                                               (atom
                                                 (variable
-                                                  (symbolic_name
-                                                    (unescaped_symbolic_name)))))
+                                                  (identifier))))
                                             (property_lookup
                                               (property_key_name
-                                                (schema_name
-                                                  (symbolic_name
-                                                    (unescaped_symbolic_name)))))))
+                                                (identifier)))))
                                         (expression
                                           (property_or_labels_expression
                                             (expression
                                               (atom
                                                 (variable
-                                                  (symbolic_name
-                                                    (unescaped_symbolic_name)))))
+                                                  (identifier))))
                                             (property_lookup
                                               (property_key_name
-                                                (schema_name
-                                                  (symbolic_name
-                                                    (unescaped_symbolic_name))))))))))))
+                                                (identifier))))))))))
                               (with
                                 (projection_body
                                   (projection_items
@@ -636,22 +554,19 @@ RETURN actor
                                       (expression
                                         (atom
                                           (variable
-                                            (symbolic_name
-                                              (unescaped_symbolic_name))))))
+                                            (identifier)))))
                                     (projection_item
                                       (expression
                                         (atom))
                                       (variable
-                                        (symbolic_name
-                                          (unescaped_symbolic_name))))))
+                                        (identifier)))))
                                 (where
                                   (expression
                                     (comparison_expression
                                       (expression
                                         (atom
                                           (variable
-                                            (symbolic_name
-                                              (unescaped_symbolic_name)))))
+                                            (identifier))))
                                       (expression
                                         (atom
                                           (literal
@@ -674,5 +589,4 @@ RETURN actor
                     (expression
                       (atom
                         (variable
-                          (symbolic_name
-                            (unescaped_symbolic_name)))))))))))))))
+                          (identifier))))))))))))))

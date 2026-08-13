@@ -69,18 +69,11 @@
  "in"
  "is"
  "starts"
- "constraint"
- "unique"
  "case"
  "when"
  "then"
  "else"
  "end"
- "mandatory"
- "scalar"
- "of"
- "add"
- "drop"
 ] @keyword
 
 "return" @keyword.return

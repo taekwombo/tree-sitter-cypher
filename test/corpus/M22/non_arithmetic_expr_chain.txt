@@ -70,8 +70,7 @@ RETURN node.propertyA.propertyB.propertyC;
                       (pattern_element
                         (node_pattern
                           (variable
-                            (symbolic_name
-                              (unescaped_symbolic_name))))))))))
+                            (identifier)))))))))
             (return
               (projection_body
                 (projection_items
@@ -85,20 +84,13 @@ RETURN node.propertyA.propertyB.propertyC;
                                 (expression
                                   (atom
                                     (variable
-                                      (symbolic_name
-                                        (unescaped_symbolic_name)))))
+                                      (identifier))))
                                 (property_lookup
                                   (property_key_name
-                                    (schema_name
-                                      (symbolic_name
-                                        (unescaped_symbolic_name)))))))
+                                    (identifier)))))
                             (property_lookup
                               (property_key_name
-                                (schema_name
-                                  (symbolic_name
-                                    (unescaped_symbolic_name)))))))
+                                (identifier)))))
                         (property_lookup
                           (property_key_name
-                            (schema_name
-                              (symbolic_name
-                                (unescaped_symbolic_name)))))))))))))))))
+                            (identifier)))))))))))))))

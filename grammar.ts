@@ -1,28 +1,7 @@
-// opencypher tests
-// https://github.com/opencypher/openCypher/blob/c816756d50df9cde73cae573ef871f2d7e76c70a/tools/grammar/src/test/resources/cypher.txt
+import { OCT_INT, HEX_INT, DEC_INT, DECIMAL_LITERAL } from './grammar/num.js';
+import { REGULAR_IDENTIFIER, EXTENDED_IDENTIFIER } from './grammar/ident.js';
 
-const OCT_INT = /0o(_?[0-7])+/;
-const HEX_INT = /0x(_?[0-9a-f])+/i;
-const DEC_INT = /[0-9](_?[0-9])*/;
-const DECIMAL =  token.immediate(seq(
-    optional(DEC_INT),
-    '.',
-    DEC_INT,
-));
-const DECIMAL_SCIENTIFIC = token.immediate(seq(
-    choice(DEC_INT, DECIMAL),
-    choice('e', 'E'),
-    optional(choice('-', '+')),
-    DEC_INT,
-));
-const DECIMAL_LITERAL = token.immediate(seq(
-    choice(DECIMAL, DECIMAL_SCIENTIFIC),
-    optional(
-        choice('f', 'F', 'd', 'D'),
-    )
-));
-
-module.exports = grammar({
+export default grammar({
     name: 'cypher',
     extras: ($) => [$.comment, $._whitespace_char],
     conflicts: () => [],
@@ -32,6 +11,12 @@ module.exports = grammar({
 
         $.double_quote_string,
         $.single_quote_string,
+
+        $.delimited_identifier, // TODO: Verify which nodes should be inlined.
+        $.non_reserved_word,    // TODO: Verify which nodes should be inlined.
+        // $.identifier,        // TODO: Verify which nodes should be inlined.
+        $.symbolic_name,        // TODO: Verify which nodes should be inlined.
+        $.schema_name,          // TODO: Verify which nodes should be inlined.
     ],
     rules: {
         cypher: ($) => seq(
@@ -688,74 +673,87 @@ module.exports = grammar({
             '}',
         ),
         property_key_name: ($) => $.schema_name,
-        /* --- END --- */
-        schema_name: ($) => choice($.symbolic_name, $.reserved_word),       // ??
-        reserved_word: () => choice(                                        // ??
-            word('add'),
+        /* --- Identifiers --- */
+        parameter_name:         ($) => seq('$', choice(EXTENDED_IDENTIFIER, $.delimited_identifier)),
+        identifier:             ($) => choice(REGULAR_IDENTIFIER, $.delimited_identifier, $.non_reserved_word),
+        delimited_identifier:   ($) => seq(
+            '`',
+            repeat(choice(
+                /[^`\\]+/,
+                $.escaped_char,
+                alias('``', $.escaped_char),
+            )),
+            '`'
+        ),
+        non_reserved_word:      ($) => prec(-1, choice( // TODO: verify precedence works ok.
+            word('allshortestpaths'),
             word('all'),
             word('and'),
+            word('any'),
             word('as'),
             word('asc'),
             word('ascending'),
             word('by'),
+            word('call'),
             word('case'),
-            word('constraint'),
             word('contains'),
+            word('count'),
             word('create'),
             word('delete'),
             word('desc'),
             word('descending'),
             word('detach'),
             word('distinct'),
-            word('drop'),
             word('else'),
             word('end'),
             word('ends'),
             word('exists'),
             word('false'),
+            word('group'),
+            word('groups'),
             word('in'),
+            word('inf'),
+            word('infinity'),
             word('is'),
             word('limit'),
-            word('mandatory'),
             word('match'),
             word('merge'),
+            word('nan'),
+            word('none'),
             word('not'),
             word('null'),
-            word('of'),
+            word('offset'),
             word('on'),
             word('optional'),
             word('or'),
             word('order'),
+            word('path'),
+            word('paths'),
+            word('reduce'),
             word('remove'),
             word('return'),
-            word('scalar'),
             word('set'),
+            word('shortest'),
+            word('shortestpath'),
+            word('single'),
             word('skip'),
             word('starts'),
             word('then'),
+            word('trim'),
             word('true'),
             word('union'),
-            word('unique'),
             word('unwind'),
             word('when'),
             word('where'),
             word('with'),
             word('xor'),
-        ),
-        symbolic_name: ($) => prec.left(choice(
-            $.unescaped_symbolic_name,
-            $.escaped_symbolic_name,
-            word('count'),
-            word('filter'),
-            word('extract'),
-            word('any'),
-            word('none'),
-            word('single'),
+            word('yield'),
         )),
-        unescaped_symbolic_name: ($) => (
-            /(\p{ID_Start}|\p{Pc})(\p{ID_Continue}|\p{Sc})*/u
-        ),
-        escaped_symbolic_name: () => repeat1(/`[^`]*`/),
+
+        /* --- END --- */
+        schema_name: ($) => $.identifier,       // ??
+        symbolic_name: ($) => $.identifier,
+
         comment: ($) => choice(
             seq(
                 '/*',

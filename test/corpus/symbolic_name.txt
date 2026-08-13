@@ -19,41 +19,40 @@ RETURN count, filter, extract, any, none, single, `escaped`, `doubly``escaped`;
                     (expression
                       (atom
                         (variable
-                          (symbolic_name)))))
+                          (identifier)))))
                   (projection_item
                     (expression
                       (atom
                         (variable
-                          (symbolic_name)))))
+                          (identifier)))))
                   (projection_item
                     (expression
                       (atom
                         (variable
-                          (symbolic_name)))))
+                          (identifier)))))
                   (projection_item
                     (expression
                       (atom
                         (variable
-                          (symbolic_name)))))
+                          (identifier)))))
                   (projection_item
                     (expression
                       (atom
                         (variable
-                          (symbolic_name)))))
+                          (identifier)))))
                   (projection_item
                     (expression
                       (atom
                         (variable
-                          (symbolic_name)))))
+                          (identifier)))))
                   (projection_item
                     (expression
                       (atom
                         (variable
-                          (symbolic_name
-                            (escaped_symbolic_name))))))
+                          (identifier)))))
                   (projection_item
                     (expression
                       (atom
                         (variable
-                          (symbolic_name
-                            (escaped_symbolic_name)))))))))))))))
+                          (identifier
+                            (escaped_char)))))))))))))))

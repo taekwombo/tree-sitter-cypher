@@ -211,11 +211,6 @@
     }
   },
   {
-    "type": "escaped_symbolic_name",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "existential_subquery",
     "named": true,
     "fields": {},
@@ -382,7 +377,7 @@
       "required": true,
       "types": [
         {
-          "type": "symbolic_name",
+          "type": "identifier",
           "named": true
         },
         {
@@ -406,6 +401,21 @@
         },
         {
           "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escaped_char",
           "named": true
         }
       ]
@@ -477,7 +487,7 @@
       "required": true,
       "types": [
         {
-          "type": "schema_name",
+          "type": "identifier",
           "named": true
         }
       ]
@@ -856,7 +866,7 @@
           "named": true
         },
         {
-          "type": "symbolic_name",
+          "type": "identifier",
           "named": true
         }
       ]
@@ -1004,7 +1014,7 @@
       "required": true,
       "types": [
         {
-          "type": "symbolic_name",
+          "type": "identifier",
           "named": true
         },
         {
@@ -1023,7 +1033,7 @@
       "required": true,
       "types": [
         {
-          "type": "symbolic_name",
+          "type": "identifier",
           "named": true
         }
       ]
@@ -1137,7 +1147,7 @@
       "required": true,
       "types": [
         {
-          "type": "schema_name",
+          "type": "identifier",
           "named": true
         }
       ]
@@ -1281,7 +1291,7 @@
       "required": true,
       "types": [
         {
-          "type": "schema_name",
+          "type": "identifier",
           "named": true
         }
       ]
@@ -1414,11 +1424,6 @@
     }
   },
   {
-    "type": "reserved_word",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "return",
     "named": true,
     "fields": {},
@@ -1437,25 +1442,6 @@
     "type": "right_arrow_head",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "schema_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "reserved_word",
-          "named": true
-        },
-        {
-          "type": "symbolic_name",
-          "named": true
-        }
-      ]
-    }
   },
   {
     "type": "set",
@@ -1667,25 +1653,6 @@
     }
   },
   {
-    "type": "symbolic_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "escaped_symbolic_name",
-          "named": true
-        },
-        {
-          "type": "unescaped_symbolic_name",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "unary_expression",
     "named": true,
     "fields": {},
@@ -1774,7 +1741,7 @@
       "required": true,
       "types": [
         {
-          "type": "symbolic_name",
+          "type": "identifier",
           "named": true
         }
       ]
@@ -1984,11 +1951,15 @@
     "named": false
   },
   {
-    "type": "add",
+    "type": "`",
     "named": false
   },
   {
     "type": "all",
+    "named": false
+  },
+  {
+    "type": "allshortestpaths",
     "named": false
   },
   {
@@ -2021,10 +1992,6 @@
   },
   {
     "type": "case",
-    "named": false
-  },
-  {
-    "type": "constraint",
     "named": false
   },
   {
@@ -2068,10 +2035,6 @@
     "named": false
   },
   {
-    "type": "drop",
-    "named": false
-  },
-  {
     "type": "else",
     "named": false
   },
@@ -2092,15 +2055,15 @@
     "named": false
   },
   {
-    "type": "extract",
-    "named": false
-  },
-  {
     "type": "false",
     "named": false
   },
   {
-    "type": "filter",
+    "type": "group",
+    "named": false
+  },
+  {
+    "type": "groups",
     "named": false
   },
   {
@@ -2125,10 +2088,6 @@
   },
   {
     "type": "limit",
-    "named": false
-  },
-  {
-    "type": "mandatory",
     "named": false
   },
   {
@@ -2160,7 +2119,7 @@
     "named": true
   },
   {
-    "type": "of",
+    "type": "offset",
     "named": false
   },
   {
@@ -2180,6 +2139,18 @@
     "named": false
   },
   {
+    "type": "path",
+    "named": false
+  },
+  {
+    "type": "paths",
+    "named": false
+  },
+  {
+    "type": "reduce",
+    "named": false
+  },
+  {
     "type": "remove",
     "named": false
   },
@@ -2188,11 +2159,15 @@
     "named": false
   },
   {
-    "type": "scalar",
+    "type": "set",
     "named": false
   },
   {
-    "type": "set",
+    "type": "shortest",
+    "named": false
+  },
+  {
+    "type": "shortestpath",
     "named": false
   },
   {
@@ -2212,19 +2187,15 @@
     "named": false
   },
   {
+    "type": "trim",
+    "named": false
+  },
+  {
     "type": "true",
     "named": false
   },
   {
-    "type": "unescaped_symbolic_name",
-    "named": true
-  },
-  {
     "type": "union",
-    "named": false
-  },
-  {
-    "type": "unique",
     "named": false
   },
   {

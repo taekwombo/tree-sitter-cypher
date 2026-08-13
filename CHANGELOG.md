@@ -12,10 +12,15 @@
 #### Grammar Nodes
 Renamed nodes:
 - `double_literal` -> `decimal_literal`
+- `symbolic_name` -> `identifier`
+- `schema_name` -> `identifier`
 
 Removed nodes:
 - `exponent_decimal_real`
 - `regular_decimal_real`
+- `unescaped_symbolic_name`
+- `escaped_symbolic_name`
+- `reserved_word` (replaced with `non_reserved_word`, inlined)
 
 Patterns:
 - left_arrow_head accepts > only
