@@ -139,9 +139,9 @@ RETURN 1, 0x10, 0o5, 1, 5.2, .02e1, 2.3e-3,
                       (atom
                         (literal
                           (map_literal
-                            (property_key_name
-                              (identifier))
-                            (expression
-                              (atom
-                                (literal
-                                  (string_literal))))))))))))))))))
+                            (field
+                              (identifier)
+                              (expression
+                                (atom
+                                  (literal
+                                    (string_literal)))))))))))))))))))

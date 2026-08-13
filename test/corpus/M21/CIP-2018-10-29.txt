@@ -294,7 +294,7 @@ RETURN movie
                     (expression
                       (atom
                         (function_invocation
-                          (function_name
+                          (function_reference
                             (identifier))
                           (expression
                             (atom
@@ -427,8 +427,7 @@ RETURN actor
                                       (variable
                                         (identifier))))
                                   (property_lookup
-                                    (property_key_name
-                                      (identifier)))))
+                                    (identifier))))
                               (expression
                                 (property_or_labels_expression
                                   (expression
@@ -436,8 +435,7 @@ RETURN actor
                                       (variable
                                         (identifier))))
                                   (property_lookup
-                                    (property_key_name
-                                      (identifier))))))))))))))
+                                    (identifier)))))))))))))
             (return
               (projection_body
                 (projection_items
@@ -536,8 +534,7 @@ RETURN actor
                                                 (variable
                                                   (identifier))))
                                             (property_lookup
-                                              (property_key_name
-                                                (identifier)))))
+                                              (identifier))))
                                         (expression
                                           (property_or_labels_expression
                                             (expression
@@ -545,8 +542,7 @@ RETURN actor
                                                 (variable
                                                   (identifier))))
                                             (property_lookup
-                                              (property_key_name
-                                                (identifier))))))))))
+                                              (identifier)))))))))
                               (with
                                 (projection_body
                                   (projection_items
@@ -557,7 +553,8 @@ RETURN actor
                                             (identifier)))))
                                     (projection_item
                                       (expression
-                                        (atom))
+                                        (atom
+                                          (count_star)))
                                       (variable
                                         (identifier)))))
                                 (where

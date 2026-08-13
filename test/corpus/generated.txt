@@ -71,18 +71,18 @@ CREATE (n:Person { name : 'Andres', title : 'Developer' })
                                 (identifier))))
                           (properties
                             (map_literal
-                              (property_key_name
-                                (identifier))
-                              (expression
-                                (atom
-                                  (literal
-                                    (string_literal))))
-                              (property_key_name
-                                (identifier))
-                              (expression
-                                (atom
-                                  (literal
-                                    (string_literal)))))))))))))))))))
+                              (field
+                                (identifier)
+                                (expression
+                                  (atom
+                                    (literal
+                                      (string_literal)))))
+                              (field
+                                (identifier)
+                                (expression
+                                  (atom
+                                    (literal
+                                      (string_literal))))))))))))))))))))
 
 ================================================================================
 openCypher.txt: 3
@@ -125,8 +125,7 @@ RETURN node2.propertyA, node2.propertyB
                               (variable
                                 (identifier))))
                           (property_lookup
-                            (property_key_name
-                              (identifier)))))
+                            (identifier))))
                       (expression
                         (atom
                           (parameter
@@ -142,8 +141,7 @@ RETURN node2.propertyA, node2.propertyB
                             (variable
                               (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier))))))
+                          (identifier)))))
                   (projection_item
                     (expression
                       (property_or_labels_expression
@@ -152,8 +150,7 @@ RETURN node2.propertyA, node2.propertyB
                             (variable
                               (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier)))))))))))))))
+                          (identifier))))))))))))))
 
 ================================================================================
 openCypher.txt: 4
@@ -369,8 +366,7 @@ RETURN 1
                                     (variable
                                       (identifier))))
                                 (property_lookup
-                                  (property_key_name
-                                    (identifier)))))
+                                  (identifier))))
                             (expression
                               (atom
                                 (literal
@@ -424,8 +420,7 @@ RETURN 1
                                     (variable
                                       (identifier))))
                                 (property_lookup
-                                  (property_key_name
-                                    (identifier)))))
+                                  (identifier))))
                             (expression
                               (atom
                                 (literal
@@ -479,8 +474,7 @@ RETURN 1
                                     (variable
                                       (identifier))))
                                 (property_lookup
-                                  (property_key_name
-                                    (identifier)))))
+                                  (identifier))))
                             (expression
                               (atom
                                 (literal
@@ -1449,8 +1443,7 @@ MATCH (n) WITH n.prop AS p RETURN toInteger(DISTINCT p)
                             (variable
                               (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier)))))
+                          (identifier))))
                     (variable
                       (identifier))))))
             (single_part_query
@@ -1461,8 +1454,9 @@ MATCH (n) WITH n.prop AS p RETURN toInteger(DISTINCT p)
                       (expression
                         (atom
                           (function_invocation
-                            (function_name
+                            (function_reference
                               (identifier))
+                            (set_quantifier)
                             (expression
                               (atom
                                 (variable
@@ -1502,8 +1496,7 @@ MATCH (n) WITH n.prop AS p RETURN toInteger(DISTINCT  p)
                             (variable
                               (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier)))))
+                          (identifier))))
                     (variable
                       (identifier))))))
             (single_part_query
@@ -1514,8 +1507,9 @@ MATCH (n) WITH n.prop AS p RETURN toInteger(DISTINCT  p)
                       (expression
                         (atom
                           (function_invocation
-                            (function_name
+                            (function_reference
                               (identifier))
+                            (set_quantifier)
                             (expression
                               (atom
                                 (variable
@@ -1555,8 +1549,7 @@ MATCH (n) WITH n.prop AS p RETURN toInteger( DISTINCT  p)
                             (variable
                               (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier)))))
+                          (identifier))))
                     (variable
                       (identifier))))))
             (single_part_query
@@ -1567,8 +1560,9 @@ MATCH (n) WITH n.prop AS p RETURN toInteger( DISTINCT  p)
                       (expression
                         (atom
                           (function_invocation
-                            (function_name
+                            (function_reference
                               (identifier))
+                            (set_quantifier)
                             (expression
                               (atom
                                 (variable
@@ -1608,8 +1602,7 @@ MATCH (n) WITH n.prop AS p RETURN toInteger(   DISTINCT   p  )
                             (variable
                               (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier)))))
+                          (identifier))))
                     (variable
                       (identifier))))))
             (single_part_query
@@ -1620,8 +1613,9 @@ MATCH (n) WITH n.prop AS p RETURN toInteger(   DISTINCT   p  )
                       (expression
                         (atom
                           (function_invocation
-                            (function_name
+                            (function_reference
                               (identifier))
+                            (set_quantifier)
                             (expression
                               (atom
                                 (variable
@@ -1648,7 +1642,7 @@ RETURN toInteger()
                     (expression
                       (atom
                         (function_invocation
-                          (function_name
+                          (function_reference
                             (identifier)))))))))))))))
 
 ================================================================================
@@ -1672,7 +1666,7 @@ RETURN toInteger( )
                     (expression
                       (atom
                         (function_invocation
-                          (function_name
+                          (function_reference
                             (identifier)))))))))))))))
 
 ================================================================================
@@ -1696,7 +1690,7 @@ RETURN toInteger(   )
                     (expression
                       (atom
                         (function_invocation
-                          (function_name
+                          (function_reference
                             (identifier)))))))))))))))
 
 ================================================================================
@@ -1720,7 +1714,7 @@ RETURN toInteger ()
                     (expression
                       (atom
                         (function_invocation
-                          (function_name
+                          (function_reference
                             (identifier)))))))))))))))
 
 ================================================================================
@@ -1744,7 +1738,7 @@ RETURN toInteger ( )
                     (expression
                       (atom
                         (function_invocation
-                          (function_name
+                          (function_reference
                             (identifier)))))))))))))))
 
 ================================================================================
@@ -1768,7 +1762,7 @@ RETURN toInteger   ()
                     (expression
                       (atom
                         (function_invocation
-                          (function_name
+                          (function_reference
                             (identifier)))))))))))))))
 
 ================================================================================
@@ -1792,7 +1786,7 @@ RETURN toInteger   (  )
                     (expression
                       (atom
                         (function_invocation
-                          (function_name
+                          (function_reference
                             (identifier)))))))))))))))
 
 ================================================================================
@@ -1823,7 +1817,8 @@ MATCH (n) RETURN cOuNt(*)
                 (projection_items
                   (projection_item
                     (expression
-                      (atom))))))))))))
+                      (atom
+                        (count_star)))))))))))))
 
 ================================================================================
 openCypher.txt: 49
@@ -1853,7 +1848,8 @@ MATCH (n) RETURN cOuNt( * )
                 (projection_items
                   (projection_item
                     (expression
-                      (atom))))))))))))
+                      (atom
+                        (count_star)))))))))))))
 
 ================================================================================
 openCypher.txt: 50
@@ -1883,7 +1879,8 @@ MATCH (n) RETURN cOuNt( *)
                 (projection_items
                   (projection_item
                     (expression
-                      (atom))))))))))))
+                      (atom
+                        (count_star)))))))))))))
 
 ================================================================================
 openCypher.txt: 51
@@ -1913,7 +1910,8 @@ MATCH (n) RETURN cOuNt(* )
                 (projection_items
                   (projection_item
                     (expression
-                      (atom))))))))))))
+                      (atom
+                        (count_star)))))))))))))
 
 ================================================================================
 openCypher.txt: 52
@@ -1943,7 +1941,8 @@ MATCH (n) RETURN cOuNt (*)
                 (projection_items
                   (projection_item
                     (expression
-                      (atom))))))))))))
+                      (atom
+                        (count_star)))))))))))))
 
 ================================================================================
 openCypher.txt: 53
@@ -1973,7 +1972,8 @@ MATCH (n) RETURN cOuNt ( * )
                 (projection_items
                   (projection_item
                     (expression
-                      (atom))))))))))))
+                      (atom
+                        (count_star)))))))))))))
 
 ================================================================================
 openCypher.txt: 54
@@ -2003,7 +2003,8 @@ MATCH (n) RETURN cOuNt ( *)
                 (projection_items
                   (projection_item
                     (expression
-                      (atom))))))))))))
+                      (atom
+                        (count_star)))))))))))))
 
 ================================================================================
 openCypher.txt: 55
@@ -2033,7 +2034,8 @@ MATCH (n) RETURN cOuNt (* )
                 (projection_items
                   (projection_item
                     (expression
-                      (atom))))))))))))
+                      (atom
+                        (count_star)))))))))))))
 
 ================================================================================
 openCypher.txt: 56
@@ -2063,7 +2065,8 @@ MATCH (n) RETURN cOuNt  (*)
                 (projection_items
                   (projection_item
                     (expression
-                      (atom))))))))))))
+                      (atom
+                        (count_star)))))))))))))
 
 ================================================================================
 openCypher.txt: 57
@@ -2544,7 +2547,7 @@ RETURN toInteger(  a  ,  b  ,  c  )
                     (expression
                       (atom
                         (function_invocation
-                          (function_name
+                          (function_reference
                             (identifier))
                           (expression
                             (atom
@@ -2596,8 +2599,7 @@ MATCH (s:Store) WHERE s.storeFormat = 'Open' RETURN DISTINCT s.storeFormat ORDER
                               (variable
                                 (identifier))))
                           (property_lookup
-                            (property_key_name
-                              (identifier)))))
+                            (identifier))))
                       (expression
                         (atom
                           (literal
@@ -2613,8 +2615,7 @@ MATCH (s:Store) WHERE s.storeFormat = 'Open' RETURN DISTINCT s.storeFormat ORDER
                             (variable
                               (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier)))))))
+                          (identifier))))))
                 (order
                   (sort_item
                     (expression
@@ -2624,8 +2625,7 @@ MATCH (s:Store) WHERE s.storeFormat = 'Open' RETURN DISTINCT s.storeFormat ORDER
                             (variable
                               (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier)))))))
+                          (identifier))))))
                 (limit
                   (expression
                     (atom
@@ -2671,8 +2671,7 @@ MATCH (s:Store) WHERE s.storeFormat = 'Open' RETURN DISTINCT s.storeFormat ORDER
                               (variable
                                 (identifier))))
                           (property_lookup
-                            (property_key_name
-                              (identifier)))))
+                            (identifier))))
                       (expression
                         (atom
                           (literal
@@ -2688,8 +2687,7 @@ MATCH (s:Store) WHERE s.storeFormat = 'Open' RETURN DISTINCT s.storeFormat ORDER
                             (variable
                               (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier)))))))
+                          (identifier))))))
                 (order
                   (sort_item
                     (expression
@@ -2699,8 +2697,7 @@ MATCH (s:Store) WHERE s.storeFormat = 'Open' RETURN DISTINCT s.storeFormat ORDER
                             (variable
                               (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier)))))))
+                          (identifier))))))
                 (limit
                   (expression
                     (atom
@@ -2746,8 +2743,7 @@ MATCH (s:Store) WHERE s.storeFormat = 'Open' RETURN DISTINCT s.storeFormat ORDER
                               (variable
                                 (identifier))))
                           (property_lookup
-                            (property_key_name
-                              (identifier)))))
+                            (identifier))))
                       (expression
                         (atom
                           (literal
@@ -2763,8 +2759,7 @@ MATCH (s:Store) WHERE s.storeFormat = 'Open' RETURN DISTINCT s.storeFormat ORDER
                             (variable
                               (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier)))))))
+                          (identifier))))))
                 (order
                   (sort_item
                     (expression
@@ -2774,8 +2769,7 @@ MATCH (s:Store) WHERE s.storeFormat = 'Open' RETURN DISTINCT s.storeFormat ORDER
                             (variable
                               (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier)))))))
+                          (identifier))))))
                 (limit
                   (expression
                     (atom
@@ -2821,8 +2815,7 @@ MATCH (s:Store) WHERE s.storeFormat = 'Open' RETURN DISTINCT s.storeFormat ORDER
                               (variable
                                 (identifier))))
                           (property_lookup
-                            (property_key_name
-                              (identifier)))))
+                            (identifier))))
                       (expression
                         (atom
                           (literal
@@ -2838,8 +2831,7 @@ MATCH (s:Store) WHERE s.storeFormat = 'Open' RETURN DISTINCT s.storeFormat ORDER
                             (variable
                               (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier)))))))
+                          (identifier))))))
                 (order
                   (sort_item
                     (expression
@@ -2849,8 +2841,7 @@ MATCH (s:Store) WHERE s.storeFormat = 'Open' RETURN DISTINCT s.storeFormat ORDER
                             (variable
                               (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier)))))))
+                          (identifier))))))
                 (limit
                   (expression
                     (atom
@@ -3022,8 +3013,7 @@ MATCH (other:Person) WHERE NOT other.age > 25 RETURN other.name
                                   (variable
                                     (identifier))))
                               (property_lookup
-                                (property_key_name
-                                  (identifier)))))
+                                (identifier))))
                           (expression
                             (atom
                               (literal
@@ -3041,8 +3031,7 @@ MATCH (other:Person) WHERE NOT other.age > 25 RETURN other.name
                             (variable
                               (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier)))))))))))))))
+                          (identifier))))))))))))))
 
 ================================================================================
 openCypher.txt: 73
@@ -3083,8 +3072,7 @@ MATCH (other:Person) WHERE  NOT other.age > 25 RETURN other.name
                                   (variable
                                     (identifier))))
                               (property_lookup
-                                (property_key_name
-                                  (identifier)))))
+                                (identifier))))
                           (expression
                             (atom
                               (literal
@@ -3102,8 +3090,7 @@ MATCH (other:Person) WHERE  NOT other.age > 25 RETURN other.name
                             (variable
                               (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier)))))))))))))))
+                          (identifier))))))))))))))
 
 ================================================================================
 openCypher.txt: 74
@@ -3144,8 +3131,7 @@ MATCH (other:Person) WHERE    NOT   other.age > 25 RETURN other.name
                                   (variable
                                     (identifier))))
                               (property_lookup
-                                (property_key_name
-                                  (identifier)))))
+                                (identifier))))
                           (expression
                             (atom
                               (literal
@@ -3163,8 +3149,7 @@ MATCH (other:Person) WHERE    NOT   other.age > 25 RETURN other.name
                             (variable
                               (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier)))))))))))))))
+                          (identifier))))))))))))))
 
 ================================================================================
 openCypher.txt: 75
@@ -3208,8 +3193,7 @@ MATCH (other:Person) WHERE (NOT other.age > 25) RETURN other.name
                                         (variable
                                           (identifier))))
                                     (property_lookup
-                                      (property_key_name
-                                        (identifier)))))
+                                      (identifier))))
                                 (expression
                                   (atom
                                     (literal
@@ -3227,8 +3211,7 @@ MATCH (other:Person) WHERE (NOT other.age > 25) RETURN other.name
                             (variable
                               (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier)))))))))))))))
+                          (identifier))))))))))))))
 
 ================================================================================
 openCypher.txt: 76
@@ -3272,8 +3255,7 @@ MATCH (other:Person) WHERE (NOT   other.age > 25) RETURN other.name
                                         (variable
                                           (identifier))))
                                     (property_lookup
-                                      (property_key_name
-                                        (identifier)))))
+                                      (identifier))))
                                 (expression
                                   (atom
                                     (literal
@@ -3291,8 +3273,7 @@ MATCH (other:Person) WHERE (NOT   other.age > 25) RETURN other.name
                             (variable
                               (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier)))))))))))))))
+                          (identifier))))))))))))))
 
 ================================================================================
 openCypher.txt: 77
@@ -3336,8 +3317,7 @@ MATCH (other:Person) WHERE (   NOT   other.age > 25) RETURN other.name
                                         (variable
                                           (identifier))))
                                     (property_lookup
-                                      (property_key_name
-                                        (identifier)))))
+                                      (identifier))))
                                 (expression
                                   (atom
                                     (literal
@@ -3355,8 +3335,7 @@ MATCH (other:Person) WHERE (   NOT   other.age > 25) RETURN other.name
                             (variable
                               (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier)))))))))))))))
+                          (identifier))))))))))))))
 
 ================================================================================
 openCypher.txt: 78
@@ -3400,8 +3379,7 @@ MATCH (other:Person) WHERE ( NOT other.age > 25) RETURN other.name
                                         (variable
                                           (identifier))))
                                     (property_lookup
-                                      (property_key_name
-                                        (identifier)))))
+                                      (identifier))))
                                 (expression
                                   (atom
                                     (literal
@@ -3419,8 +3397,7 @@ MATCH (other:Person) WHERE ( NOT other.age > 25) RETURN other.name
                             (variable
                               (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier)))))))))))))))
+                          (identifier))))))))))))))
 
 ================================================================================
 openCypher.txt: 79
@@ -3464,8 +3441,7 @@ MATCH (other:Person) WHERE ( NOT   other.age  > 25   ) RETURN other.name
                                         (variable
                                           (identifier))))
                                     (property_lookup
-                                      (property_key_name
-                                        (identifier)))))
+                                      (identifier))))
                                 (expression
                                   (atom
                                     (literal
@@ -3483,8 +3459,7 @@ MATCH (other:Person) WHERE ( NOT   other.age  > 25   ) RETURN other.name
                             (variable
                               (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier)))))))))))))))
+                          (identifier))))))))))))))
 
 ================================================================================
 openCypher.txt: 80
@@ -3528,8 +3503,7 @@ MATCH (other:Person) WHERE   NOT  (  other.age > 25) RETURN other.name
                                         (variable
                                           (identifier))))
                                     (property_lookup
-                                      (property_key_name
-                                        (identifier)))))
+                                      (identifier))))
                                 (expression
                                   (atom
                                     (literal
@@ -3547,8 +3521,7 @@ MATCH (other:Person) WHERE   NOT  (  other.age > 25) RETURN other.name
                             (variable
                               (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier)))))))))))))))
+                          (identifier))))))))))))))
 
 ================================================================================
 openCypher.txt: 81
@@ -3569,7 +3542,8 @@ RETURN count(*)
                 (projection_items
                   (projection_item
                     (expression
-                      (atom))))))))))))
+                      (atom
+                        (count_star)))))))))))))
 
 ================================================================================
 openCypher.txt: 82
@@ -3593,14 +3567,14 @@ WITH {a: 1} AS map RETURN count(map.a)
                       (atom
                         (literal
                           (map_literal
-                            (property_key_name
-                              (identifier))
-                            (expression
-                              (atom
-                                (literal
-                                  (number_literal
-                                    (integer_literal
-                                      (decimal_integer))))))))))
+                            (field
+                              (identifier)
+                              (expression
+                                (atom
+                                  (literal
+                                    (number_literal
+                                      (integer_literal
+                                        (decimal_integer)))))))))))
                     (variable
                       (identifier))))))
             (single_part_query
@@ -3611,7 +3585,7 @@ WITH {a: 1} AS map RETURN count(map.a)
                       (expression
                         (atom
                           (function_invocation
-                            (function_name
+                            (function_reference
                               (identifier))
                             (expression
                               (property_or_labels_expression
@@ -3620,8 +3594,7 @@ WITH {a: 1} AS map RETURN count(map.a)
                                     (variable
                                       (identifier))))
                                 (property_lookup
-                                  (property_key_name
-                                    (identifier)))))))))))))))))))
+                                  (identifier))))))))))))))))))
 
 ================================================================================
 openCypher.txt: 83
@@ -4224,7 +4197,7 @@ RETURN [x IN [1, '', n] | toString(x) ] AS list
                           (expression
                             (atom
                               (function_invocation
-                                (function_name
+                                (function_reference
                                   (identifier))
                                 (expression
                                   (atom
@@ -4279,7 +4252,7 @@ RETURN [x IN [1, '', n]    | toString(x) ] AS list
                           (expression
                             (atom
                               (function_invocation
-                                (function_name
+                                (function_reference
                                   (identifier))
                                 (expression
                                   (atom
@@ -4334,7 +4307,7 @@ RETURN [x IN [1, '', n]    |    toString(x) ] AS list
                           (expression
                             (atom
                               (function_invocation
-                                (function_name
+                                (function_reference
                                   (identifier))
                                 (expression
                                   (atom
@@ -4389,7 +4362,7 @@ RETURN [x IN [1, '', n]    |    toString(x)    ] AS list
                           (expression
                             (atom
                               (function_invocation
-                                (function_name
+                                (function_reference
                                   (identifier))
                                 (expression
                                   (atom
@@ -4446,7 +4419,7 @@ RETURN [  x   IN   [  1  ,   ''  ,   n  ]    |    toString(x)   +   '-string'  ]
                               (expression
                                 (atom
                                   (function_invocation
-                                    (function_name
+                                    (function_reference
                                       (identifier))
                                     (expression
                                       (atom
@@ -5338,14 +5311,14 @@ CREATE ()-[v:R{prop:42}]->()
                                   (identifier)))
                               (properties
                                 (map_literal
-                                  (property_key_name
-                                    (identifier))
-                                  (expression
-                                    (atom
-                                      (literal
-                                        (number_literal
-                                          (integer_literal
-                                            (decimal_integer)))))))))
+                                  (field
+                                    (identifier)
+                                    (expression
+                                      (atom
+                                        (literal
+                                          (number_literal
+                                            (integer_literal
+                                              (decimal_integer))))))))))
                             (dash)
                             (right_arrow_head))
                           (node_pattern))))))))))))))
@@ -5382,14 +5355,14 @@ CREATE ()-[   v:R{prop:42}]->()
                                   (identifier)))
                               (properties
                                 (map_literal
-                                  (property_key_name
-                                    (identifier))
-                                  (expression
-                                    (atom
-                                      (literal
-                                        (number_literal
-                                          (integer_literal
-                                            (decimal_integer)))))))))
+                                  (field
+                                    (identifier)
+                                    (expression
+                                      (atom
+                                        (literal
+                                          (number_literal
+                                            (integer_literal
+                                              (decimal_integer))))))))))
                             (dash)
                             (right_arrow_head))
                           (node_pattern))))))))))))))
@@ -5426,14 +5399,14 @@ CREATE ()-[   v   :R{prop:42}]->()
                                   (identifier)))
                               (properties
                                 (map_literal
-                                  (property_key_name
-                                    (identifier))
-                                  (expression
-                                    (atom
-                                      (literal
-                                        (number_literal
-                                          (integer_literal
-                                            (decimal_integer)))))))))
+                                  (field
+                                    (identifier)
+                                    (expression
+                                      (atom
+                                        (literal
+                                          (number_literal
+                                            (integer_literal
+                                              (decimal_integer))))))))))
                             (dash)
                             (right_arrow_head))
                           (node_pattern))))))))))))))
@@ -5470,14 +5443,14 @@ CREATE ()-[   v   :   R{prop:42}]->()
                                   (identifier)))
                               (properties
                                 (map_literal
-                                  (property_key_name
-                                    (identifier))
-                                  (expression
-                                    (atom
-                                      (literal
-                                        (number_literal
-                                          (integer_literal
-                                            (decimal_integer)))))))))
+                                  (field
+                                    (identifier)
+                                    (expression
+                                      (atom
+                                        (literal
+                                          (number_literal
+                                            (integer_literal
+                                              (decimal_integer))))))))))
                             (dash)
                             (right_arrow_head))
                           (node_pattern))))))))))))))
@@ -5514,14 +5487,14 @@ CREATE ()-[   v   :   R   {prop:42}]->()
                                   (identifier)))
                               (properties
                                 (map_literal
-                                  (property_key_name
-                                    (identifier))
-                                  (expression
-                                    (atom
-                                      (literal
-                                        (number_literal
-                                          (integer_literal
-                                            (decimal_integer)))))))))
+                                  (field
+                                    (identifier)
+                                    (expression
+                                      (atom
+                                        (literal
+                                          (number_literal
+                                            (integer_literal
+                                              (decimal_integer))))))))))
                             (dash)
                             (right_arrow_head))
                           (node_pattern))))))))))))))
@@ -5558,14 +5531,14 @@ CREATE ()-[   v   :   R   {   prop:42}]->()
                                   (identifier)))
                               (properties
                                 (map_literal
-                                  (property_key_name
-                                    (identifier))
-                                  (expression
-                                    (atom
-                                      (literal
-                                        (number_literal
-                                          (integer_literal
-                                            (decimal_integer)))))))))
+                                  (field
+                                    (identifier)
+                                    (expression
+                                      (atom
+                                        (literal
+                                          (number_literal
+                                            (integer_literal
+                                              (decimal_integer))))))))))
                             (dash)
                             (right_arrow_head))
                           (node_pattern))))))))))))))
@@ -5602,14 +5575,14 @@ CREATE ()-[   v   :   R   {   prop   :42}]->()
                                   (identifier)))
                               (properties
                                 (map_literal
-                                  (property_key_name
-                                    (identifier))
-                                  (expression
-                                    (atom
-                                      (literal
-                                        (number_literal
-                                          (integer_literal
-                                            (decimal_integer)))))))))
+                                  (field
+                                    (identifier)
+                                    (expression
+                                      (atom
+                                        (literal
+                                          (number_literal
+                                            (integer_literal
+                                              (decimal_integer))))))))))
                             (dash)
                             (right_arrow_head))
                           (node_pattern))))))))))))))
@@ -5646,14 +5619,14 @@ CREATE ()-[   v   :   R   {   prop   :   42}]->()
                                   (identifier)))
                               (properties
                                 (map_literal
-                                  (property_key_name
-                                    (identifier))
-                                  (expression
-                                    (atom
-                                      (literal
-                                        (number_literal
-                                          (integer_literal
-                                            (decimal_integer)))))))))
+                                  (field
+                                    (identifier)
+                                    (expression
+                                      (atom
+                                        (literal
+                                          (number_literal
+                                            (integer_literal
+                                              (decimal_integer))))))))))
                             (dash)
                             (right_arrow_head))
                           (node_pattern))))))))))))))
@@ -5690,14 +5663,14 @@ CREATE ()-[   v   :   R   {   prop   :   42   }]->()
                                   (identifier)))
                               (properties
                                 (map_literal
-                                  (property_key_name
-                                    (identifier))
-                                  (expression
-                                    (atom
-                                      (literal
-                                        (number_literal
-                                          (integer_literal
-                                            (decimal_integer)))))))))
+                                  (field
+                                    (identifier)
+                                    (expression
+                                      (atom
+                                        (literal
+                                          (number_literal
+                                            (integer_literal
+                                              (decimal_integer))))))))))
                             (dash)
                             (right_arrow_head))
                           (node_pattern))))))))))))))
@@ -5734,14 +5707,14 @@ CREATE ()-[   v   :   R   {   prop   :   42   }   ]->()
                                   (identifier)))
                               (properties
                                 (map_literal
-                                  (property_key_name
-                                    (identifier))
-                                  (expression
-                                    (atom
-                                      (literal
-                                        (number_literal
-                                          (integer_literal
-                                            (decimal_integer)))))))))
+                                  (field
+                                    (identifier)
+                                    (expression
+                                      (atom
+                                        (literal
+                                          (number_literal
+                                            (integer_literal
+                                              (decimal_integer))))))))))
                             (dash)
                             (right_arrow_head))
                           (node_pattern))))))))))))))
@@ -5777,8 +5750,7 @@ MATCH (n) SET n.prop=10
                       (variable
                         (identifier)))
                     (property_lookup
-                      (property_key_name
-                        (identifier))))
+                      (identifier)))
                   (expression
                     (atom
                       (literal
@@ -5817,8 +5789,7 @@ MATCH (n) SET   n.prop=10
                       (variable
                         (identifier)))
                     (property_lookup
-                      (property_key_name
-                        (identifier))))
+                      (identifier)))
                   (expression
                     (atom
                       (literal
@@ -5857,8 +5828,7 @@ MATCH (n) SET   n.prop   =10
                       (variable
                         (identifier)))
                     (property_lookup
-                      (property_key_name
-                        (identifier))))
+                      (identifier)))
                   (expression
                     (atom
                       (literal
@@ -5897,8 +5867,7 @@ MATCH (n) SET   n.prop   =   10
                       (variable
                         (identifier)))
                     (property_lookup
-                      (property_key_name
-                        (identifier))))
+                      (identifier)))
                   (expression
                     (atom
                       (literal
@@ -6481,8 +6450,7 @@ RETURN [(a)-->()WHERE a:Label|55 + a.prop]
                                       (variable
                                         (identifier))))
                                   (property_lookup
-                                    (property_key_name
-                                      (identifier))))))))))))))))))))
+                                    (identifier)))))))))))))))))))
 
 ================================================================================
 openCypher.txt: 162
@@ -6540,8 +6508,7 @@ RETURN [   (a)-->()WHERE a:Label|55 + a.prop]
                                       (variable
                                         (identifier))))
                                   (property_lookup
-                                    (property_key_name
-                                      (identifier))))))))))))))))))))
+                                    (identifier)))))))))))))))))))
 
 ================================================================================
 openCypher.txt: 163
@@ -6599,8 +6566,7 @@ RETURN [   (a)-->()   WHERE a:Label|55 + a.prop]
                                       (variable
                                         (identifier))))
                                   (property_lookup
-                                    (property_key_name
-                                      (identifier))))))))))))))))))))
+                                    (identifier)))))))))))))))))))
 
 ================================================================================
 openCypher.txt: 164
@@ -6658,8 +6624,7 @@ RETURN [   (a)-->()   WHERE   a:Label|55 + a.prop]
                                       (variable
                                         (identifier))))
                                   (property_lookup
-                                    (property_key_name
-                                      (identifier))))))))))))))))))))
+                                    (identifier)))))))))))))))))))
 
 ================================================================================
 openCypher.txt: 165
@@ -6717,8 +6682,7 @@ RETURN [   (a)-->()   WHERE   a   :Label|55 + a.prop]
                                       (variable
                                         (identifier))))
                                   (property_lookup
-                                    (property_key_name
-                                      (identifier))))))))))))))))))))
+                                    (identifier)))))))))))))))))))
 
 ================================================================================
 openCypher.txt: 166
@@ -6776,8 +6740,7 @@ RETURN [   (a)-->()   WHERE   a   :   Label|55 + a.prop]
                                       (variable
                                         (identifier))))
                                   (property_lookup
-                                    (property_key_name
-                                      (identifier))))))))))))))))))))
+                                    (identifier)))))))))))))))))))
 
 ================================================================================
 openCypher.txt: 167
@@ -6835,8 +6798,7 @@ RETURN [   (a)-->()   WHERE   a   :   Label   |55 + a.prop]
                                       (variable
                                         (identifier))))
                                   (property_lookup
-                                    (property_key_name
-                                      (identifier))))))))))))))))))))
+                                    (identifier)))))))))))))))))))
 
 ================================================================================
 openCypher.txt: 168
@@ -6894,8 +6856,7 @@ RETURN [   (a)-->()   WHERE   a   :   Label   |   55 + a.prop]
                                       (variable
                                         (identifier))))
                                   (property_lookup
-                                    (property_key_name
-                                      (identifier))))))))))))))))))))
+                                    (identifier)))))))))))))))))))
 
 ================================================================================
 openCypher.txt: 169
@@ -6953,8 +6914,7 @@ RETURN [   (a)-->()   WHERE   a   :   Label   |   55 + a.prop   ]
                                       (variable
                                         (identifier))))
                                   (property_lookup
-                                    (property_key_name
-                                      (identifier))))))))))))))))))))
+                                    (identifier)))))))))))))))))))
 
 ================================================================================
 openCypher.txt: 170
@@ -7014,8 +6974,7 @@ RETURN [p=(a)-->()WHERE a:Label|55 + a.prop]
                                       (variable
                                         (identifier))))
                                   (property_lookup
-                                    (property_key_name
-                                      (identifier))))))))))))))))))))
+                                    (identifier)))))))))))))))))))
 
 ================================================================================
 openCypher.txt: 171
@@ -7075,8 +7034,7 @@ RETURN [   p=(a)-->()WHERE a:Label|55 + a.prop]
                                       (variable
                                         (identifier))))
                                   (property_lookup
-                                    (property_key_name
-                                      (identifier))))))))))))))))))))
+                                    (identifier)))))))))))))))))))
 
 ================================================================================
 openCypher.txt: 172
@@ -7136,8 +7094,7 @@ RETURN [   p   =(a)-->()WHERE a:Label|55 + a.prop]
                                       (variable
                                         (identifier))))
                                   (property_lookup
-                                    (property_key_name
-                                      (identifier))))))))))))))))))))
+                                    (identifier)))))))))))))))))))
 
 ================================================================================
 openCypher.txt: 173
@@ -7197,8 +7154,7 @@ RETURN [   p   =   (a)-->()WHERE a:Label|55 + a.prop]
                                       (variable
                                         (identifier))))
                                   (property_lookup
-                                    (property_key_name
-                                      (identifier))))))))))))))))))))
+                                    (identifier)))))))))))))))))))
 
 ================================================================================
 openCypher.txt: 174
@@ -7450,8 +7406,7 @@ RETURN 1
                                     (variable
                                       (identifier))))
                                 (property_lookup
-                                  (property_key_name
-                                    (identifier)))))))))))))
+                                  (identifier))))))))))))
             (return
               (projection_body
                 (projection_items
@@ -7508,8 +7463,7 @@ RETURN 1
                                     (variable
                                       (identifier))))
                                 (property_lookup
-                                  (property_key_name
-                                    (identifier)))))))))))))
+                                  (identifier))))))))))))
             (return
               (projection_body
                 (projection_items
@@ -7566,8 +7520,7 @@ RETURN 1
                                     (variable
                                       (identifier))))
                                 (property_lookup
-                                  (property_key_name
-                                    (identifier)))))))))))))
+                                  (identifier))))))))))))
             (return
               (projection_body
                 (projection_items
@@ -7624,8 +7577,7 @@ RETURN 1
                                     (variable
                                       (identifier))))
                                 (property_lookup
-                                  (property_key_name
-                                    (identifier)))))))))))))
+                                  (identifier))))))))))))
             (return
               (projection_body
                 (projection_items
@@ -7682,8 +7634,7 @@ RETURN 1
                                     (variable
                                       (identifier))))
                                 (property_lookup
-                                  (property_key_name
-                                    (identifier)))))))))))))
+                                  (identifier))))))))))))
             (return
               (projection_body
                 (projection_items
@@ -7740,8 +7691,7 @@ RETURN 1
                                     (variable
                                       (identifier))))
                                 (property_lookup
-                                  (property_key_name
-                                    (identifier)))))))))))))
+                                  (identifier))))))))))))
             (return
               (projection_body
                 (projection_items
@@ -7798,8 +7748,7 @@ RETURN 1
                                     (variable
                                       (identifier))))
                                 (property_lookup
-                                  (property_key_name
-                                    (identifier)))))))))))))
+                                  (identifier))))))))))))
             (return
               (projection_body
                 (projection_items
@@ -7856,8 +7805,7 @@ RETURN 1
                                     (variable
                                       (identifier))))
                                 (property_lookup
-                                  (property_key_name
-                                    (identifier)))))))))))))
+                                  (identifier))))))))))))
             (return
               (projection_body
                 (projection_items
@@ -8579,15 +8527,14 @@ MATCH (p) WHERE {foo: p}.foo:Person:Teacher RETURN p
                         (atom
                           (literal
                             (map_literal
-                              (property_key_name
-                                (identifier))
-                              (expression
-                                (atom
-                                  (variable
-                                    (identifier))))))))
+                              (field
+                                (identifier)
+                                (expression
+                                  (atom
+                                    (variable
+                                      (identifier)))))))))
                       (property_lookup
-                        (property_key_name
-                          (identifier)))
+                        (identifier))
                       (node_labels
                         (node_label
                           (label_name
@@ -8701,8 +8648,7 @@ MATCH (n) CREATE () WITH n SET n.foo = 1 RETURN n.bar
                         (variable
                           (identifier)))
                       (property_lookup
-                        (property_key_name
-                          (identifier))))
+                        (identifier)))
                     (expression
                       (atom
                         (literal
@@ -8720,8 +8666,7 @@ MATCH (n) CREATE () WITH n SET n.foo = 1 RETURN n.bar
                               (variable
                                 (identifier))))
                           (property_lookup
-                            (property_key_name
-                              (identifier))))))))))))))))
+                            (identifier)))))))))))))))
 
 ================================================================================
 openCypher.txt: 211
@@ -8852,8 +8797,7 @@ SET null.p = 2
                       (literal
                         (null_literal)))
                     (property_lookup
-                      (property_key_name
-                        (identifier))))
+                      (identifier)))
                   (expression
                     (atom
                       (literal
@@ -8883,8 +8827,7 @@ REMOVE null.p
                       (literal
                         (null_literal)))
                     (property_lookup
-                      (property_key_name
-                        (identifier)))))))))))))
+                      (identifier))))))))))))
 
 ================================================================================
 openCypher.txt: 215
@@ -9103,7 +9046,7 @@ RETURN count(label) AS numLabels
                     (expression
                       (atom
                         (function_invocation
-                          (function_name
+                          (function_reference
                             (identifier))
                           (expression
                             (atom
@@ -9182,7 +9125,7 @@ RETURN count(label) AS numLabels
                     (expression
                       (atom
                         (function_invocation
-                          (function_name
+                          (function_reference
                             (identifier))
                           (expression
                             (atom
@@ -9253,7 +9196,7 @@ CALL db.labels() YIELD x WHERE label CONTAINS 'User' AND foo + bar = foo RETURN 
                     (expression
                       (atom
                         (function_invocation
-                          (function_name
+                          (function_reference
                             (identifier))
                           (expression
                             (atom

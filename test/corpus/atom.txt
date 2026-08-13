@@ -62,8 +62,7 @@ END;
                                   (variable
                                     (identifier))))
                               (property_lookup
-                                (property_key_name
-                                  (identifier)))))
+                                (identifier))))
                           (case_alternatives
                             (expression
                               (atom
@@ -132,7 +131,8 @@ RETURN COUNT(*);
                 (projection_items
                   (projection_item
                     (expression
-                      (atom))))))))))))
+                      (atom
+                        (count_star)))))))))))))
 
 ================================================================================
 Atom - list comprehension - 1
@@ -323,8 +323,7 @@ RETURN [()-[r:ACTED_IN]->() WHERE r.year = 2022 | r.year - 2];
                                       (variable
                                         (identifier))))
                                   (property_lookup
-                                    (property_key_name
-                                      (identifier)))))
+                                    (identifier))))
                               (expression
                                 (atom
                                   (literal
@@ -340,8 +339,7 @@ RETURN [()-[r:ACTED_IN]->() WHERE r.year = 2022 | r.year - 2];
                                       (variable
                                         (identifier))))
                                   (property_lookup
-                                    (property_key_name
-                                      (identifier)))))
+                                    (identifier))))
                               (expression
                                 (atom
                                   (literal
@@ -395,8 +393,7 @@ RETURN [r = ()-[r:ACTED_IN]->() WHERE r.year = 2022 | r.year - 2];
                                       (variable
                                         (identifier))))
                                   (property_lookup
-                                    (property_key_name
-                                      (identifier)))))
+                                    (identifier))))
                               (expression
                                 (atom
                                   (literal
@@ -412,8 +409,7 @@ RETURN [r = ()-[r:ACTED_IN]->() WHERE r.year = 2022 | r.year - 2];
                                       (variable
                                         (identifier))))
                                   (property_lookup
-                                    (property_key_name
-                                      (identifier)))))
+                                    (identifier))))
                               (expression
                                 (atom
                                   (literal
@@ -453,8 +449,7 @@ RETURN ALL ( n IN node.names );
                                       (variable
                                         (identifier))))
                                   (property_lookup
-                                    (property_key_name
-                                      (identifier))))))))))))))))))))
+                                    (identifier)))))))))))))))))))
 
 ================================================================================
 Atom - ANY(filter_expression)
@@ -488,8 +483,7 @@ RETURN ANY ( n IN node.names );
                                       (variable
                                         (identifier))))
                                   (property_lookup
-                                    (property_key_name
-                                      (identifier))))))))))))))))))))
+                                    (identifier)))))))))))))))))))
 
 ================================================================================
 Atom - NONE(filter_expression)
@@ -523,8 +517,7 @@ RETURN NONE ( n IN node.names );
                                       (variable
                                         (identifier))))
                                   (property_lookup
-                                    (property_key_name
-                                      (identifier))))))))))))))))))))
+                                    (identifier)))))))))))))))))))
 
 ================================================================================
 Atom - SINGLE(filter_expression)
@@ -558,8 +551,7 @@ RETURN SINGLE ( n IN node.names );
                                       (variable
                                         (identifier))))
                                   (property_lookup
-                                    (property_key_name
-                                      (identifier))))))))))))))))))))
+                                    (identifier)))))))))))))))))))
 
 ================================================================================
 Atom - relationships pattern
@@ -674,8 +666,9 @@ RETURN hocus_pocus(DISTINCT x, y, z);
                     (expression
                       (atom
                         (function_invocation
-                          (function_name
+                          (function_reference
                             (identifier))
+                          (set_quantifier)
                           (expression
                             (atom
                               (variable

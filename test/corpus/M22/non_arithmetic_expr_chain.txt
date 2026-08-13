@@ -86,11 +86,8 @@ RETURN node.propertyA.propertyB.propertyC;
                                     (variable
                                       (identifier))))
                                 (property_lookup
-                                  (property_key_name
-                                    (identifier)))))
+                                  (identifier))))
                             (property_lookup
-                              (property_key_name
-                                (identifier)))))
+                              (identifier))))
                         (property_lookup
-                          (property_key_name
-                            (identifier)))))))))))))))
+                          (identifier))))))))))))))

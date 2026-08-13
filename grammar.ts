@@ -469,12 +469,12 @@ export default grammar({
         )),
         atom: ($) => choice(
             $.literal,
-            $.parameter,
             $.case_expression,
+            $.parameter_reference,
             $.list_comprehension,
             $.pattern_comprehension,
-            $.quantifier,
             $.pattern_predicate,
+            $.quantifier_expression,
             $.parenthesized_expression,
             $.function_invocation,
             $.count_star,
@@ -489,34 +489,12 @@ export default grammar({
                 ')',
             ),
         ),
+        // bnf: simple_path_pattern
         relationships_pattern: ($) => seq(
             $.node_pattern,
             prec.right(repeat1($.pattern_element_chain)),
         ),
         pattern_predicate: ($) => $.relationships_pattern,
-        filter_expression: ($) => seq(
-            $.id_in_coll,
-            optional($.where),
-        ),
-        id_in_coll: ($) => prec(1, seq(
-            $.variable,
-            word('in'),
-            $.expression,
-        )),
-        function_invocation: ($) => seq(
-            $.function_name,
-            '(',
-            optional(word('distinct')),
-            optional(seq(
-                $.expression,
-                repeat(seq(
-                    ',',
-                    $.expression,
-                )),
-            )),
-            ')',
-        ),
-        function_name: ($) => seq(optional($.namespace), $.symbolic_name),
         existential_subquery: ($) => seq(
             word('exists'),
             '{',
@@ -544,16 +522,6 @@ export default grammar({
         implicit_procedure_invocation: ($) => $.procedure_name,
         procedure_result_field: ($) => $.symbolic_name,
         procedure_name: ($) => seq(optional($.namespace), $.symbolic_name),
-        namespace: ($) => repeat1(seq($.variable, '.')),
-        list_comprehension: ($) => seq(
-            '[',
-            $.filter_expression,
-            optional(seq(
-                '|',
-                $.expression,
-            )),
-            ']',
-        ),
         pattern_comprehension: ($) => prec(11, seq(
             '[',
             optional(seq(
@@ -568,12 +536,6 @@ export default grammar({
             '|',
             $.expression,
             ']',
-        )),
-        quantifier: ($) => prec(12, choice(
-            seq(word('all'), '(', $.filter_expression, ')'),
-            seq(word('any'), '(', $.filter_expression, ')'),
-            seq(word('none'), '(', $.filter_expression, ')'),
-            seq(word('single'), '(', $.filter_expression, ')'),
         )),
         property_lookup: ($) => seq('.', $.identifier),
         case_expression: ($) => seq(
@@ -600,7 +562,7 @@ export default grammar({
             word('then'),
             $.expression,
         ),
-        variable: ($) => $.symbolic_name,
+        variable: ($) => $.identifier,
         parameter: ($) => seq('$', choice($.symbolic_name, $.decimal_integer)),
         property_expression: ($) => seq(
             $.atom,
@@ -608,11 +570,80 @@ export default grammar({
         ),
         /* --- CURATED --- */
 
+        /* --- Expressions --- */
+
+        reduce_expression: ($) => seq(
+            word('reduce'),
+            '(',
+            $.element_accumulator,
+            ',',
+            $.element_source,
+            $.element_projection,
+            ')',
+        ),
+
+        list_comprehension: ($) => seq(
+            '[',
+            $.element_source,
+            optional(choice(
+                seq(optional($.element_filter), $.element_projection),
+                $.element_filter,
+            )),
+            ']',
+        ),
+
+        quantifier_expression: ($) => prec(12, seq(
+            field('quantifier', choice(
+                word('all'),
+                word('any'),
+                word('none'),
+                word('single'),
+            )),
+            '(',
+            $.element_source,
+            $.element_filter,
+            ')',
+        )),
+
+        // list element source
+        // quantifier element source
+        // bnf: reduce_element_source
+        element_source: ($) => prec(1, seq(
+            $.identifier,
+            word('in'),
+            $.expression,
+        )),
+
+        // bnf: list_element_filter
+        // bnf: quantifier_element_predicate
+        element_filter: ($) => seq(word('where'), $.expression),
+
+        // bnf: list_element_projection
+        // bnf: reduce_step
+        element_projection: ($) => seq('|', $.expression),
+
+        // bnf: reduce_accumulator_initialization
+        element_accumulator: ($) => seq($.variable, '=', $.expression),
+
+        // bnf: function_invocation
+        // bnf: trim_function
+        function_invocation: ($) => seq(
+            field('function', $.function_reference),
+            '(',
+            optional($.set_quantifier),
+            optional(commaSeparated(field('argument', $.expression))),
+            ')',
+        ),
+        function_reference: ($) => seq(optional($.namespace), $.symbolic_name),
+        set_quantifier: () => choice(word('all'), word('distinct')),
+        namespace: ($) => repeat1(seq($.variable, '.')),
+
         // Needs \s* within the (*) pattern. Otherwise conflicts with function call.
         // TODO: Consider function_call aliasing */
         count_star: () => seq(word('count'), /\(\s*\*\s*\)/),
 
         /* --- Literals --- */
+
         literal: ($) => choice(
             $.number_literal,
             $.string_literal,
@@ -621,6 +652,7 @@ export default grammar({
             $.map_literal,
             $.list_literal,
         ),
+        // bnf: signed_numeric_literal
         number_literal:  ($) => choice(
             $.decimal_literal,
             $.integer_literal,
@@ -628,19 +660,26 @@ export default grammar({
             word('infinity'),
             word('nan'),
         ),
+        // bnf: unsigned_integer
         integer_literal: ($) => choice(
             $.hex_integer,
             $.octal_integer,
             $.decimal_integer,
         ),
+        // bnf: unsigned_hexadecimal_literal
         hex_integer:     ($) => HEX_INT,
+        // bnf: unsigned_decimal_literal
         decimal_integer: ($) => DEC_INT,
+        // bnf: unsigned_octal_literal
         octal_integer:   ($) => OCT_INT,
+        // bnf: approximate_numeric_literal
         decimal_literal: ($) => DECIMAL_LITERAL,
         null_literal:    ($) => word('null'),
         boolean_literal: ($) => choice(word('true'), word('false')),
 
+        // bnf: character_string_literal
         string_literal:      ($) => choice($.single_quote_string, $.double_quote_string),
+        // bnf: single_quoted_character_sequence
         single_quote_string: ($) => seq(
             `'`,
             repeat(choice(
@@ -650,6 +689,7 @@ export default grammar({
             )),
             `'`,
         ),
+        // bnf: double_quoted_character_sequence
         double_quote_string: ($) => seq(
             `"`,
             repeat(choice(
@@ -665,24 +705,36 @@ export default grammar({
             /\\u[a-fA-F0-9]{4}/,
             /\\U[a-fA-F0-9]{6}/,  // TODO: Probably should support 8 digit mode for compatibility.
         )),
+        // bnf: list_literal
+        // bnf: list_value_constructor
         list_literal: ($) => seq(
             '[',
             optional(commaSeparated($.expression)),
             ']',
         ),
+        // bnf: map_literal
+        // bnf: record_literal
+        // bnf: map_value_constructor
         map_literal: ($) => seq(
             '{',
             optional(commaSeparated($.field)),
             '}',
         ),
+        // bnf: field_literal
         field: ($) => seq(
             field('name', $.identifier),
             ':',
             field('value', $.expression),
         ),
+
         /* --- Identifiers --- */
-        parameter_name:         ($) => seq('$', choice(EXTENDED_IDENTIFIER, $.delimited_identifier)),
+
+        // bnf: general_parameter_reference
+        // TODO: needs prec? conflicts with identifier
+        parameter_reference:    ($) => prec(1, seq('$', choice(EXTENDED_IDENTIFIER, $.delimited_identifier))),
         identifier:             ($) => choice(REGULAR_IDENTIFIER, $.delimited_identifier, $.non_reserved_word),
+        // bnf: delimited_identifier
+        // bnf: accent_quoted_character_sequence
         delimited_identifier:   ($) => seq(
             '`',
             repeat(choice(
@@ -692,7 +744,9 @@ export default grammar({
             )),
             '`'
         ),
-        non_reserved_word:      ($) => prec(-1, choice( // TODO: verify precedence works ok.
+
+        // TODO: verify precedence works ok.
+        non_reserved_word:      ($) => prec(-1, choice(
             word('allshortestpaths'),
             word('all'),
             word('and'),

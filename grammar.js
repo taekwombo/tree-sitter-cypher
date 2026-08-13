@@ -96,14 +96,11 @@ export default grammar({
         pattern_predicate: ($) => $.relationships_pattern,
         filter_expression: ($) => seq($.id_in_coll, optional($.where)),
         id_in_coll: ($) => prec(1, seq($.variable, word('in'), $.expression)),
-        function_invocation: ($) => seq($.function_name, '(', optional(word('distinct')), optional(seq($.expression, repeat(seq(',', $.expression)))), ')'),
-        function_name: ($) => seq(optional($.namespace), $.symbolic_name),
         existential_subquery: ($) => seq(word('exists'), '{', choice($.regular_query, seq($.pattern, optional($.where))), '}'),
         explicit_procedure_invocation: ($) => seq($.procedure_name, '(', optional(seq($.expression, repeat(seq(',', $.expression)))), ')'),
         implicit_procedure_invocation: ($) => $.procedure_name,
         procedure_result_field: ($) => $.symbolic_name,
         procedure_name: ($) => seq(optional($.namespace), $.symbolic_name),
-        namespace: ($) => repeat1(seq($.variable, '.')),
         list_comprehension: ($) => seq('[', $.filter_expression, optional(seq('|', $.expression)), ']'),
         pattern_comprehension: ($) => prec(11, seq('[', optional(seq($.variable, '=')), $.relationships_pattern, optional(seq(word('where'), $.expression)), '|', $.expression, ']')),
         quantifier: ($) => prec(12, choice(seq(word('all'), '(', $.filter_expression, ')'), seq(word('any'), '(', $.filter_expression, ')'), seq(word('none'), '(', $.filter_expression, ')'), seq(word('single'), '(', $.filter_expression, ')'))),
@@ -114,6 +111,10 @@ export default grammar({
         parameter: ($) => seq('$', choice($.symbolic_name, $.decimal_integer)),
         property_expression: ($) => seq($.atom, repeat($.property_lookup)),
         /* --- CURATED --- */
+        function_invocation: ($) => seq(field('function', $.function_reference), '(', optional($.set_quantifier), optional(commaSeparated(field('argument', $.expression))), ')'),
+        function_reference: ($) => seq(optional($.namespace), $.symbolic_name),
+        set_quantifier: () => choice(word('all'), word('distinct')),
+        namespace: ($) => repeat1(seq($.variable, '.')),
         // Needs \s* within the (*) pattern. Otherwise conflicts with function call.
         // TODO: Consider function_call aliasing */
         count_star: () => seq(word('count'), /\(\s*\*\s*\)/),

@@ -387,24 +387,41 @@
   {
     "type": "function_invocation",
     "named": true,
-    "fields": {},
+    "fields": {
+      "argument": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "function": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "function_reference",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
         {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "function_name",
+          "type": "set_quantifier",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "function_name",
+    "type": "function_reference",
     "named": true,
     "fields": {},
     "children": {
@@ -1500,6 +1517,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "set_quantifier",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "single_part_query",
