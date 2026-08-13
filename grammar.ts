@@ -471,13 +471,13 @@ export default grammar({
             $.literal,
             $.parameter,
             $.case_expression,
-            seq(word('count'), /\(\s*\*\s*\)/),
             $.list_comprehension,
             $.pattern_comprehension,
             $.quantifier,
             $.pattern_predicate,
             $.parenthesized_expression,
             $.function_invocation,
+            $.count_star,
             $.existential_subquery,
             prec.left($.variable),
         ),
@@ -607,6 +607,12 @@ export default grammar({
             repeat($.property_lookup),
         ),
         /* --- CURATED --- */
+        /* --- Other expressions --- */
+
+        // Needs \s* within the (*) pattern. Otherwise conflicts with function call.
+        // TODO: Consider function_call aliasing */
+        count_star: () => seq(word('count'), /\(\s*\*\s*\)/),
+
         /* --- Literals --- */
         literal: ($) => choice(
             $.number_literal,
@@ -833,12 +839,22 @@ function commaSeparated(rule: Rule): SeqRule {
 }
 
 function word(keyword: string): AliasRule {
+    const alternatives = Array.from(keyword)
+        .map((char) => {
+            const lower = char.toLowerCase();
+            const upper = char.toUpperCase();
+
+            if (lower == upper) {
+                throw new Error(`In ${keyword}, it is expected that lower [${lower}] and upper [${upper}] are different.`);
+            }
+
+            return [lower, upper];
+        });
+
     return alias(
         token(
             seq(
-                ...keyword
-                    .split('')
-                    .map((char) => choice(char.toLowerCase(), char.toUpperCase())),
+                ...alternatives.map(([l, u]) => choice(l, u))
             )
         ),
         keyword,
