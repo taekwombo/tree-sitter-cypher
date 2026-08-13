@@ -50,10 +50,14 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "case_expression",
+          "named": true
+        },
+        {
+          "type": "count_star",
           "named": true
         },
         {
@@ -158,6 +162,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "count_star",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "create",
@@ -328,6 +337,32 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "field",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -621,11 +656,7 @@
       "required": false,
       "types": [
         {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "property_key_name",
+          "type": "field",
           "named": true
         }
       ]
@@ -1139,21 +1170,6 @@
     }
   },
   {
-    "type": "property_key_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "property_lookup",
     "named": true,
     "fields": {},
@@ -1162,7 +1178,7 @@
       "required": true,
       "types": [
         {
-          "type": "property_key_name",
+          "type": "identifier",
           "named": true
         }
       ]

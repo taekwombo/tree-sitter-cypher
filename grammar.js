@@ -12,8 +12,8 @@ export default grammar({
         $.delimited_identifier, // TODO: Verify which nodes should be inlined.
         $.non_reserved_word, // TODO: Verify which nodes should be inlined.
         // $.identifier,        // TODO: Verify which nodes should be inlined.
-        $.symbolic_name,
-        $.schema_name,
+        $.symbolic_name, // TODO: Verify which nodes should be inlined.
+        $.schema_name, // TODO: Verify which nodes should be inlined.
     ],
     rules: {
         cypher: ($) => seq($.statement, optional(';')),
@@ -90,7 +90,7 @@ export default grammar({
         unary_expression: ($) => prec(10, seq(choice('+', '-'), $.expression)),
         list_operator_expression: ($) => prec(11, seq($.expression, choice(seq('[', $.expression, ']'), seq('[', optional($.expression), '..', optional($.expression), ']')))),
         property_or_labels_expression: ($) => prec.right(11, seq($.expression, choice(seq(repeat1($.property_lookup), optional($.node_labels)), seq(repeat($.property_lookup), $.node_labels)))),
-        atom: ($) => choice($.literal, $.parameter, $.case_expression, seq(word('count'), /\(\s*\*\s*\)/), $.list_comprehension, $.pattern_comprehension, $.quantifier, $.pattern_predicate, $.parenthesized_expression, $.function_invocation, $.existential_subquery, prec.left($.variable)),
+        atom: ($) => choice($.literal, $.parameter, $.case_expression, $.list_comprehension, $.pattern_comprehension, $.quantifier, $.pattern_predicate, $.parenthesized_expression, $.function_invocation, $.count_star, $.existential_subquery, prec.left($.variable)),
         parenthesized_expression: ($) => choice($.variable_in_parens, seq('(', $.expression, ')')),
         relationships_pattern: ($) => seq($.node_pattern, prec.right(repeat1($.pattern_element_chain))),
         pattern_predicate: ($) => $.relationships_pattern,
@@ -107,13 +107,16 @@ export default grammar({
         list_comprehension: ($) => seq('[', $.filter_expression, optional(seq('|', $.expression)), ']'),
         pattern_comprehension: ($) => prec(11, seq('[', optional(seq($.variable, '=')), $.relationships_pattern, optional(seq(word('where'), $.expression)), '|', $.expression, ']')),
         quantifier: ($) => prec(12, choice(seq(word('all'), '(', $.filter_expression, ')'), seq(word('any'), '(', $.filter_expression, ')'), seq(word('none'), '(', $.filter_expression, ')'), seq(word('single'), '(', $.filter_expression, ')'))),
-        property_lookup: ($) => seq('.', $.property_key_name),
+        property_lookup: ($) => seq('.', $.identifier),
         case_expression: ($) => seq(choice(seq(word('case'), repeat($.case_alternatives)), seq(word('case'), $.expression, repeat($.case_alternatives))), optional(seq(word('else'), $.expression)), word('end')),
         case_alternatives: ($) => seq(word('when'), $.expression, word('then'), $.expression),
         variable: ($) => $.symbolic_name,
         parameter: ($) => seq('$', choice($.symbolic_name, $.decimal_integer)),
         property_expression: ($) => seq($.atom, repeat($.property_lookup)),
         /* --- CURATED --- */
+        // Needs \s* within the (*) pattern. Otherwise conflicts with function call.
+        // TODO: Consider function_call aliasing */
+        count_star: () => seq(word('count'), /\(\s*\*\s*\)/),
         /* --- Literals --- */
         literal: ($) => choice($.number_literal, $.string_literal, $.boolean_literal, $.null_literal, $.map_literal, $.list_literal),
         number_literal: ($) => choice($.decimal_literal, $.integer_literal, word('inf'), word('infinity'), word('nan')),
@@ -129,8 +132,8 @@ export default grammar({
         double_quote_string: ($) => seq(`"`, repeat(choice(/[^"\\]+/, $.escaped_char, alias(`""`, $.escaped_char))), `"`),
         escaped_char: () => token(choice('\\\\', /\\[^uU]/, /\\u[a-fA-F0-9]{4}/, /\\U[a-fA-F0-9]{6}/)),
         list_literal: ($) => seq('[', optional(commaSeparated($.expression)), ']'),
-        map_literal: ($) => seq('{', optional(commaSeparated(seq($.property_key_name, ':', $.expression))), '}'),
-        property_key_name: ($) => $.schema_name,
+        map_literal: ($) => seq('{', optional(commaSeparated($.field)), '}'),
+        field: ($) => seq(field('name', $.identifier), ':', field('value', $.expression)),
         /* --- Identifiers --- */
         parameter_name: ($) => seq('$', choice(EXTENDED_IDENTIFIER, $.delimited_identifier)),
         identifier: ($) => choice(REGULAR_IDENTIFIER, $.delimited_identifier, $.non_reserved_word),
@@ -151,7 +154,14 @@ function commaSeparated(rule) {
     return seq(rule, repeat(seq(',', rule)));
 }
 function word(keyword) {
-    return alias(token(seq(...keyword
-        .split('')
-        .map((char) => choice(char.toLowerCase(), char.toUpperCase())))), keyword);
+    const alternatives = Array.from(keyword)
+        .map((char) => {
+        const lower = char.toLowerCase();
+        const upper = char.toUpperCase();
+        if (lower == upper) {
+            throw new Error(`In ${keyword}, it is expected that lower [${lower}] and upper [${upper}] are different.`);
+        }
+        return [lower, upper];
+    });
+    return alias(token(seq(...alternatives.map(([l, u]) => choice(l, u)))), keyword);
 }

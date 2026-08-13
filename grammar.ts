@@ -575,7 +575,7 @@ export default grammar({
             seq(word('none'), '(', $.filter_expression, ')'),
             seq(word('single'), '(', $.filter_expression, ')'),
         )),
-        property_lookup: ($) => seq('.', $.property_key_name),
+        property_lookup: ($) => seq('.', $.identifier),
         case_expression: ($) => seq(
             choice(
                 seq(
@@ -607,7 +607,6 @@ export default grammar({
             repeat($.property_lookup),
         ),
         /* --- CURATED --- */
-        /* --- Other expressions --- */
 
         // Needs \s* within the (*) pattern. Otherwise conflicts with function call.
         // TODO: Consider function_call aliasing */
@@ -673,12 +672,14 @@ export default grammar({
         ),
         map_literal: ($) => seq(
             '{',
-            optional(commaSeparated(
-                seq($.property_key_name, ':', $.expression)
-            )),
+            optional(commaSeparated($.field)),
             '}',
         ),
-        property_key_name: ($) => $.schema_name,
+        field: ($) => seq(
+            field('name', $.identifier),
+            ':',
+            field('value', $.expression),
+        ),
         /* --- Identifiers --- */
         parameter_name:         ($) => seq('$', choice(EXTENDED_IDENTIFIER, $.delimited_identifier)),
         identifier:             ($) => choice(REGULAR_IDENTIFIER, $.delimited_identifier, $.non_reserved_word),
